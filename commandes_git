@@ -1,10 +1,29 @@
+////////////////////////////////////////////////////créer une branche
+
 git branch
 //liste les branches
 
-git branch <branch>
+git branch <branche de sortie>//creer une branche
 
-//reprendre une branche master après une pull request accédée
+git checkout <branche de sortie> //se met dans la branche de sortie
+(faire des modifs)
+git commit -a 
+
+git checkout <branche d'origine>
+git merge <branche de sortie> // fusionner la branche d'origine et la branche de sortie
+
+git push origin <branche de sortie>  //met sur le serveur la nouvelle branche
+
+
+
+
+
+
+//reprendre une frk master après une pull request accédée
 git pull <git://.....adresse du projet commun> <branche>
+
+
+
 
 
 
