@@ -1,3 +1,13 @@
+git branch
+//liste les branches
+
+git branch <branch>
+
+//reprendre une branche master après une pull request accédée
+git pull <git://.....adresse du projet commun> <branche>
+
+
+
 git checkout
 
 
