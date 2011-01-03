@@ -1,0 +1,10 @@
+git checkout
+
+
+
+==faire un commit
+
+
+git commit -a
+git pull
+git push
