@@ -1,0 +1,189 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>controlP5 : : ControlP5</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link href="stylesheet.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+document.getElementsByTagName('html')[0].className = 'isjs';
+
+function toggle(dt) 
+{ 
+  var display, dd=dt; 
+  /* get dd */ 
+  do{ dd = dd.nextSibling } while(dd.tagName!='DD'); 
+  toOpen =!dd.style.display; 
+  dd.style.display = toOpen? 'block':'' 
+  dt.getElementsByTagName('span')[0].innerHTML 
+    = toOpen? '-':'+' ; 
+} 
+</script>
+</head>
+<body>
+<div id="container">
+		<div id="header">
+		<a href="./index.htm"><img src="./docuImages/title.jpg" /></a>
+		</div>
+	<div class="content">
+		<h1>ControlP5</h1>
+		<dl><dt class="key">description</dt><dd class="value">controlP5 is a processing and java library for creating simple control GUIs.</dd></dl>
+			
+			<div class="toggleList example">
+				<dl><dt onclick="toggle(this)"><span>+</span>Example</dt>
+					<dd><pre>/**
+ * controlP5numberbox by andreas schlegel &lt;br />
+ * an example to show how to use a numberbox to control&lt;br />
+ * variables and events.&lt;br />
+ * click a numberbox and move mouse up and down while pressing &lt;br />
+ * the mousebutton to change values.&lt;br />
+ * for further information and questions about controlP5 first&lt;br />
+ * take a look at the documentation, the examples, or the &lt;br />
+ * website at http://www.sojamo.de/controlP5&lt;br />
+ */
+
+import controlP5.*;
+
+ControlP5 controlP5;
+
+public int myColorRect = 200;
+
+public int myColorBackground = 100;
+
+
+void setup() {
+  size(400,400);
+  frameRate(25);
+  controlP5 = new ControlP5(this);
+  controlP5.addNumberbox("numberbox1",myColorRect,100,160,100,14).setId(1);
+  controlP5.addNumberbox("numberbox2",myColorBackground,100,200,100,14).setId(2);
+  controlP5.addSlider("slider1",100,200,100,100,250,100,14).setId(3);
+  controlP5.addTextfield("text1",100,290,100,20).setId(4);
+}
+
+void draw() {
+  background(myColorBackground);
+  fill(myColorRect);
+  rect(0,0,width,100);
+}
+
+
+void controlEvent(ControlEvent theEvent) {
+  println("got a control event from controller with id "+theEvent.controller().id());
+  switch(theEvent.controller().id()) {
+    case(1):
+    myColorRect = (int)(theEvent.controller().value());
+    break;
+    case(2):
+    myColorBackground = (int)(theEvent.controller().value());
+    break;  
+  }
+}
+</pre></dd>
+				</dl>
+			</div>
+			
+			
+			
+			<dl><dt class="key">constructors</dt><dd class="value"><pre>ControlP5(theParent);
+</pre></dd></dl>
+			
+			
+			
+			
+   <dl><dt class="key">parameters</dt><dd class="value"><span class="parameters">theParent</span><span class="parameters">PApplet</span><span class="clear">&nbsp;</span></dd>
+</dl>
+			
+			
+			
+			<!-- METHODS:BEGIN -->
+			
+       <dl class="noborder"><dt>Methods</dt></dl>
+       <dl><dt class="key"><a href="controlp5_method_addbang.htm">addBang ( )</a></dt><dd class="value">add a bang to controlP5. by default it will be added to the default tab
+ of the main window.</dd></dl>
+<dl><dt class="key"><a href="controlp5_method_addbutton.htm">addButton ( )</a></dt><dd class="value">a button to controlP5. by default it will be added to the default tab of
+ the main window.</dd></dl>
+<dl><dt class="key"><a href="controlp5_method_addcontrolwindow.htm">addControlWindow ( )</a></dt><dd class="value">create a new ControlWindow.</dd></dl>
+<dl><dt class="key"><a href="controlp5_method_addgroup.htm">addGroup ( )</a></dt><dd class="value">add a group to controlP5. by default it will be added to the default tab
+ of the main window.</dd></dl>
+<dl><dt class="key"><a href="controlp5_method_addknob.htm">addKnob ( )</a></dt><dd class="value">add a knob to controlP5. by default it will be added to the default tab
+ of the main window.</dd></dl>
+<dl><dt class="key"><a href="controlp5_method_addnumberbox.htm">addNumberbox ( )</a></dt><dd class="value">add a numberbox to controlP5. by default it will be added to the default
+ tab of the main window.</dd></dl>
+<dl><dt class="key"><a href="controlp5_method_addradio.htm">addRadio ( )</a></dt><dd class="value">add a radio list to controlP5. by default it will be added to the default
+ tab of the main window.</dd></dl>
+<dl><dt class="key"><a href="controlp5_method_addrange.htm">addRange ( )</a></dt><dd class="value">add a slider to controlP5. by default it will be added to the default tab
+ of the main window.</dd></dl>
+<dl><dt class="key"><a href="controlp5_method_addscrolllist.htm">addScrollList ( )</a></dt><dd class="value">add a scroll list to controlP5. by default it will be added to the
+ default tab of the main window.</dd></dl>
+<dl><dt class="key"><a href="controlp5_method_addslider.htm">addSlider ( )</a></dt><dd class="value">add a slider to controlP5. by default it will be added to the default tab
+ of the main window.</dd></dl>
+<dl><dt class="key"><a href="controlp5_method_addtab.htm">addTab ( )</a></dt><dd class="value">add a tab to controlP5. by default the tab will be added to the main
+ window.</dd></dl>
+<dl><dt class="key"><a href="controlp5_method_addtextarea.htm">addTextarea ( )</a></dt><dd class="value">add a textlabel to controlP5. by default it will be added to the default
+ tab of the main window.</dd></dl>
+<dl><dt class="key"><a href="controlp5_method_addtextfield.htm">addTextfield ( )</a></dt><dd class="value">add a textfield to controlP5. by default it will be added to the default
+ tab of the main window.</dd></dl>
+<dl><dt class="key"><a href="controlp5_method_addtoggle.htm">addToggle ( )</a></dt><dd class="value">add a toggle to controlP5. by default it will be added to the default tab
+ of the main window.</dd></dl>
+<dl><dt class="key"><a href="controlp5_method_controller.htm">controller ( )</a></dt><dd class="value">get a controller by name. you will have to cast the controller.</dd></dl>
+<dl><dt class="key"><a href="controlp5_method_filepath.htm">filePath ( )</a></dt><dd class="value">get the current file path where your controlP5 setup will be save to on
+ your local disk.</dd></dl>
+<dl><dt class="key"><a href="controlp5_method_getgroup.htm">getGroup ( )</a></dt><dd class="value">get a group by name.</dd></dl>
+<dl><dt class="key"><a href="controlp5_method_gettab.htm">getTab ( )</a></dt><dd class="value">get a tab by name from a specific controlwindow.</dd></dl>
+<dl><dt class="key"><a href="controlp5_method_group.htm">group ( )</a></dt><dd class="value">get a group by name</dd></dl>
+<dl><dt class="key"><a href="controlp5_method_hide.htm">hide ( )</a></dt><dd class="value">hide all controllers and tabs in your sketch.</dd></dl>
+<dl><dt class="key"><a href="controlp5_method_isautodraw.htm">isAutoDraw ( )</a></dt><dd class="value">check if the autoDraw function for the main window is enabled(true) or
+ disabled(false).</dd></dl>
+<dl><dt class="key"><a href="controlp5_method_load.htm">load ( )</a></dt><dd class="value">load an xml file, containing a controlP5 setup</dd></dl>
+<dl><dt class="key"><a href="controlp5_method_lock.htm">lock ( )</a></dt><dd class="value">lock ControlP5 to disable moving Controllers around.</dd></dl>
+<dl><dt class="key"><a href="controlp5_method_remove.htm">remove ( )</a></dt><dd class="value">remove a controlP5 element such as a controller, group, or tab by name.</dd></dl>
+<dl><dt class="key"><a href="controlp5_method_save.htm">save ( )</a></dt><dd class="value">save controlP5 settings to your local disk or to a remote
+            server.</dd></dl>
+<dl><dt class="key"><a href="controlp5_method_setautodraw.htm">setAutoDraw ( )</a></dt><dd class="value">by default controlP5 draws any controller on top of any drawing done in
+ the draw() function (this doesnt apply to P3D where controlP5.draw() has
+ to be called manually in the sketch's draw() function ). to turn off the
+ auto drawing of controlP5, use controlP5.setAutoDraw(false). now you can
+ call controlP5.draw() any time whenever controllers should be drawn into
+ the sketch.</dd></dl>
+<dl><dt class="key"><a href="controlp5_method_setautoinitialization.htm">setAutoInitialization ( )</a></dt><dd class="value">autoInitialization can be very handy when it comes to initializing
+ values, e.g. you load a set of controllers from an xml file, then the
+ values that are attached to the controllers will be reset to its state
+ saved in the xml file. to turn of auto intialization, call
+ setAutoInitialization(false) right after initializing controlP5 and
+ before creating any controller.</dd></dl>
+<dl><dt class="key"><a href="controlp5_method_setcoloractive.htm">setColorActive ( )</a></dt><dd class="value">set the active state color of tabs and controllers.</dd></dl>
+<dl><dt class="key"><a href="controlp5_method_setcolorbackground.htm">setColorBackground ( )</a></dt><dd class="value">set the backgorund color of tabs and controllers.</dd></dl>
+<dl><dt class="key"><a href="controlp5_method_setcolorforeground.htm">setColorForeground ( )</a></dt><dd class="value">set the foreground color of tabs and controllers.</dd></dl>
+<dl><dt class="key"><a href="controlp5_method_setcolorlabel.htm">setColorLabel ( )</a></dt><dd class="value">set the label color of tabs and controllers.</dd></dl>
+<dl><dt class="key"><a href="controlp5_method_setcolorvalue.htm">setColorValue ( )</a></dt><dd class="value">set the value color of controllers.</dd></dl>
+<dl><dt class="key"><a href="controlp5_method_setfilepath.htm">setFilePath ( )</a></dt><dd class="value">set the path / filename of the xml file your controlP5 setup will be
+ saved to.</dd></dl>
+<dl><dt class="key"><a href="controlp5_method_seturlpath.htm">setUrlPath ( )</a></dt><dd class="value">you can set an url e.g. an index.php file on a server where you want to
+ save your controlP5 setup to.</dd></dl>
+<dl><dt class="key"><a href="controlp5_method_show.htm">show ( )</a></dt><dd class="value">show all controllers and tabs in your sketch.</dd></dl>
+<dl><dt class="key"><a href="controlp5_method_tab.htm">tab ( )</a></dt><dd class="value">get a tab by name from a specific controlwindow.</dd></dl>
+<dl><dt class="key"><a href="controlp5_method_trigger.htm">trigger ( )</a></dt><dd class="value">forces each available controller to broadcast its value. deprecated. use
+ .update() instead.</dd></dl>
+<dl><dt class="key"><a href="controlp5_method_unlock.htm">unlock ( )</a></dt><dd class="value">unlock ControlP5 to enable moving Controllers around.</dd></dl>
+<dl><dt class="key"><a href="controlp5_method_urlpath.htm">urlPath ( )</a></dt><dd class="value">get the current url path where your controlP5 setup will be save to a
+ remote server e.g. a webserver.</dd></dl>
+<dl><dt class="key"><a href="controlp5_method_version.htm">version ( )</a></dt><dd class="value">get the current version of controlP5</dd></dl>
+
+   
+			<!-- METHODS:END -->
+			<div class="separator">
+			<dl><dt class="key">usage</dt><dd class="value">Web & Application</dd></dl>
+			</div>
+			<div class="separator">
+			<dl><dt class="key">related</dt><dd class="value"><ul></ul></dd></dl>
+			</div>
+	</div>
+	<div id="footer">
+	<p>by andreas schlegel (<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/" target="_blank">cc</a>) 2007, <a href="http://www.sojamo.de" target="_blank">sojamo</a>.</p>
+	</div>
+</div>
+</body>
+</html>
+
+

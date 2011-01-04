@@ -1,0 +1,191 @@
+package CellularAutomata;
+
+public class cellularAutomata {
+
+    
+    public float give;
+    
+   
+    private int[] matrix;
+    public static int i;
+    public static int j;
+    public static int k;
+    public static int l;
+    public static int m;
+    public static int n;
+    public static int o;
+    public static int p;    
+	public static int rows;
+    public int colm;
+     
+    public cellularAutomata(int cond[]) {
+        matrix = cond;        
+    }
+
+    public void setRule(int a, int b,int c,int d,int e,int f,int g,int h) {
+        i = a;
+        j = b;
+        k = c;
+        l = d;
+        m = e;
+        n = f;
+        o = g;
+        p = h;
+    }        
+    
+    
+	public void setValue(int i, int aa){
+    	matrix[i]=aa;
+	}    
+	
+	public static float value;
+	
+	public float getNumber(int i){
+		give = matrix[i];
+    	return give;
+	}  
+	
+	public static float row;
+	
+	public int sizeCA(){
+    	rows = matrix.length;
+    	return rows;
+
+	}
+	
+	
+    public cellularAutomata() {
+
+    }
+
+ 
+    public cellularAutomata copy() {
+        return new cellularAutomata(matrix);
+    }
+
+   
+    
+	public static int[] newMatrix;    
+	public static int xc;  
+	public static int jc;  
+	public static int check;
+	public static int checkt;	
+	public static int masterCount;	
+
+    public static cellularAutomata calcCA( cellularAutomata x,int evolun) {
+    	rows = x.sizeCA();
+    	
+    	if(newMatrix==null)
+	 {
+		 newMatrix = new int[rows];
+		 
+	 }
+    	
+    	int caLOOP = 0;
+ //   	int caLOOPT = 0;   	
+    	xc = 0;
+    	jc = 0;    	
+    	while (xc < evolun){
+    		jc = 0;
+    		masterCount = 0;
+    			//print($x);
+    			while(jc < x.sizeCA()){
+    				check = jc - 1;
+    				if(check < 0){
+    				check = x.sizeCA()-1;
+    				} 				
+    				checkt = jc + 1;
+    				if(checkt == x.sizeCA()){
+    				checkt = 0;
+    				} 			
+    				
+    				if(x.getNumber(check) == 1 && x.getNumber(checkt) == 1 && x.getNumber(jc) == 1){
+    					
+    					newMatrix[jc] = i;
+    //					x.setValue(jc,i);
+    					
+    				}
+    				if(x.getNumber(check) == 1 && x.getNumber(checkt) == 0 && x.getNumber(jc) == 1){
+    					
+    					newMatrix[jc] = j;
+    //					x.setValue(jc,j);
+    					
+    				}	
+    				if(x.getNumber(check) == 1 && x.getNumber(checkt) == 1 && x.getNumber(jc) == 0){
+    					
+    					newMatrix[jc] = k;
+    //					x.setValue(jc,k);
+    					
+    					
+    				}		
+    				if(x.getNumber(check) == 1 && x.getNumber(checkt) == 0 && x.getNumber(jc) == 0){
+    					
+    					newMatrix[jc] = l;
+   // 					x.setValue(jc,l);
+    					
+    				}		
+    				if(x.getNumber(check) == 0 && x.getNumber(checkt) == 1 && x.getNumber(jc) == 1){
+    					
+    					newMatrix[jc] = m;
+   // 					x.setValue(jc,m);
+    				}
+    				if(x.getNumber(check) == 0 && x.getNumber(checkt) == 0 && x.getNumber(jc) == 1){
+    					
+    					newMatrix[jc] = n;
+ //   					x.setValue(jc,n);
+    				}	
+    				if(x.getNumber(check) == 0 && x.getNumber(checkt) == 1 && x.getNumber(jc) == 0){
+    					
+    					newMatrix[jc] = o;
+  //  					x.setValue(jc,o);
+    				}
+    				if(x.getNumber(check) == 0 && x.getNumber(checkt) == 0 && x.getNumber(jc) == 0){
+    				
+    					newMatrix[jc] = p;
+  //  					x.setValue(jc,p);
+    					
+    				}
+    			
+    			jc= jc + 1;	
+    			
+    			
+
+    	}
+    	
+
+
+
+    xc = xc + 1;
+    jc = 0;	
+
+	while(caLOOP < x.sizeCA()){
+		
+		x.setValue(caLOOP,newMatrix[caLOOP]);
+		caLOOP = caLOOP + 1;	
+	}
+	caLOOP = 0;  
+        
+	
+
+    }
+
+    
+      	        
+    	return new cellularAutomata(newMatrix);
+    }    
+    
+    
+    
+    
+
+
+						    public void dispose() {
+						        // anything in here will be called automatically when 
+						        // the parent applet shuts down. for instance, this might
+						        // shut down a thread used by this library.
+						        // note that this currently has issues, see bug #183
+						        // http://dev.processing.org/bugs/show_bug.cgi?id=183
+						      }
+						    
+				    
+}

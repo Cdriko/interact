@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>controlP5 : : Numberbox</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link href="stylesheet.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+document.getElementsByTagName('html')[0].className = 'isjs';
+
+function toggle(dt) 
+{ 
+  var display, dd=dt; 
+  /* get dd */ 
+  do{ dd = dd.nextSibling } while(dd.tagName!='DD'); 
+  toOpen =!dd.style.display; 
+  dd.style.display = toOpen? 'block':'' 
+  dt.getElementsByTagName('span')[0].innerHTML 
+    = toOpen? '-':'+' ; 
+} 
+</script>
+</head>
+<body>
+<div id="container">
+		<div id="header">
+		<a href="./index.htm"><img src="./docuImages/title.jpg" /></a>
+		</div>
+	<div class="content">
+		<h1>Numberbox</h1>
+		<dl><dt class="key">description</dt><dd class="value"></dd></dl>
+			
+			<div class="toggleList example">
+				<dl><dt onclick="toggle(this)"><span>+</span>Example</dt>
+					<dd><pre> /**
+ * controlP5numberbox by andreas schlegel &lt;br />
+ * an example to show how to use a numberbox to control &lt;br />
+ * variables and events.&lt;br />
+ */ 
+
+import controlP5.*;
+
+ControlP5 controlP5;
+
+int myColorBackground = color(0,0,0);
+
+public int numberboxValue = 100;
+
+void setup() {
+  size(400,400);
+  frameRate(25);
+  controlP5 = new ControlP5(this);
+  controlP5.addNumberbox("numberbox",100,100,160,100,14);
+  controlP5.addNumberbox("numberboxValue",128,100,200,100,14);
+}
+
+void draw() {
+  background(myColorBackground);
+  fill(numberboxValue);
+  rect(0,0,width,100);
+}
+
+void numberbox(int theColor) {
+  myColorBackground = color(theColor);
+  println("a numberbox event. setting background to "+theColor);
+}
+</pre></dd>
+				</dl>
+			</div>
+			
+			
+			
+			<dl><dt class="key">constructors</dt><dd class="value"><pre></pre></dd></dl>
+			
+			
+			
+			
+			
+			
+			
+			<!-- METHODS:BEGIN -->
+			
+       <dl class="noborder"><dt>Methods</dt></dl>
+       <dl><dt class="key"><a href="numberbox_method_setvalue.htm">setValue ( )</a></dt><dd class="value">set the value of the numberbox.</dd></dl>
+
+   
+			<!-- METHODS:END -->
+			<div class="separator">
+			<dl><dt class="key">usage</dt><dd class="value">Web & Application</dd></dl>
+			</div>
+			<div class="separator">
+			<dl><dt class="key">related</dt><dd class="value"><ul><li><a href="controller_class_controller.htm">Controller</a></li>
+</ul></dd></dl>
+			</div>
+	</div>
+	<div id="footer">
+	<p>by andreas schlegel (<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/" target="_blank">cc</a>) 2007, <a href="http://www.sojamo.de" target="_blank">sojamo</a>.</p>
+	</div>
+</div>
+</body>
+</html>
+
+

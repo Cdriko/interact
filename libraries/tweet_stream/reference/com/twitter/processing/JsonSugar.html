@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+        <head><title>trait JsonSugar in com.twitter.processing</title>
+        <meta http-equiv="content-type" content="text/html; charset=UTF8"></meta><meta content="scaladoc (version 2.7.6.final)" name="generator"></meta><link href="../../../style.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../../../script.js"></script>
+        </head>
+        <body onload="init()">
+        <table summary="" class="navigation">
+        <tr>
+          <td class="navigation-links" valign="top">
+            <!-- <table><tr></tr></table> -->
+          </td>
+          <td align="right" valign="top" style="white-space:nowrap;" rowspan="2">
+            <div class="doctitle-larger">ScalaDocs: Tweet Stream</div>
+          </td>
+        </tr>
+        <tr><td></td></tr>
+      </table>
+        
+      <div class="entity">
+        <a href="../../../com/twitter/processing$package.html" target="_self">com.twitter.processing</a>
+        <br></br>
+        <span class="entity">trait  JsonSugar</span>
+      </div><hr></hr>
+      <div class="source">
+        [source: <a href="" class="com/twitter/processing/JsonSugar"><code>com/twitter/processing/JsonSugar.scala</code></a>]
+      </div><hr></hr>
+      <a name="JsonSugar"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>trait</code>
+        <em>JsonSugar</em>
+      </dt>
+      <dd><code> extends </code><a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html" target="_self">AnyRef</a></dd>
+    </dl>
+      <dl><dd>Methods to avoid the tedium of getting a value, checking to see if 
+ it's null, and then performing some function on it.  Used like
+ <code>
+ ss(jsonObj, "foo") { 
+   myObj.foo = _
+ }
+ </code>
+}</dd></dl>
+      <dl></dl>
+    <dl>
+      <dt style="margin:10px 0 0 20px;"><b>Direct Known Subclasses:</b></dt>
+      <dd><a href="../../../com/twitter/processing/Status$object.html" target="_self">Status</a>, <a href="../../../com/twitter/processing/User$object.html" target="_self">User</a></dd>
+      </dl><hr></hr>
+      
+
+
+<table summary="" cellpadding="3" class="member">
+      <tr><td class="title" colspan="2">Method Summary</td></tr>
+      <tr>
+      <td class="modifiers" valign="top"> 
+        <code> def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../com/twitter/processing/JsonSugar.html#sb%28com.google.gson.JsonObject%2CString%29" target="_self">sb</a></em>
+        (<em>json</em> : <a href="" target="contentFrame" class="com/google/gson/JsonObject">com.google.gson.JsonObject</a>, <em>key</em> : <a href="" target="contentFrame" class="java/lang/String">java.lang.String</a>)(<em>f</em> : (<a href="http://www.scala-lang.org/docu/files/api/scala/Boolean.html" target="_self">Boolean</a>) =&gt; <a href="http://www.scala-lang.org/docu/files/api/scala/Unit.html" target="_self">Unit</a>) : <a href="http://www.scala-lang.org/docu/files/api/scala/Unit.html" target="_self">Unit</a>
+        
+        <div>Apply a function to a Boolean value held in a JSON Object (if it's non-null)</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../com/twitter/processing/JsonSugar.html#si%28com.google.gson.JsonObject%2CString%29" target="_self">si</a></em>
+        (<em>json</em> : <a href="" target="contentFrame" class="com/google/gson/JsonObject">com.google.gson.JsonObject</a>, <em>key</em> : <a href="" target="contentFrame" class="java/lang/String">java.lang.String</a>)(<em>f</em> : (<a href="http://www.scala-lang.org/docu/files/api/scala/Int.html" target="_self">Int</a>) =&gt; <a href="http://www.scala-lang.org/docu/files/api/scala/Unit.html" target="_self">Unit</a>) : <a href="http://www.scala-lang.org/docu/files/api/scala/Unit.html" target="_self">Unit</a>
+        
+        <div>Apply a function to an Int value held in a JSON Object  (if it's non-null)</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../com/twitter/processing/JsonSugar.html#sl%28com.google.gson.JsonObject%2CString%29" target="_self">sl</a></em>
+        (<em>json</em> : <a href="" target="contentFrame" class="com/google/gson/JsonObject">com.google.gson.JsonObject</a>, <em>key</em> : <a href="" target="contentFrame" class="java/lang/String">java.lang.String</a>)(<em>f</em> : (<a href="http://www.scala-lang.org/docu/files/api/scala/Long.html" target="_self">Long</a>) =&gt; <a href="http://www.scala-lang.org/docu/files/api/scala/Unit.html" target="_self">Unit</a>) : <a href="http://www.scala-lang.org/docu/files/api/scala/Unit.html" target="_self">Unit</a>
+        
+        <div>Apply a function to a Long value held in a JSON Object (if it's non-null)</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../com/twitter/processing/JsonSugar.html#ss%28com.google.gson.JsonObject%2CString%29" target="_self">ss</a></em>
+        (<em>json</em> : <a href="" target="contentFrame" class="com/google/gson/JsonObject">com.google.gson.JsonObject</a>, <em>key</em> : <a href="" target="contentFrame" class="java/lang/String">java.lang.String</a>)(<em>f</em> : (<a href="" target="contentFrame" class="java/lang/String">java.lang.String</a>) =&gt; <a href="http://www.scala-lang.org/docu/files/api/scala/Unit.html" target="_self">Unit</a>) : <a href="http://www.scala-lang.org/docu/files/api/scala/Unit.html" target="_self">Unit</a>
+        
+        <div>Apply a function to a String value held in a JSON Object (if it's non-null)</div>
+      </td>
+    </tr>
+      </table><table summary="" cellpadding="3" class="inherited">
+        <tr><td class="title" colspan="2">
+          Methods inherited from <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html" target="_self">AnyRef</a>
+        </td></tr>
+        <tr><td class="signature" colspan="2">
+          <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#getClass%28%29" target="_self">getClass</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#hashCode%28%29" target="_self">hashCode</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#equals%28Any%29" target="_self">equals</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#clone%28%29" target="_self">clone</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#toString%28%29" target="_self">toString</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#notify%28%29" target="_self">notify</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#notifyAll%28%29" target="_self">notifyAll</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#wait%28Long%29" target="_self">wait</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#wait%28Long%2CInt%29" target="_self">wait</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#wait%28%29" target="_self">wait</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#finalize%28%29" target="_self">finalize</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#%3D%3D%28AnyRef%29" target="_self">==</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#%21%3D%28AnyRef%29" target="_self">!=</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#eq%28AnyRef%29" target="_self">eq</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#ne%28AnyRef%29" target="_self">ne</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#synchronized%28T0%29" target="_self">synchronized</a>
+        </td></tr>
+      </table><table summary="" cellpadding="3" class="inherited">
+        <tr><td class="title" colspan="2">
+          Methods inherited from <a href="http://www.scala-lang.org/docu/files/api/scala/Any.html" target="_self">Any</a>
+        </td></tr>
+        <tr><td class="signature" colspan="2">
+          <a href="http://www.scala-lang.org/docu/files/api/scala/Any.html#%3D%3D%28Any%29" target="_self">==</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/Any.html#%21%3D%28Any%29" target="_self">!=</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/Any.html#isInstanceOf" target="_self">isInstanceOf</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/Any.html#asInstanceOf" target="_self">asInstanceOf</a>
+        </td></tr>
+      </table>
+
+
+      
+
+
+<table summary="" cellpadding="3" class="member-detail">
+          <tr><td class="title">Method Details</td></tr>
+        </table><div><a name="ss%28com.google.gson.JsonObject%2CString%29"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>def</code>
+        <em>ss</em>(<em>json</em> : <a href="" target="contentFrame" class="com/google/gson/JsonObject">com.google.gson.JsonObject</a>, <em>key</em> : <a href="" target="contentFrame" class="java/lang/String">java.lang.String</a>)(<em>f</em> : (<a href="" target="contentFrame" class="java/lang/String">java.lang.String</a>) =&gt; <a href="http://www.scala-lang.org/docu/files/api/scala/Unit.html" target="_self">Unit</a>) : <a href="http://www.scala-lang.org/docu/files/api/scala/Unit.html" target="_self">Unit</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>Apply a function to a String value held in a JSON Object (if it's non-null)</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="sb%28com.google.gson.JsonObject%2CString%29"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>def</code>
+        <em>sb</em>(<em>json</em> : <a href="" target="contentFrame" class="com/google/gson/JsonObject">com.google.gson.JsonObject</a>, <em>key</em> : <a href="" target="contentFrame" class="java/lang/String">java.lang.String</a>)(<em>f</em> : (<a href="http://www.scala-lang.org/docu/files/api/scala/Boolean.html" target="_self">Boolean</a>) =&gt; <a href="http://www.scala-lang.org/docu/files/api/scala/Unit.html" target="_self">Unit</a>) : <a href="http://www.scala-lang.org/docu/files/api/scala/Unit.html" target="_self">Unit</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>Apply a function to a Boolean value held in a JSON Object (if it's non-null)</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="sl%28com.google.gson.JsonObject%2CString%29"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>def</code>
+        <em>sl</em>(<em>json</em> : <a href="" target="contentFrame" class="com/google/gson/JsonObject">com.google.gson.JsonObject</a>, <em>key</em> : <a href="" target="contentFrame" class="java/lang/String">java.lang.String</a>)(<em>f</em> : (<a href="http://www.scala-lang.org/docu/files/api/scala/Long.html" target="_self">Long</a>) =&gt; <a href="http://www.scala-lang.org/docu/files/api/scala/Unit.html" target="_self">Unit</a>) : <a href="http://www.scala-lang.org/docu/files/api/scala/Unit.html" target="_self">Unit</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>Apply a function to a Long value held in a JSON Object (if it's non-null)</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="si%28com.google.gson.JsonObject%2CString%29"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>def</code>
+        <em>si</em>(<em>json</em> : <a href="" target="contentFrame" class="com/google/gson/JsonObject">com.google.gson.JsonObject</a>, <em>key</em> : <a href="" target="contentFrame" class="java/lang/String">java.lang.String</a>)(<em>f</em> : (<a href="http://www.scala-lang.org/docu/files/api/scala/Int.html" target="_self">Int</a>) =&gt; <a href="http://www.scala-lang.org/docu/files/api/scala/Unit.html" target="_self">Unit</a>) : <a href="http://www.scala-lang.org/docu/files/api/scala/Unit.html" target="_self">Unit</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>Apply a function to an Int value held in a JSON Object  (if it's non-null)</dd></dl>
+      <dl></dl>
+    <hr></hr></div>
+
+
+    <hr></hr>
+        <div>processing library Tweet Stream by Mark McBride. (c) 2009</div><table summary="" class="navigation">
+        <tr>
+          <td class="navigation-links" valign="top">
+            <!-- <table><tr></tr></table> -->
+          </td>
+          <td align="right" valign="top" style="white-space:nowrap;" rowspan="2">
+            <div class="doctitle-larger">ScalaDocs: Tweet Stream</div>
+          </td>
+        </tr>
+        <tr><td></td></tr>
+      </table>
+      </body>
+      </html>

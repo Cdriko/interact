@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>controlP5 : : Bang</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link href="stylesheet.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+document.getElementsByTagName('html')[0].className = 'isjs';
+
+function toggle(dt) 
+{ 
+  var display, dd=dt; 
+  /* get dd */ 
+  do{ dd = dd.nextSibling } while(dd.tagName!='DD'); 
+  toOpen =!dd.style.display; 
+  dd.style.display = toOpen? 'block':'' 
+  dt.getElementsByTagName('span')[0].innerHTML 
+    = toOpen? '-':'+' ; 
+} 
+</script>
+</head>
+<body>
+<div id="container">
+		<div id="header">
+		<a href="./index.htm"><img src="./docuImages/title.jpg" /></a>
+		</div>
+	<div class="content">
+		<h1>Bang</h1>
+		<dl><dt class="key">description</dt><dd class="value">a bang controller executes when pressed it can only be applied to a method
+ connected to it and not to fields. for a full documentation of this
+ controller see the <a href="./controller_class_controller.htm">controller</a>
+ class.</dd></dl>
+			
+			<div class="toggleList example">
+				<dl><dt onclick="toggle(this)"><span>+</span>Example</dt>
+					<dd><pre>import controlP5.*;
+
+ControlP5 controlP5;
+
+int myColorBackground = color(0,0,0);
+
+
+
+void setup() {
+  size(400,400);
+  frameRate(30);
+  controlP5 = new ControlP5(this);
+  for(int i=0;i&lt;4;i++) {
+    controlP5.addBang("bang"+i,40+i*80,100,40,40).setId(i);
+  }
+  // change the trigger event, by default it is PRESSED.
+  controlP5.addBang("bang",40,200,120,40).setTriggerEvent(Bang.RELEASE);
+  controlP5.controller("bang").setLabel("changeBackground");
+}
+
+void draw() {
+  background(myColorBackground);
+}
+
+void bang() {
+  int theColor = (int)random(255);
+  myColorBackground = color(theColor);
+  println("a bang event. setting background to "+theColor);
+}
+
+void controlEvent(ControlEvent theEvent) {
+  println(
+  "## controlEvent / id:"+theEvent.controller().id()+
+  " / name:"+theEvent.controller().name()+
+  " / label:"+theEvent.controller().label()+
+  " / value:"+theEvent.controller().value()
+  );
+}
+
+</pre></dd>
+				</dl>
+			</div>
+			
+			
+			<!-- noConstructor:START
+			<dl><dt class="key">constructors</dt><dd class="value"><pre></pre></dd></dl>
+			noConstructor:END -->
+			
+			<!--
+			
+			-->
+			
+			
+			<!-- METHODS:BEGIN -->
+			
+       <dl class="noborder"><dt>Methods</dt></dl>
+       <dl><dt class="key"><a href="bang_method_settriggerevent.htm">setTriggerEvent ( )</a></dt><dd class="value">by default a bang is triggered when the mouse is pressed. use
+ setTriggerEvent(Bang.PRESSED) or
+ setTriggerEvent(Bang.RELEASE) to define the action for triggering
+ a bang. currently only Bang.PRESSED and Bang.RELEASE are supported.</dd></dl>
+<dl><dt class="key"><a href="bang_method_setvalue.htm">setValue ( )</a></dt><dd class="value">set the value of the bang controller. since bang can be true or false,
+ false=0 and true=1</dd></dl>
+
+   
+			<!-- METHODS:END -->
+			<div class="separator">
+			<dl><dt class="key">usage</dt><dd class="value">Web & Application</dd></dl>
+			</div>
+			<div class="separator">
+			<dl><dt class="key">related</dt><dd class="value"><ul><li><a href="controller_class_controller.htm">Controller</a></li>
+</ul></dd></dl>
+			</div>
+	</div>
+	<div id="footer">
+	<p>by andreas schlegel (<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/" target="_blank">cc</a>) 2007, <a href="http://www.sojamo.de" target="_blank">sojamo</a>.</p>
+	</div>
+</div>
+</body>
+</html>
+
+

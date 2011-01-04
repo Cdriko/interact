@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+	xmlns:foaf="http://xmlns.com/foaf/0.1/"
+	xmlns="http://usefulinc.com/ns/doap#">
+
+	<Project>
+
+		<name>toxiclibs</name>
+		<homepage rdf:resource="http://toxiclibs.org"/>
+		<shortdesc>Building blocks for computational design</shortdesc>
+		<description>A collection of over 125+ useful classes for various computational design tasks.</description>
+		<repository>
+			<SVNRepository>
+				<anon-root rdf:resource="http://toxiclibs.googlecode.com/svn/"/>
+				<browse rdf:resource="http://code.google.com/p/toxiclibs/source/browse/"/>
+				<module>toxiclibs</module>
+				<location rdf:resource="http://toxiclibs.googlecode.com/svn/"/>
+			</SVNRepository>
+		</repository>
+
+		<Release>
+			<version>
+				<name>stable</name>
+				<created>2009-11-23</created>
+				<revision>0015</revision>
+			</version>
+		</Release>
+
+		<mailinglist rdf:resource="http://groups.google.com/group/toxiclibs-users/"/>
+
+		<download-page rdf:resource="http://code.google.com/p/toxiclibs/downloads/list"/>
+		<vendor rdf:resource="http://postspectacular.com"/>
+		<blog rdf:resource="http://toxiclibs.org/"/>
+		<bug-database rdf:resource="http://code.google.com/p/toxiclibs/issues/list"/>
+		<license rdf:resource="http://www.gnu.org/licenses/lgpl.html"/>
+
+		<category rdf:resource="Java"/>
+
+		<programming-language>Java</programming-language>
+
+		<language>en</language>
+
+
+		<audience>designers, artists, developers</audience>
+
+		<developer>
+			<foaf:Person>
+				<foaf:name>Karsten Schmidt</foaf:name>
+				<foaf:mbox rdf:resource="mailto:info@toxi.co.uk"/>
+				<rdfs:seeAlso rdf:resource=""/>
+			</foaf:Person>
+		</developer>
+
+	</Project>
+	<rdf:Description rdf:about="">
+		<foaf:maker>
+			<foaf:Agent>
+				<foaf:name>com.triplescape.doapamine.DOAPTask</foaf:name>
+				<foaf:homepage rdf:resource="http:/www.triplescape.com/doapamine"/>
+			</foaf:Agent>
+		</foaf:maker>
+	</rdf:Description>
+
+</rdf:RDF>

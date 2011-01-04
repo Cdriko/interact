@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+        <head><title>All classes and objects in com.twitter.processing</title>
+        <meta http-equiv="content-type" content="text/html; charset=UTF8"></meta><meta content="scaladoc (version 2.7.6.final)" name="generator"></meta><link href="../../style.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../../script.js"></script>
+        </head>
+        <body onload="init()"><div class="page-title"><div>ScalaDocs: Tweet Stream</div></div><p><div>This document is the API specification for ScalaDocs: Tweet Stream</div></p><table summary="" cellpadding="3" class="member">
+        <tr><td class="title" colspan="2">Class Summary</td></tr>
+        <tr>
+      <td class="modifiers" valign="top"> 
+        <code> class</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../com/twitter/processing/Geo.html" target="_self">Geo</a></em>
+        <code> extends </code><a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html" target="_self">AnyRef</a>
+        
+        <div>Represents a geo coordinate</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> trait</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../com/twitter/processing/JsonSugar.html" target="_self">JsonSugar</a></em>
+        <code> extends </code><a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html" target="_self">AnyRef</a>
+        
+        <div>Methods to avoid the tedium of getting a value, checking to see if 
+ it's null, and then performing some function on it.  Used like
+ <code>
+ ss(jsonObj, "foo") { 
+   myObj.foo = _
+ }
+ </code>
+}</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> trait</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../com/twitter/processing/Log.html" target="_self">Log</a></em>
+        <code> extends </code><a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html" target="_self">AnyRef</a>
+        
+        <div>Provides simple (hacky) logging.  You can comment out the printlns to suppress output</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> class</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../com/twitter/processing/Status.html" target="_self">Status</a></em>
+        <code> extends </code><a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html" target="_self">AnyRef</a>
+        
+        <div>Represents a Tweet</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> class</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../com/twitter/processing/TweetStream.html" target="_self">TweetStream</a></em>
+        (<em>parent</em> : <a href="" target="contentFrame" class="processing/core/PApplet">processing.core.PApplet</a>, <em>host</em> : <a href="" target="contentFrame" class="java/lang/String">java.lang.String</a>, <em>port</em> : <a href="http://www.scala-lang.org/docu/files/api/scala/Int.html" target="_self">Int</a>, <em>path</em> : <a href="" target="contentFrame" class="java/lang/String">java.lang.String</a>, <em>username</em> : <a href="" target="contentFrame" class="java/lang/String">java.lang.String</a>, <em>password</em> : <a href="" target="contentFrame" class="java/lang/String">java.lang.String</a>)<code> extends </code><a href="../../com/twitter/processing/Log.html" target="_self">Log</a>
+        
+        <div>Provides a Processing interface to the Twitter streaming API.
+ Note that this interface will <b>ONLY</b> work with JSON formatted streams.</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> class</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../com/twitter/processing/User.html" target="_self">User</a></em>
+        <code> extends </code><a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html" target="_self">AnyRef</a>
+        
+        <div>Represents a Twitter User</div>
+      </td>
+    </tr>        
+        </table>
+<table summary="" cellpadding="3" class="member">
+        <tr><td class="title" colspan="2">Object Summary</td></tr>
+        <tr>
+      <td class="modifiers" valign="top"> 
+        <code> object</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../com/twitter/processing/Geo$object.html" target="_self">Geo</a></em>
+        <code> extends </code><a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html" target="_self">AnyRef</a>
+        
+        <div>Provides methods for unmarshalling a Geo from Json</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> object</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../com/twitter/processing/Status$object.html" target="_self">Status</a></em>
+        <code> extends </code><a href="../../com/twitter/processing/JsonSugar.html" target="_self">JsonSugar</a>
+        
+        <div>Provides methods for unmarshalling a status from Json</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> object</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../com/twitter/processing/User$object.html" target="_self">User</a></em>
+        <code> extends </code><a href="../../com/twitter/processing/JsonSugar.html" target="_self">JsonSugar</a>
+        
+        <div>Provides methods for unmarshalling a User from Json</div>
+      </td>
+    </tr>        
+        </table></body>
+      </html>
