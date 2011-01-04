@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #excecuter ce script si une erreur de lien apparait dans processing quand on utilise openCV
-#script pour refaire les liens symboliques vers la librairie openCV
+#pour refaire les liens symboliques vers la librairie openCV
 
 cd /usr/lib
 sudo ln -s libcxcore.so libcxcore.so.1
