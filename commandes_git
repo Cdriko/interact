@@ -37,3 +37,9 @@ git checkout
 git commit -a
 git pull
 git push
+
+
+///gérer un confli de merge
+//si un fichier est en confli lors d'une fusion 
+git checkout --ours <fichier en confli>///garde la version locale
+git checkout --theirs <fichier en confli>///garde la version distante
