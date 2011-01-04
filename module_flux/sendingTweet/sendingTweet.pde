@@ -1,17 +1,21 @@
-Twitter twitter;
-String myTimeline;
-User[] friends;
-String username = "julbel"; // add your own here
-String password = "boites"; // add your own here
-java.util.List statuses =null;
+Twitter myTwitter;
 
-twitter = new Twitter(username,password);
+void setup() {
+  
+  size(800,400);
+//  f = loadFont("Abecedario-20.vlw");        
+  myTwitter = new Twitter("julbel", "Sardine$");
+  background(0); 
+  
+};
 
+void draw(){
 try
 {
-Status status1 = twitter.update("Twitter avec Processing ça permet de relativiser");
+Status status1 = myTwitter.update("Twitter avec Processing ça permet de relativiser");
 }
 catch( TwitterException e)  {
  println(e.getStatusCode());
 }
+};
 
