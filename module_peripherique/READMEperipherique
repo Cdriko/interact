@@ -1,0 +1,15 @@
+// MAC OS X //
+:::::::::::::::::::::::::
+
+ - fonctionne avec DarwiinMoteOSC sous macOS X http://code.google.com/p/darwiinosc/downloads/list
+
+ - les échanges de data entre P5 et Darwiinosc ont lieu avec le protocole OSC, donc peuvent avoir lieu sur 2 ordinateurs différents.
+
+exemple : WiiControllerExample
+
+// Ubuntu, linux, etc ... //
+::::::::::::
+
+ - rien de plus simple : suivre le tutoriel http://doc.ubuntu-fr.org/wiimote qui transforme votre wiimote en souris ... vous pourrez ensuite utiliser n'importe quel sketch de dessin, etc ...
+
+ - construire une barre de LED infrarouge : http://wiipiicii.blogspot.com/2006/12/construire-une-sensor-bar.html
