@@ -1,0 +1,2 @@
+Fixed bug where a marker would start with a low lostCount and hence would be toggled to detected even although it has never been detected before.
+
