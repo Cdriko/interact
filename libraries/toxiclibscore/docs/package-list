@@ -1,0 +1,7 @@
+toxi.geom
+toxi.geom.util
+toxi.math
+toxi.math.conversion
+toxi.math.noise
+toxi.math.waves
+toxi.util.datatypes

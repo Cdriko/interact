@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/jmcvideo/!svn/ver/7/processing/libraries_macosx/jmcvideo/library
+END
+libon2_decoder.jnilib
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/jmcvideo/!svn/ver/11/processing/libraries_macosx/jmcvideo/library/libon2_decoder.jnilib
+END
+jmc1.0.0.jar
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/jmcvideo/!svn/ver/11/processing/libraries_macosx/jmcvideo/library/jmc1.0.0.jar
+END
+libDecora-SSE.jnilib
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/jmcvideo/!svn/ver/11/processing/libraries_macosx/jmcvideo/library/libDecora-SSE.jnilib
+END
+jmcServerDaemon
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/jmcvideo/!svn/ver/11/processing/libraries_macosx/jmcvideo/library/jmcServerDaemon
+END
+libCoreVideoSupport.jnilib
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/jmcvideo/!svn/ver/11/processing/libraries_macosx/jmcvideo/library/libCoreVideoSupport.jnilib
+END
+jmcvideo.jar
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/jmcvideo/!svn/ver/11/processing/libraries_macosx/jmcvideo/library/jmcvideo.jar
+END

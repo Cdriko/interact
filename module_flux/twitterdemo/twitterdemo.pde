@@ -6,21 +6,19 @@ PFont f;           // Variable to hold onto a font
 void setup() {
   
   size(800,400);
-    f = loadFont("Abecedario-20.vlw");        
-  myTwitter = new Twitter("julbel", "boites");
-        background(0); 
+  f = loadFont("Abecedario-20.vlw");        
+  myTwitter = new Twitter("julbel", "Sardine$");
+  background(0); 
   
 };
 
 void draw() {
   try {
 
-    Query query = new Query("labtolab");
-    query.setRpp(100);
+    Query query = new Query("nantes");
+    query.setRpp(10);
     QueryResult result = myTwitter.search(query);
-
     ArrayList tweets = (ArrayList) result.getTweets();
-
     for (int i = 0; i < tweets.size(); i++) {
       Tweet t = (Tweet) tweets.get(i);
       String user = t.getFromUser();
