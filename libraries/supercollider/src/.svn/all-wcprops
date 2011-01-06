@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn_processing/!svn/ver/1/libraries/supercollider/src
+END
+SCBuffer.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn_processing/!svn/ver/1/libraries/supercollider/src/SCBuffer.java
+END
+SCBus.java
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn_processing/!svn/ver/1/libraries/supercollider/src/SCBus.java
+END
+SCGroup.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn_processing/!svn/ver/1/libraries/supercollider/src/SCGroup.java
+END
+Invocation.java
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn_processing/!svn/ver/1/libraries/supercollider/src/Invocation.java
+END
+SCAllocators.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn_processing/!svn/ver/1/libraries/supercollider/src/SCAllocators.java
+END
+SCNode.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn_processing/!svn/ver/1/libraries/supercollider/src/SCNode.java
+END
+SCSynth.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn_processing/!svn/ver/1/libraries/supercollider/src/SCSynth.java
+END
+SCServer.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn_processing/!svn/ver/1/libraries/supercollider/src/SCServer.java
+END

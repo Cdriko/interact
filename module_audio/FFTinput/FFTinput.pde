@@ -1,79 +1,56 @@
-/**
- * Forward FFT
- * by Damien Di Fede.
- *  
- * This sketch demonstrates how to use an FFT to analyze an AudioBuffer 
- * and draw the resulting spectrum. It also allows you to turn windowing 
- * on and off, but you will see there is not much difference in the spectrum.
- * Press 'w' to turn on windowing, press 'e' to turn it off.
- */
-
 import ddf.minim.analysis.*;
 import ddf.minim.*;
 
 Minim minim;
 AudioInput in;
 FFT fft;
-String windowName;
+
+float volMax;//------------------------------------------- frequence maximale du spectre (une partie de l'algo minmax)
+float vert = 0;//----------------------------------------- valeur de vert
+float x, y, rayon;
 
 void setup()
 {
   size(512, 200);
-  minim = new Minim(this);
-  minim.debugOn();
+  smooth();
+  noStroke();
+  x=width/2;
+  y=height/2;
+  rayon = 15;
 
-  in = minim.getLineIn(Minim.STEREO, 2048);
-  // create an FFT object that has a time-domain buffer the same size as jingle's sample buffer
-  // note that this needs to be a power of two and that it means the size of the spectrum
-  // will be 512. see the online tutorial for more info.
-  //  fft = new FFT(jingle.bufferSize(), jingle.sampleRate());
-  fft = new FFT(in.bufferSize(), in.sampleRate());
-  textFont(createFont("SanSerif", 12));
-  windowName = "None";
+  minim = new Minim(this);//----------------------------- on crée une instance de Minim
+  minim.debugOn();//------------------------------------- active l'affichage du débuggage.
+  in = minim.getLineIn(Minim.STEREO, 2048);//------------ on récupère une entrée ligne avec minim, on précise la taille du buffer
+  fft = new FFT(in.bufferSize(), in.sampleRate());//----- on crée un objet FFt avec la meme taille et meme sampleRate que in
 }
 
 void draw()
 {
-  background(0);
-  stroke(255);
-  // perform a forward FFT on the samples in jingle's left buffer
-  // note that if jingle were a MONO file, this would be the same as using jingle.right or jingle.left
-  //  fft.forward(jingle.mix);
-  fft.forward(in.mix);
+  background(255);
+
+  fft.forward(in.mix);//--------------------------------- active le fft sur le buffer du in
+  volMax=fft.getBand(0);//------------------------------- l'amplitude sur la bande 0 pour initialiser le volume à chaque rafraichissement du prog
   for(int i = 0; i < fft.specSize(); i++)
   {
-    // draw the line for frequency band i, scaling it by 4 so we can see it a bit better
-    line(i, height, i, height - fft.getBand(i)*4);
+    fill(0, vert, 0);
+    ellipse(x, y, rayon, rayon);
+    if(fft.getBand(i)>volMax)volMax=fft.getBand(i);//---- on cherche le volume maximum du spectre
+    if(volMax>13) {//------------------------------------ passé un certains seuil le cercle s'agrandit et devient vert
+      vert+=0.004f;
+      rayon+=0.001f;
+    }
+    else {
+      vert-=0.004f;
+      rayon-=0.003f;
+    }
   }
-  fill(255);
-  // keep us informed about the window being used
-  text("The window being used is: " + windowName, 5, 20);
-}
-
-void keyReleased()
-{
-  if ( key == 'w' ) 
-  {
-    // a Hamming window can be used to shape the sample buffer that is passed to the FFT
-    // this can reduce the amount of noise in the spectrum
-    fft.window(FFT.HAMMING);
-    windowName = "Hamming";
-  }
-
-  if ( key == 'e' ) 
-  {
-    fft.window(FFT.NONE);
-    windowName = "None";
-  }
+  vert = constrain(vert, 0, 255);
+  rayon = constrain(rayon, 15, height/2);
 }
 
 void stop()
 {
-  // always close Minim audio classes when you finish with them
   minim.stop();
-
   super.stop();
 }
-
-
 

@@ -1,0 +1,775 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+        <head><title>class TweetStream in com.twitter.processing</title>
+        <meta http-equiv="content-type" content="text/html; charset=UTF8"></meta><meta content="scaladoc (version 2.7.6.final)" name="generator"></meta><link href="../../../style.css" type="text/css" rel="stylesheet"></link><script type="text/javascript" src="../../../script.js"></script>
+        </head>
+        <body onload="init()">
+        <table summary="" class="navigation">
+        <tr>
+          <td class="navigation-links" valign="top">
+            <!-- <table><tr></tr></table> -->
+          </td>
+          <td align="right" valign="top" style="white-space:nowrap;" rowspan="2">
+            <div class="doctitle-larger">ScalaDocs: Tweet Stream</div>
+          </td>
+        </tr>
+        <tr><td></td></tr>
+      </table>
+        
+      <div class="entity">
+        <a href="../../../com/twitter/processing$package.html" target="_self">com.twitter.processing</a>
+        <br></br>
+        <span class="entity">class  TweetStream</span>
+      </div><hr></hr>
+      <div class="source">
+        [source: <a href="" class="com/twitter/processing/TweetStream"><code>com/twitter/processing/TweetStream.scala</code></a>]
+      </div><hr></hr>
+      <a name="TweetStream"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>class</code>
+        <em>TweetStream</em>(<em>parent</em> : <a href="" target="contentFrame" class="processing/core/PApplet">processing.core.PApplet</a>, <em>host</em> : <a href="" target="contentFrame" class="java/lang/String">java.lang.String</a>, <em>port</em> : <a href="http://www.scala-lang.org/docu/files/api/scala/Int.html" target="_self">Int</a>, <em>path</em> : <a href="" target="contentFrame" class="java/lang/String">java.lang.String</a>, <em>username</em> : <a href="" target="contentFrame" class="java/lang/String">java.lang.String</a>, <em>password</em> : <a href="" target="contentFrame" class="java/lang/String">java.lang.String</a>)
+      </dt>
+      <dd><code> extends </code><a href="../../../com/twitter/processing/Log.html" target="_self">Log</a></dd>
+    </dl>
+      <dl><dd>Provides a Processing interface to the Twitter streaming API.
+ Note that this interface will <b>ONLY</b> work with JSON formatted streams.</dd></dl>
+      <dl><dt style="margin:10px 0 0 20px;">
+        <b>Examples</b></dt><dd>ample SimpleStream</dd><dt style="margin:10px 0 0 20px;">
+        <b>Author</b></dt><dd>Mark McBride</dd></dl>
+    
+      
+<table summary="" cellpadding="3" class="member">
+      <tr><td class="title" colspan="2">Type Summary</td></tr>
+      <tr>
+      <td class="modifiers" valign="top"> 
+        <code> type</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../com/twitter/processing/TweetStream.html#T" target="_self">T</a></em>
+        
+        
+        <div>A structural type that defines a tweet(status: Status) method.  
+   If our parent conforms to this type we can call back to it</div>
+      </td>
+    </tr>
+      </table>
+<table summary="" cellpadding="3" class="member">
+      <tr><td class="title" colspan="2">Value Summary</td></tr>
+      <tr>
+      <td class="modifiers" valign="top"> 
+        <code> val</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../com/twitter/processing/TweetStream.html#VERSION" target="_self">VERSION</a></em>
+         : <a href="" target="contentFrame" class="java/lang/String">java.lang.String</a>
+        
+        <div>the version of the library</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> var</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../com/twitter/processing/TweetStream.html#callbackApplet" target="_self">callbackApplet</a></em>
+         : <a href="../../../com/twitter/processing/TweetStream.$amplt$u003Brefinement$ampgt$u003B.html" target="_self">&lt;refinement&gt;</a>
+        
+        <div>We'll attempt to cast parent and set callbackApplet.  
+   If it stays null we don't callback.  Note that this
+   makes initializing a TweetStream object sorta pointless.</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> var</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../com/twitter/processing/TweetStream.html#client" target="_self">client</a></em>
+         : <a href="" target="contentFrame" class="org/apache/http/impl/client/DefaultHttpClient">org.apache.http.impl.client.DefaultHttpClient</a>
+        
+        <div>an Apache commons http client to use for communication</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> var</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../com/twitter/processing/TweetStream.html#connectTimeMs" target="_self">connectTimeMs</a></em>
+         : <a href="http://www.scala-lang.org/docu/files/api/scala/Long.html" target="_self">Long</a>
+        
+        <div>how long we've spent connecting</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> var</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../com/twitter/processing/TweetStream.html#connectTimeoutMs" target="_self">connectTimeoutMs</a></em>
+         : <a href="http://www.scala-lang.org/docu/files/api/scala/Int.html" target="_self">Int</a>
+        
+        <div>how long to wait for a connection</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> val</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../com/twitter/processing/TweetStream.html#delimitedLength" target="_self">delimitedLength</a></em>
+         : <a href="http://www.scala-lang.org/docu/files/api/scala/Boolean.html" target="_self">Boolean</a>
+        
+        <div>whether we're using delimited length mode</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> var</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../com/twitter/processing/TweetStream.html#delimitedReadStall" target="_self">delimitedReadStall</a></em>
+         : <a href="http://www.scala-lang.org/docu/files/api/scala/Int.html" target="_self">Int</a>
+        
+        <div>how many times we've stalled trying to read length delimited content</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> var</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../com/twitter/processing/TweetStream.html#disconnectTimeMs" target="_self">disconnectTimeMs</a></em>
+         : <a href="http://www.scala-lang.org/docu/files/api/scala/Long.html" target="_self">Long</a>
+        
+        <div>how long we've spent disconnecting</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> var</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../com/twitter/processing/TweetStream.html#halt" target="_self">halt</a></em>
+         : <a href="http://www.scala-lang.org/docu/files/api/scala/Boolean.html" target="_self">Boolean</a>
+        
+        <div>set when we want processing to terminate</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> var</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../com/twitter/processing/TweetStream.html#idleProbe" target="_self">idleProbe</a></em>
+         : <a href="http://www.scala-lang.org/docu/files/api/scala/Int.html" target="_self">Int</a>
+        
+        <div>how many idle probes we've received from the server.  These are empty
+   lines sent to keep the stream open.</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> var</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../com/twitter/processing/TweetStream.html#lastReceivedMs" target="_self">lastReceivedMs</a></em>
+         : <a href="http://www.scala-lang.org/docu/files/api/scala/Long.html" target="_self">Long</a>
+        
+        <div>the time at which we last received a tweet</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> val</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../com/twitter/processing/TweetStream.html#maxReconnectTries" target="_self">maxReconnectTries</a></em>
+         : <a href="http://www.scala-lang.org/docu/files/api/scala/Int.html" target="_self">Int</a>
+        
+        <div>how many times we'll try to reconnect when network hiccups occur</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> val</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../com/twitter/processing/TweetStream.html#name" target="_self">name</a></em>
+         : <a href="" target="contentFrame" class="java/lang/String">java.lang.String</a>
+        
+        <div>the full URI of the request</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> var</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../com/twitter/processing/TweetStream.html#readLoopTimeMs" target="_self">readLoopTimeMs</a></em>
+         : <a href="http://www.scala-lang.org/docu/files/api/scala/Long.html" target="_self">Long</a>
+        
+        <div>how long we've spent in a read loop</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> var</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../com/twitter/processing/TweetStream.html#reader" target="_self">reader</a></em>
+         : <a href="" target="contentFrame" class="java/io/BufferedReader">java.io.BufferedReader</a>
+        
+        <div>the reader for the stream for our connection</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> var</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../com/twitter/processing/TweetStream.html#socketTimeoutMs" target="_self">socketTimeoutMs</a></em>
+         : <a href="http://www.scala-lang.org/docu/files/api/scala/Int.html" target="_self">Int</a>
+        
+        <div>how long to wait for more input on the stream</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> var</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../com/twitter/processing/TweetStream.html#stream" target="_self">stream</a></em>
+         : <a href="" target="contentFrame" class="java/io/InputStream">java.io.InputStream</a>
+        
+        <div>the content stream from our connection</div>
+      </td>
+    </tr>
+      </table>
+<table summary="" cellpadding="3" class="member">
+      <tr><td class="title" colspan="2">Method Summary</td></tr>
+      <tr>
+      <td class="modifiers" valign="top"> 
+        <code> def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../com/twitter/processing/TweetStream.html#connect%28%29" target="_self">connect</a></em>
+         : <a href="http://www.scala-lang.org/docu/files/api/scala/Boolean.html" target="_self">Boolean</a>
+        
+        <div>Establish a connection.  This tries only once (reconnect wraps this in retry logic)
+   Returns true if a connection was established, false otherwise.  Note that this
+   also initializes the stream and reader fields, used by readLoop</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../com/twitter/processing/TweetStream.html#deliver%28String%29" target="_self">deliver</a></em>
+        (<em>tweet</em> : <a href="" target="contentFrame" class="java/lang/String">java.lang.String</a>) : <a href="http://www.scala-lang.org/docu/files/api/scala/Unit.html" target="_self">Unit</a>
+        
+        <div>If your callback is set, call tweet() on it.  Otherwise noop</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../com/twitter/processing/TweetStream.html#disconnect%28%29" target="_self">disconnect</a></em>
+         : <a href="http://www.scala-lang.org/docu/files/api/scala/Unit.html" target="_self">Unit</a>
+        
+        <div>Dissconnect from our source</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../com/twitter/processing/TweetStream.html#go%28%29" target="_self">go</a></em>
+         : <a href="http://www.scala-lang.org/docu/files/api/scala/Unit.html" target="_self">Unit</a>
+        
+        <div>Connect to the streaming API and start received tweets.
+   Under the covers this calls setup, then forks a thread that
+   calls runLoop.</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../com/twitter/processing/TweetStream.html#readLine%28%29" target="_self">readLine</a></em>
+         : <a href="" target="contentFrame" class="java/lang/String">java.lang.String</a>
+        
+        <div>Read a line of input from the stream.  
+   This line should either be a blank line (idle probe) or a full tweet
+   readLine will block until more data arrives. Not interruptable.</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../com/twitter/processing/TweetStream.html#readLoop%28%29" target="_self">readLoop</a></em>
+         : <a href="http://www.scala-lang.org/docu/files/api/scala/Unit.html" target="_self">Unit</a>
+        
+        <div>Read tweets until either halt is set or we get an exception</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../com/twitter/processing/TweetStream.html#reconnect%28%29" target="_self">reconnect</a></em>
+         : <a href="http://www.scala-lang.org/docu/files/api/scala/Unit.html" target="_self">Unit</a>
+        
+        <div>Try up to maxRecconnectTries times to connect, with exponentially
+   increasing backoff times (tries*tries*1000 ms)</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../com/twitter/processing/TweetStream.html#runLoop%28%29" target="_self">runLoop</a></em>
+         : <a href="http://www.scala-lang.org/docu/files/api/scala/Unit.html" target="_self">Unit</a>
+        
+        <div>while halt isn't set, perform the following
+   <ol>
+   <li>call reconnect (establishing a connection)</li>
+   <li>call readLoop (read tweets)</li>
+   </ol>
+   if an exception is caught, try to repeat</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../com/twitter/processing/TweetStream.html#setup%28%29" target="_self">setup</a></em>
+         : <a href="http://www.scala-lang.org/docu/files/api/scala/Unit.html" target="_self">Unit</a>
+        
+        <div>Set up our HTTP connection parameters, 
+   and try to cast our parent to a callbackable form.</div>
+      </td>
+    </tr>
+<tr>
+      <td class="modifiers" valign="top"> 
+        <code> def</code>
+      </td>
+      <td class="signature">
+        <em><a href="../../../com/twitter/processing/TweetStream.html#stop%28%29" target="_self">stop</a></em>
+         : <a href="http://www.scala-lang.org/docu/files/api/scala/Unit.html" target="_self">Unit</a>
+        
+        <div>Stop our read loop, don't process anything else.</div>
+      </td>
+    </tr>
+      </table><table summary="" cellpadding="3" class="inherited">
+        <tr><td class="title" colspan="2">
+          Methods inherited from <a href="../../../com/twitter/processing/Log.html" target="_self">Log</a>
+        </td></tr>
+        <tr><td class="signature" colspan="2">
+          <a href="../../../com/twitter/processing/Log.html#debug%28String%2CAny*%29" target="_self">debug</a>, <a href="../../../com/twitter/processing/Log.html#trace%28String%2CAny*%29" target="_self">trace</a>, <a href="../../../com/twitter/processing/Log.html#info%28String%2CAny*%29" target="_self">info</a>, <a href="../../../com/twitter/processing/Log.html#warning%28String%2CAny*%29" target="_self">warning</a>, <a href="../../../com/twitter/processing/Log.html#error%28String%2CAny*%29" target="_self">error</a>
+        </td></tr>
+      </table><table summary="" cellpadding="3" class="inherited">
+        <tr><td class="title" colspan="2">
+          Methods inherited from <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html" target="_self">AnyRef</a>
+        </td></tr>
+        <tr><td class="signature" colspan="2">
+          <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#getClass%28%29" target="_self">getClass</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#hashCode%28%29" target="_self">hashCode</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#equals%28Any%29" target="_self">equals</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#clone%28%29" target="_self">clone</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#toString%28%29" target="_self">toString</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#notify%28%29" target="_self">notify</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#notifyAll%28%29" target="_self">notifyAll</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#wait%28Long%29" target="_self">wait</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#wait%28Long%2CInt%29" target="_self">wait</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#wait%28%29" target="_self">wait</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#finalize%28%29" target="_self">finalize</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#%3D%3D%28AnyRef%29" target="_self">==</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#%21%3D%28AnyRef%29" target="_self">!=</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#eq%28AnyRef%29" target="_self">eq</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#ne%28AnyRef%29" target="_self">ne</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/AnyRef.html#synchronized%28T0%29" target="_self">synchronized</a>
+        </td></tr>
+      </table><table summary="" cellpadding="3" class="inherited">
+        <tr><td class="title" colspan="2">
+          Methods inherited from <a href="http://www.scala-lang.org/docu/files/api/scala/Any.html" target="_self">Any</a>
+        </td></tr>
+        <tr><td class="signature" colspan="2">
+          <a href="http://www.scala-lang.org/docu/files/api/scala/Any.html#%3D%3D%28Any%29" target="_self">==</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/Any.html#%21%3D%28Any%29" target="_self">!=</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/Any.html#isInstanceOf" target="_self">isInstanceOf</a>, <a href="http://www.scala-lang.org/docu/files/api/scala/Any.html#asInstanceOf" target="_self">asInstanceOf</a>
+        </td></tr>
+      </table>
+
+
+      
+<table summary="" cellpadding="3" class="member-detail">
+          <tr><td class="title">Type Details</td></tr>
+        </table><div><a name="T"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>type</code>
+        <em>T</em>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>A structural type that defines a tweet(status: Status) method.  
+   If our parent conforms to this type we can call back to it</dd></dl>
+      <dl></dl>
+    <hr></hr></div>
+<table summary="" cellpadding="3" class="member-detail">
+          <tr><td class="title">Value Details</td></tr>
+        </table><div><a name="VERSION"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>val</code>
+        <em>VERSION</em> : <a href="" target="contentFrame" class="java/lang/String">java.lang.String</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>the version of the library</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="name"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>val</code>
+        <em>name</em> : <a href="" target="contentFrame" class="java/lang/String">java.lang.String</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>the full URI of the request</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="callbackApplet"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>var</code>
+        <em>callbackApplet</em> : <a href="../../../com/twitter/processing/TweetStream.$amplt$u003Brefinement$ampgt$u003B.html" target="_self">&lt;refinement&gt;</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>We'll attempt to cast parent and set callbackApplet.  
+   If it stays null we don't callback.  Note that this
+   makes initializing a TweetStream object sorta pointless.</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="connectTimeMs"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>var</code>
+        <em>connectTimeMs</em> : <a href="http://www.scala-lang.org/docu/files/api/scala/Long.html" target="_self">Long</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>how long we've spent connecting</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="readLoopTimeMs"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>var</code>
+        <em>readLoopTimeMs</em> : <a href="http://www.scala-lang.org/docu/files/api/scala/Long.html" target="_self">Long</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>how long we've spent in a read loop</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="disconnectTimeMs"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>var</code>
+        <em>disconnectTimeMs</em> : <a href="http://www.scala-lang.org/docu/files/api/scala/Long.html" target="_self">Long</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>how long we've spent disconnecting</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="idleProbe"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>var</code>
+        <em>idleProbe</em> : <a href="http://www.scala-lang.org/docu/files/api/scala/Int.html" target="_self">Int</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>how many idle probes we've received from the server.  These are empty
+   lines sent to keep the stream open.</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="delimitedReadStall"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>var</code>
+        <em>delimitedReadStall</em> : <a href="http://www.scala-lang.org/docu/files/api/scala/Int.html" target="_self">Int</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>how many times we've stalled trying to read length delimited content</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="lastReceivedMs"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>var</code>
+        <em>lastReceivedMs</em> : <a href="http://www.scala-lang.org/docu/files/api/scala/Long.html" target="_self">Long</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>the time at which we last received a tweet</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="connectTimeoutMs"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>var</code>
+        <em>connectTimeoutMs</em> : <a href="http://www.scala-lang.org/docu/files/api/scala/Int.html" target="_self">Int</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>how long to wait for a connection</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="socketTimeoutMs"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>var</code>
+        <em>socketTimeoutMs</em> : <a href="http://www.scala-lang.org/docu/files/api/scala/Int.html" target="_self">Int</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>how long to wait for more input on the stream</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="client"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>var</code>
+        <em>client</em> : <a href="" target="contentFrame" class="org/apache/http/impl/client/DefaultHttpClient">org.apache.http.impl.client.DefaultHttpClient</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>an Apache commons http client to use for communication</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="stream"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>var</code>
+        <em>stream</em> : <a href="" target="contentFrame" class="java/io/InputStream">java.io.InputStream</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>the content stream from our connection</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="reader"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>var</code>
+        <em>reader</em> : <a href="" target="contentFrame" class="java/io/BufferedReader">java.io.BufferedReader</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>the reader for the stream for our connection</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="halt"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>var</code>
+        <em>halt</em> : <a href="http://www.scala-lang.org/docu/files/api/scala/Boolean.html" target="_self">Boolean</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>set when we want processing to terminate</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="delimitedLength"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>val</code>
+        <em>delimitedLength</em> : <a href="http://www.scala-lang.org/docu/files/api/scala/Boolean.html" target="_self">Boolean</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>whether we're using delimited length mode</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="maxReconnectTries"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>val</code>
+        <em>maxReconnectTries</em> : <a href="http://www.scala-lang.org/docu/files/api/scala/Int.html" target="_self">Int</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>how many times we'll try to reconnect when network hiccups occur</dd></dl>
+      <dl></dl>
+    <hr></hr></div>
+<table summary="" cellpadding="3" class="member-detail">
+          <tr><td class="title">Method Details</td></tr>
+        </table><div><a name="go%28%29"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>def</code>
+        <em>go</em> : <a href="http://www.scala-lang.org/docu/files/api/scala/Unit.html" target="_self">Unit</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>Connect to the streaming API and start received tweets.
+   Under the covers this calls setup, then forks a thread that
+   calls runLoop.</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="setup%28%29"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>def</code>
+        <em>setup</em> : <a href="http://www.scala-lang.org/docu/files/api/scala/Unit.html" target="_self">Unit</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>Set up our HTTP connection parameters, 
+   and try to cast our parent to a callbackable form.</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="runLoop%28%29"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>def</code>
+        <em>runLoop</em> : <a href="http://www.scala-lang.org/docu/files/api/scala/Unit.html" target="_self">Unit</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>while halt isn't set, perform the following
+   <ol>
+   <li>call reconnect (establishing a connection)</li>
+   <li>call readLoop (read tweets)</li>
+   </ol>
+   if an exception is caught, try to repeat</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="reconnect%28%29"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>def</code>
+        <em>reconnect</em> : <a href="http://www.scala-lang.org/docu/files/api/scala/Unit.html" target="_self">Unit</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>Try up to maxRecconnectTries times to connect, with exponentially
+   increasing backoff times (tries*tries*1000 ms)</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="connect%28%29"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>def</code>
+        <em>connect</em> : <a href="http://www.scala-lang.org/docu/files/api/scala/Boolean.html" target="_self">Boolean</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>Establish a connection.  This tries only once (reconnect wraps this in retry logic)
+   Returns true if a connection was established, false otherwise.  Note that this
+   also initializes the stream and reader fields, used by readLoop</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="readLoop%28%29"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>def</code>
+        <em>readLoop</em> : <a href="http://www.scala-lang.org/docu/files/api/scala/Unit.html" target="_self">Unit</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>Read tweets until either halt is set or we get an exception</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="deliver%28String%29"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>def</code>
+        <em>deliver</em>(<em>tweet</em> : <a href="" target="contentFrame" class="java/lang/String">java.lang.String</a>) : <a href="http://www.scala-lang.org/docu/files/api/scala/Unit.html" target="_self">Unit</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>If your callback is set, call tweet() on it.  Otherwise noop</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="readLine%28%29"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>def</code>
+        <em>readLine</em> : <a href="" target="contentFrame" class="java/lang/String">java.lang.String</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>Read a line of input from the stream.  
+   This line should either be a blank line (idle probe) or a full tweet
+   readLine will block until more data arrives. Not interruptable.</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="stop%28%29"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>def</code>
+        <em>stop</em> : <a href="http://www.scala-lang.org/docu/files/api/scala/Unit.html" target="_self">Unit</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>Stop our read loop, don't process anything else.</dd></dl>
+      <dl></dl>
+    <hr></hr>
+<a name="disconnect%28%29"></a><dl>
+      <dt>
+        
+        <code></code>
+        <code>def</code>
+        <em>disconnect</em> : <a href="http://www.scala-lang.org/docu/files/api/scala/Unit.html" target="_self">Unit</a>
+      </dt>
+      <dd></dd>
+    </dl>
+      <dl><dd>Dissconnect from our source</dd></dl>
+      <dl></dl>
+    <hr></hr></div>
+
+
+    <hr></hr>
+        <div>processing library Tweet Stream by Mark McBride. (c) 2009</div><table summary="" class="navigation">
+        <tr>
+          <td class="navigation-links" valign="top">
+            <!-- <table><tr></tr></table> -->
+          </td>
+          <td align="right" valign="top" style="white-space:nowrap;" rowspan="2">
+            <div class="doctitle-larger">ScalaDocs: Tweet Stream</div>
+          </td>
+        </tr>
+        <tr><td></td></tr>
+      </table>
+      </body>
+      </html>

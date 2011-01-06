@@ -1,0 +1,24 @@
+0004 - 2009-03-16
+--------------------------------------------------------------------------------
++ added SphereConstraint to 3D version of engine
+
+
+0003 - 2008-12-18
+--------------------------------------------------------------------------------
+! switched to Java 1.5 syntax
++ new packages toxi.physics2d & toxi.physics2d.constraints for better 2D performance
+M changed constraint behaviour to only be applied at the end of each timestep
+  (previously after each iteration within each timestep, overkill!)
++ added a simple demo example showing basic usage
+
+
+0002 -2008-10-29
+--------------------------------------------------------------------------------
+! VerletPhysics: fixed bug in alternative constructor which didn't initialize
+  Arraylists properly
++ VerletMinDistanceSpring class
++ new package toxi.physics.constraints: IParticleConstraint interface and
+  axis-linear implementations
+M VerletParticle: added constraint mechanism
+M VerletSpring (all types): added constraint mechanism
+M VerletPhysics: added removal methods for springs and particles to 

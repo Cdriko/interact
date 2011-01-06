@@ -1,0 +1,34 @@
+9
+
+dir
+3
+https://pingbase.homelinux.net/svn_processing/libraries/supercollider
+https://pingbase.homelinux.net/svn_processing
+
+
+
+2009-07-28T10:33:15.641654Z
+1
+julbel
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+b9d88a43-1152-41ec-afaa-b6ed9357c38c
+
+library
+dir
+
+src
+dir
+

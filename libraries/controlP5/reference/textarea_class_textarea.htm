@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>controlP5 : : Textarea</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link href="stylesheet.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+document.getElementsByTagName('html')[0].className = 'isjs';
+
+function toggle(dt) 
+{ 
+  var display, dd=dt; 
+  /* get dd */ 
+  do{ dd = dd.nextSibling } while(dd.tagName!='DD'); 
+  toOpen =!dd.style.display; 
+  dd.style.display = toOpen? 'block':'' 
+  dt.getElementsByTagName('span')[0].innerHTML 
+    = toOpen? '-':'+' ; 
+} 
+</script>
+</head>
+<body>
+<div id="container">
+		<div id="header">
+		<a href="./index.htm"><img src="./docuImages/title.jpg" /></a>
+		</div>
+	<div class="content">
+		<h1>Textarea</h1>
+		<dl><dt class="key">description</dt><dd class="value"></dd></dl>
+			
+			<div class="toggleList example">
+				<dl><dt onclick="toggle(this)"><span>+</span>Example</dt>
+					<dd><pre>import controlP5.*;
+
+ControlP5 controlP5;
+Textarea myTextarea;
+
+void setup() {
+  size(400,400);
+  frameRate(30);
+  controlP5 = new ControlP5(this);
+  myTextarea = controlP5.addTextarea(
+  "label1", 
+  "a textarea is of type group, not controller.\n"+
+    "you can set the width and height of a textarea, if there is more text than space available, scrollbars are added.  "+
+    "use ALT + mouseDown to move the textarea. First sketches showing the potential of the new volumetric brush (here the box version was used). Size and density and brush mode (additve, multiply or replace) can be customized. Here I first used a massive brush size with high positive density to create the box, then switched to negative density and smaller size to carve out. The colours are visualizing curvature and were applied in Meshlab later.", 
+  100,100,200,60);
+  controlP5.addSlider("changeWidth",0,200,100,100,20,100,9);
+  controlP5.addSlider("changeHeight",0,200,100,100,60,100,9);
+  myTextarea.setColorForeground(0xffff0000);
+}
+
+
+void keyPressed() {
+  if(key=='r') {
+    myTextarea.setText("a textarea can be used to leave notes inside of controlP5 displayed on the screen. scrollbars are available when text extends the visible area. Textarea extends ControllerGroup, for more available methods see the ControllerGroup documentation.");
+  } else if(key=='c') {
+    myTextarea.setColor(0xff0000);
+  }
+}
+void draw() {
+  background(0);
+  if(keyPressed && key==' ') {
+    myTextarea.scroll((float)mouseX/(float)width);
+  }
+  if(keyPressed && key=='l') {
+    myTextarea.setLineHeight(mouseY);
+  }
+}
+
+void changeWidth(int theValue) {
+  myTextarea.setWidth(theValue);
+}
+
+void changeHeight(int theValue) {
+  myTextarea.setHeight(theValue);
+}
+
+</pre></dd>
+				</dl>
+			</div>
+			
+			
+			
+			<dl><dt class="key">constructors</dt><dd class="value"><pre></pre></dd></dl>
+			
+			
+			
+			
+			
+			
+			
+			<!-- METHODS:BEGIN -->
+			
+       <dl class="noborder"><dt>Methods</dt></dl>
+       <dl><dt class="key"><a href="textarea_method_scroll.htm">scroll ( )</a></dt><dd class="value">scroll the Textarea remotely. values must range from 0 to 1.</dd></dl>
+<dl><dt class="key"><a href="textarea_method_setcolor.htm">setColor ( )</a></dt><dd class="value">set the text color of the textarea.</dd></dl>
+<dl><dt class="key"><a href="textarea_method_setheight.htm">setHeight ( )</a></dt><dd class="value">set the height of the textarea.</dd></dl>
+<dl><dt class="key"><a href="textarea_method_setlineheight.htm">setLineHeight ( )</a></dt><dd class="value">set the lineheight of the textarea.</dd></dl>
+<dl><dt class="key"><a href="textarea_method_setposition.htm">setPosition ( )</a></dt><dd class="value">set the position of the textarea.</dd></dl>
+<dl><dt class="key"><a href="textarea_method_settext.htm">setText ( )</a></dt><dd class="value">set the text of the textarea.</dd></dl>
+<dl><dt class="key"><a href="textarea_method_setwidth.htm">setWidth ( )</a></dt><dd class="value">set the width of the textarea.</dd></dl>
+<dl><dt class="key"><a href="textarea_method_stringvalue.htm">stringValue ( )</a></dt><dd class="value">returns the content of the textarea's label.</dd></dl>
+<dl><dt class="key"><a href="textarea_method_text.htm">text ( )</a></dt><dd class="value">returns the text content of the textarea
+ .</dd></dl>
+<dl><dt class="key"><a href="textarea_method_valuelabel.htm">valueLabel ( )</a></dt><dd class="value">returns the instance of the textarea's label.</dd></dl>
+
+   
+			<!-- METHODS:END -->
+			<div class="separator">
+			<dl><dt class="key">usage</dt><dd class="value">Web & Application</dd></dl>
+			</div>
+			<div class="separator">
+			<dl><dt class="key">related</dt><dd class="value"><ul><li><a href="controllergroup_class_controllergroup.htm">ControllerGroup</a></li>
+</ul></dd></dl>
+			</div>
+	</div>
+	<div id="footer">
+	<p>by andreas schlegel (<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/" target="_blank">cc</a>) 2007, <a href="http://www.sojamo.de" target="_blank">sojamo</a>.</p>
+	</div>
+</div>
+</body>
+</html>
+
+

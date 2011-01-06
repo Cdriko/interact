@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>controlP5 : : ControlEvent</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link href="stylesheet.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+document.getElementsByTagName('html')[0].className = 'isjs';
+
+function toggle(dt) 
+{ 
+  var display, dd=dt; 
+  /* get dd */ 
+  do{ dd = dd.nextSibling } while(dd.tagName!='DD'); 
+  toOpen =!dd.style.display; 
+  dd.style.display = toOpen? 'block':'' 
+  dt.getElementsByTagName('span')[0].innerHTML 
+    = toOpen? '-':'+' ; 
+} 
+</script>
+</head>
+<body>
+<div id="container">
+		<div id="header">
+		<a href="./index.htm"><img src="./docuImages/title.jpg" /></a>
+		</div>
+	<div class="content">
+		<h1>ControlEvent</h1>
+		<dl><dt class="key">description</dt><dd class="value">a controlEvent is sent to a PApplet whenever a controlP5 action has been made.
+ you can receive events from controllers and tabs. by default tab events
+ are disabled and have to be enabled with Tab.activateEvent(). for detailed information
+ see the tab documentation.</dd></dl>
+			
+			<div class="toggleList example">
+				<dl><dt onclick="toggle(this)"><span>+</span>Example</dt>
+					<dd><pre>import controlP5.*;
+
+ControlP5 controlP5;
+
+public int myColorRect = 200;
+
+public int myColorBackground = 100;
+
+
+void setup() {
+  size(400,400);
+  frameRate(25);
+  controlP5 = new ControlP5(this);
+  controlP5.addNumberbox("n1",myColorRect,100,160,100,14).setId(1);
+  controlP5.addNumberbox("n2",myColorBackground,100,200,100,14).setId(2);
+  controlP5.addTextfield("n3",100,240,100,20).setId(3);
+}
+
+void draw() {
+  background(myColorBackground);
+  fill(myColorRect);
+  rect(0,0,width,100);
+}
+
+
+void controlEvent(ControlEvent theEvent) {
+  println("got a control event from controller with id "+theEvent.controller().id());
+  switch(theEvent.controller().id()) {
+    case(1):
+    myColorRect = (int)(theEvent.controller().value());
+    break;
+    case(2):
+    myColorBackground = (int)(theEvent.controller().value());
+    break;
+    case(3):
+    println(theEvent.controller().stringValue());
+    break;  
+  }
+}
+</pre></dd>
+				</dl>
+			</div>
+			
+			
+			<!-- noConstructor:START
+			<dl><dt class="key">constructors</dt><dd class="value"><pre></pre></dd></dl>
+			noConstructor:END -->
+			
+			
+			
+			
+			
+			
+			<!-- METHODS:BEGIN -->
+			
+       <dl class="noborder"><dt>Methods</dt></dl>
+       <dl><dt class="key"><a href="controlevent_method_arrayvalue.htm">arrayValue ( )</a></dt><dd class="value">returns a float array, apllies for e.g. Range.</dd></dl>
+<dl><dt class="key"><a href="controlevent_method_controller.htm">controller ( )</a></dt><dd class="value">returns the instance of the controller.</dd></dl>
+<dl><dt class="key"><a href="controlevent_method_group.htm">group ( )</a></dt><dd class="value">return the tab that evoked the event.</dd></dl>
+<dl><dt class="key"><a href="controlevent_method_iscontroller.htm">isController ( )</a></dt><dd class="value">check if the event was evoked by a controller.</dd></dl>
+<dl><dt class="key"><a href="controlevent_method_isgroup.htm">isGroup ( )</a></dt><dd class="value">check if the event was evoked by a controlGroup.</dd></dl>
+<dl><dt class="key"><a href="controlevent_method_istab.htm">isTab ( )</a></dt><dd class="value">check if the event was evoked by a tab.</dd></dl>
+<dl><dt class="key"><a href="controlevent_method_label.htm">label ( )</a></dt><dd class="value">get the label of the controller that evoked the event.</dd></dl>
+<dl><dt class="key"><a href="controlevent_method_stringvalue.htm">stringValue ( )</a></dt><dd class="value">returns a string value if applicable to the controller e.g.
+ textfield has a string value.</dd></dl>
+<dl><dt class="key"><a href="controlevent_method_tab.htm">tab ( )</a></dt><dd class="value">return the tab that evoked the event.</dd></dl>
+<dl><dt class="key"><a href="controlevent_method_value.htm">value ( )</a></dt><dd class="value">returns the value of the controller as float.</dd></dl>
+
+   
+			<!-- METHODS:END -->
+			<div class="separator">
+			<dl><dt class="key">usage</dt><dd class="value">Web & Application</dd></dl>
+			</div>
+			<div class="separator">
+			<dl><dt class="key">related</dt><dd class="value"><ul><li><a href="controlp5_class_controlp5.htm">ControlP5</a></li>
+<li><a href="tab_class_tab.htm">Tab</a></li>
+</ul></dd></dl>
+			</div>
+	</div>
+	<div id="footer">
+	<p>by andreas schlegel (<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/" target="_blank">cc</a>) 2007, <a href="http://www.sojamo.de" target="_blank">sojamo</a>.</p>
+	</div>
+</div>
+</body>
+</html>
+
+

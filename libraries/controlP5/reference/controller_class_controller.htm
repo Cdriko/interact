@@ -1,0 +1,180 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>controlP5 : : Controller</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link href="stylesheet.css" rel="stylesheet" type="text/css">
+<script type="text/javascript">
+document.getElementsByTagName('html')[0].className = 'isjs';
+
+function toggle(dt) 
+{ 
+  var display, dd=dt; 
+  /* get dd */ 
+  do{ dd = dd.nextSibling } while(dd.tagName!='DD'); 
+  toOpen =!dd.style.display; 
+  dd.style.display = toOpen? 'block':'' 
+  dt.getElementsByTagName('span')[0].innerHTML 
+    = toOpen? '-':'+' ; 
+} 
+</script>
+</head>
+<body>
+<div id="container">
+		<div id="header">
+		<a href="./index.htm"><img src="./docuImages/title.jpg" /></a>
+		</div>
+	<div class="content">
+		<h1>Controller</h1>
+		<dl><dt class="key">description</dt><dd class="value">Controller is an abstract class that is extended by all available
+ controllers. this is the full documentation list for all methods available
+ for a controller.</dd></dl>
+			
+			<div class="toggleList example">
+				<dl><dt onclick="toggle(this)"><span>+</span>Example</dt>
+					<dd><pre>/**
+ * controlP5numberbox by andreas schlegel &lt;br />
+ * an example to show how to use a numberbox to control&lt;br />
+ * variables and events.&lt;br />
+ * click a numberbox and move mouse up and down while pressing &lt;br />
+ * the mousebutton to change values.&lt;br />
+ * for further information and questions about controlP5 first&lt;br />
+ * take a look at the documentation, the examples, or the &lt;br />
+ * website at http://www.sojamo.de/controlP5&lt;br />
+ */
+
+import controlP5.*;
+
+ControlP5 controlP5;
+
+public int myColorRect = 200;
+
+public int myColorBackground = 100;
+
+
+void setup() {
+  size(400,400);
+  frameRate(25);
+  controlP5 = new ControlP5(this);
+  controlP5.addNumberbox("numberbox1",myColorRect,100,160,100,14).setId(1);
+  controlP5.addNumberbox("numberbox2",myColorBackground,100,200,100,14).setId(2);
+  controlP5.addSlider("slider1",100,200,100,100,250,100,14).setId(3);
+  controlP5.addTextfield("text1",100,290,100,20).setId(4);
+}
+
+void draw() {
+  background(myColorBackground);
+  fill(myColorRect);
+  rect(0,0,width,100);
+}
+
+
+void controlEvent(ControlEvent theEvent) {
+  println("got a control event from controller with id "+theEvent.controller().id());
+  switch(theEvent.controller().id()) {
+    case(1):
+    myColorRect = (int)(theEvent.controller().value());
+    break;
+    case(2):
+    myColorBackground = (int)(theEvent.controller().value());
+    break;  
+  }
+}
+</pre></dd>
+				</dl>
+			</div>
+			
+			
+			<!-- noConstructor:START
+			<dl><dt class="key">constructors</dt><dd class="value"><pre></pre></dd></dl>
+			noConstructor:END -->
+			
+			
+			
+			
+			
+			
+			<!-- METHODS:BEGIN -->
+			
+       <dl class="noborder"><dt>Methods</dt></dl>
+       <dl><dt class="key"><a href="controller_method_addlistener.htm">addListener ( )</a></dt><dd class="value">add a listener to the controller.</dd></dl>
+<dl><dt class="key"><a href="controller_method_behavior.htm">behavior ( )</a></dt><dd class="value">get the behavior of the controller.</dd></dl>
+<dl><dt class="key"><a href="controller_method_defaultvalue.htm">defaultValue ( )</a></dt><dd class="value">returns the default value.</dd></dl>
+<dl><dt class="key"><a href="controller_method_gettab.htm">getTab ( )</a></dt><dd class="value">get the tab the controller belongs to.</dd></dl>
+<dl><dt class="key"><a href="controller_method_getwindow.htm">getWindow ( )</a></dt><dd class="value">get the control window of the controller</dd></dl>
+<dl><dt class="key"><a href="controller_method_hide.htm">hide ( )</a></dt><dd class="value">hide the controller, make it invisible.</dd></dl>
+<dl><dt class="key"><a href="controller_method_id.htm">id ( )</a></dt><dd class="value">get the id of the controller.</dd></dl>
+<dl><dt class="key"><a href="controller_method_isupdate.htm">isUpdate ( )</a></dt><dd class="value">enable the update function for a controller.</dd></dl>
+<dl><dt class="key"><a href="controller_method_isvisible.htm">isVisible ( )</a></dt><dd class="value">check if the controller is visible.</dd></dl>
+<dl><dt class="key"><a href="controller_method_label.htm">label ( )</a></dt><dd class="value">get the label of the controller.</dd></dl>
+<dl><dt class="key"><a href="controller_method_moveto.htm">moveTo ( )</a></dt><dd class="value">move a controller to another tab and/or controlWindow.</dd></dl>
+<dl><dt class="key"><a href="controller_method_name.htm">name ( )</a></dt><dd class="value">returns the name of the controller.</dd></dl>
+<dl><dt class="key"><a href="controller_method_parent.htm">parent ( )</a></dt><dd class="value">get the parent of a controller.</dd></dl>
+<dl><dt class="key"><a href="controller_method_position.htm">position ( )</a></dt><dd class="value">get the position of a controller. e.g. Controller.position().x();</dd></dl>
+<dl><dt class="key"><a href="controller_method_remove.htm">remove ( )</a></dt><dd class="value">remove a controller from controlP5.</dd></dl>
+<dl><dt class="key"><a href="controller_method_removebehavior.htm">removeBehavior ( )</a></dt><dd class="value">remove the behavior from the controller.</dd></dl>
+<dl><dt class="key"><a href="controller_method_removelistener.htm">removeListener ( )</a></dt><dd class="value">remove a listener from the controller.</dd></dl>
+<dl><dt class="key"><a href="controller_method_setbehavior.htm">setBehavior ( )</a></dt><dd class="value">with setBehavior you can apply behaviors to a controller</dd></dl>
+<dl><dt class="key"><a href="controller_method_setcaptionlabel.htm">setCaptionLabel ( )</a></dt><dd class="value">set or change the content of the caption label of a controller.</dd></dl>
+<dl><dt class="key"><a href="controller_method_setcoloractive.htm">setColorActive ( )</a></dt><dd class="value">set the color for the controller while active.</dd></dl>
+<dl><dt class="key"><a href="controller_method_setcolorbackground.htm">setColorBackground ( )</a></dt><dd class="value">set the background color of the controller.</dd></dl>
+<dl><dt class="key"><a href="controller_method_setcolorforeground.htm">setColorForeground ( )</a></dt><dd class="value">set the foreground color of the controller.</dd></dl>
+<dl><dt class="key"><a href="controller_method_setcolorlabel.htm">setColorLabel ( )</a></dt><dd class="value">set the color of the text label of the controller.</dd></dl>
+<dl><dt class="key"><a href="controller_method_setcolorvalue.htm">setColorValue ( )</a></dt><dd class="value">set the color of the value label of the controller.</dd></dl>
+<dl><dt class="key"><a href="controller_method_setdecimalprecision.htm">setDecimalPrecision ( )</a></dt><dd class="value">sets the decimal precision of a controller's float value displayed. the
+ precision does not apply to the returned float value.</dd></dl>
+<dl><dt class="key"><a href="controller_method_setdefaultvalue.htm">setDefaultValue ( )</a></dt><dd class="value">set the default value.</dd></dl>
+<dl><dt class="key"><a href="controller_method_setgroup.htm">setGroup ( )</a></dt><dd class="value">set the group of the controller.</dd></dl>
+<dl><dt class="key"><a href="controller_method_setid.htm">setId ( )</a></dt><dd class="value">set the id of the controller.</dd></dl>
+<dl><dt class="key"><a href="controller_method_setlabel.htm">setLabel ( )</a></dt><dd class="value">set the label of the controller.</dd></dl>
+<dl><dt class="key"><a href="controller_method_setlabelvisible.htm">setLabelVisible ( )</a></dt><dd class="value">show or hide the labels of a controller.</dd></dl>
+<dl><dt class="key"><a href="controller_method_setmoveable.htm">setMoveable ( )</a></dt><dd class="value">enable or prevent the controller to be moveable.</dd></dl>
+<dl><dt class="key"><a href="controller_method_setposition.htm">setPosition ( )</a></dt><dd class="value">set the position of a controller.</dd></dl>
+<dl><dt class="key"><a href="controller_method_settab.htm">setTab ( )</a></dt><dd class="value">set the tab of the controller.</dd></dl>
+<dl><dt class="key"><a href="controller_method_setupdate.htm">setUpdate ( )</a></dt><dd class="value">disable the update function for a controller.</dd></dl>
+<dl><dt class="key"><a href="controller_method_setvalue.htm">setValue ( )</a></dt><dd class="value">set the value of the controller.</dd></dl>
+<dl><dt class="key"><a href="controller_method_setvaluelabel.htm">setValueLabel ( )</a></dt><dd class="value">set or change the value of the value label of a controller. (this is
+ cheating, but maybe useful for some cases.)</dd></dl>
+<dl><dt class="key"><a href="controller_method_setvisible.htm">setVisible ( )</a></dt><dd class="value">set the visibility of a controller.</dd></dl>
+<dl><dt class="key"><a href="controller_method_show.htm">show ( )</a></dt><dd class="value">show the controller. make it visible.</dd></dl>
+<dl><dt class="key"><a href="controller_method_stringvalue.htm">stringValue ( )</a></dt><dd class="value">set the current string value of a controller.</dd></dl>
+<dl><dt class="key"><a href="controller_method_trigger.htm">trigger ( )</a></dt><dd class="value">trigger the event of a controller. deprecated. use .update() instead.</dd></dl>
+<dl><dt class="key"><a href="controller_method_update.htm">update ( )</a></dt><dd class="value">updates the value of the controller without having to set the value
+ explicitly. update does not visually update the controller. the updating
+ status can be set with setUpdate(true/false) and checked with isUpdate().</dd></dl>
+<dl><dt class="key"><a href="controller_method_value.htm">value ( )</a></dt><dd class="value">get the current value of the controller.</dd></dl>
+
+   
+			<!-- METHODS:END -->
+			<div class="separator">
+			<dl><dt class="key">usage</dt><dd class="value">Web & Application</dd></dl>
+			</div>
+			<div class="separator">
+			<dl><dt class="key">related</dt><dd class="value"><ul><li><a href="bang_class_bang.htm">Bang</a></li>
+<li><a href="button_class_button.htm">Button</a></li>
+<li><a href="knob_class_knob.htm">Knob</a></li>
+<li><a href="matrix_class_matrix.htm">Matrix</a></li>
+<li><a href="multilist_class_multilist.htm">MultiList</a></li>
+<li><a href="numberbox_class_numberbox.htm">Numberbox</a></li>
+<li><a href="radio_class_radio.htm">Radio</a></li>
+<li><a href="scrolllist_class_scrolllist.htm">ScrollList</a></li>
+<li><a href="slider_class_slider.htm">Slider</a></li>
+<li><a href="textarea_class_textarea.htm">Textarea</a></li>
+<li><a href="textfield_class_textfield.htm">Textfield</a></li>
+<li><a href="textlabel_class_textlabel.htm">Textlabel</a></li>
+<li><a href="toggle_class_toggle.htm">Toggle</a></li>
+<li><a href="controlgroup_class_controlgroup.htm">ControlGroup</a></li>
+<li><a href="controlbehavior_class_controlbehavior.htm">ControlBehavior</a></li>
+<li><a href="controlevent_class_controlevent.htm">ControlEvent</a></li>
+</ul></dd></dl>
+			</div>
+	</div>
+	<div id="footer">
+	<p>by andreas schlegel (<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/" target="_blank">cc</a>) 2007, <a href="http://www.sojamo.de" target="_blank">sojamo</a>.</p>
+	</div>
+</div>
+</body>
+</html>
+
+
