@@ -1,0 +1,15 @@
+<div class="form_header">@label.title@</div>
+<p>
+This is a simple form.
+<br>
+Implement <strong>getFormModel()</strong> to return a form model object. Form fields have to have <strong>FormField</strong> annotations.
+<br>
+Rendering form elements can be simplified if UI widget helpers used, like bellow:
+<br>
+<form>
+<pre>
+&lt;label for="agenda"&gt;@@label.elementname@@ @@.ui.field*(elementname,java.lang.Object^@@model@@)*@@
+&lt;/label%gt;
+
+</pre>
+</form>

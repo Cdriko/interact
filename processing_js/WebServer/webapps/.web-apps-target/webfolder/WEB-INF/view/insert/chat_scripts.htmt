@@ -1,0 +1,2 @@
+  <script src="@contextpath@/js/ui.js" language="Javascript"></script>
+  <script src="@contextpath@/js/chat.js" language="Javascript"></script>

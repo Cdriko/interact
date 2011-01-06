@@ -1,0 +1,39 @@
+<html>
+<title>@title@</title>
+<!-- $Id: resultv.html,v 1.2 2008/03/13 04:02:06 dmitriy Exp $
+  -->
+<link rel="stylesheet" href="/finesearch/styles.css" type="text/css" media="all"/>
+<style>
+<!--
+@.style@
+-->
+</style>
+<script src="/finesearch/common.js" language="Javascript"></script>
+<script>
+   function showStat(stat,show) {
+       getElement(stat).style.display=show?'':'none';
+       //return false;
+   }
+</script>
+<body>
+  <h3>Request:</h3>
+  <label>@title@</label>
+  @result(
+    <p>
+    <a href="@element.getURL*()*@" class="luc" target="newwindow">@element.getTitle*()*@</a>
+    <div class="ttx">@.element.getContent*()*@</div>
+    <div class="lux">@element.getURL*()*@</div>
+    <div class="ttc"><a href="javascript:showStat('stat@index@', true)">stat</a>&nbsp;
+        (@element.getCustomData*()*@) @element.getLastModified*()*@ - @element.getLength*()*@b</div>
+    <div id="stat@index@" style="display:none"><a name="ab@index@"><a href="#ae@index@"><img src="/finesearch/down.gif" border=0 alt="Down"></a><pre>
+      @element@
+      </pre> <a name="ae@index@"><a href="javascript:showStat('stat@index@',false)"><img src="/finesearch/up.gif" border=0 alt="Up"></a></div>
+  )@
+  <p class="error">@erroralert@</p>
+  @statistic(
+    <label>Links processes</label>
+    <label>Broken from them</label>
+    <label>Misplaced from them</label>
+  )@
+</body>
+</html>

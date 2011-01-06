@@ -1,0 +1,137 @@
+<html>
+<head>
+<title>iReceipt&reg; - Home</title>
+<meta name="keywords" content="receipt, sales, point of sales, cash register">
+<style>
+<!--
+.copy        { font-family: Arial; font-size: 8pt; text-align: center; color: #808080 }
+-->
+</style>
+</head>
+<body>
+<h2>iReceipt&reg;</h2>
+<font size=2><i>Patent pending</i></font>
+<p align="right"><i>March 9, 2006</i></p>
+<h3>What's iReceipt?</h3>
+    <p>
+iReceipt is a portable electronic version of sales receipt obtained at points of sales or electronic ordering systems. iReceipt is a proof of sale which
+ digitally signed with a possibility of digitally signed annotations. iReceipt is carrying all attributes of a regular receipt and accepted by any issuer as a regular one.</p>
+    <h3>
+Why
+iReceipt?</h3>
+<p>Besides of being a proof of purchase,&nbsp;
+iReceipt gives many benefits as for a merchant as for a consumer, like:</p>
+<ol>
+	<li>Faster checkout process</li>
+	<li>Faster,&nbsp; easier and confident&nbsp; return</li>
+	<li>Faster and easier security check at stores where required</li>
+	<li>Faster and easier rebate processing</li>
+	<li>Faster and easier get recalls or compensations in case of class-action lawsuits</li>
+	<li>Faster and easier manage warranties and claims</li>
+	<li>Easier and more effective personal budget management</li>
+	<li>Less untargeted junk mail </li>
+</ol>
+<h3>How iReceipt?</h3>
+<p>iReceipt can be as server as client based. Both versions have own benefits and 
+can be combined.</p>
+<h3>Server iReceipt</h3>
+<p>A cash register at point of sale transmits iReceipt to a server 
+using one of iReceipt supported secure protocols. iReceipt gets ownership based on an iReceipt id provided by a customer as 
+in an electronic form as in a simple typing on a pad device. A customer can 
+ask for a paper version of iReceipt and/or get it recorded on a client version of iReceipt.</p>
+<h3>Client iReceipt</h3>
+<p>It's an USB drive with iReceipt organized file system. It can be password 
+protected. A customer can connect a client version of iReceipt to a special 
+terminal of a cash register and get a copy of iReceipt. A customer can use a pin pad 
+device for an optional entering a password.</p>
+<h3>Use iReceipt</h3>
+<p>All iReceipts get acknowledge of iReceipt issuer and can be used the same as a 
+paper based receipts. Every time when a paper version of a receipt required, iReceipt 
+can be used as well. A customer has a convenient access to own iReceipts using a web browser 
+or a dedicated software.</p>
+<h3>iReceipt format</h3>
+<p>iReceipt is stored in XML format, dtd you can find <a href="http://">here</a> 
+and XML schema <a href="http://">here</a>. iReceipt XML can be mapped in 
+relations.</p>
+<h3>iReceipt examples</h3>
+<pre>
+ &lt;?xml version="1.0"?&gt;
+    &lt;iReceipt&gt;
+      &lt;header&gt;
+         &lt;code&gt;890102930&lt;/code&gt;
+         &lt;group&gt;AJK&lt;/group&gt;
+         &lt;control&gt;90009&lt;/control&gt;
+      &lt;/header&gt;
+      &lt;customer&gt;
+        &lt;group&gt;KKFG&lt;/group&gt;
+        &lt;code&gt;00289991&lt;/code&gt;
+      &lt;/customer&gt;
+      &lt;retailer&gt;
+         &lt;name&gt;SEARS&lt;/name&gt;
+         &lt;type&gt;BM&lt;/type&gt;
+         &lt;location&gt;HILLSDALE MALL, CA 01199&lt;/location&gt;
+         &lt;code&gt;8937762839&lt;/code&gt;
+      &lt;/retailer&gt;
+      &lt;type&gt;SALE&lt;/type&gt;
+      &lt;sale&gt;011995530346&lt;/sale&gt;
+      &lt;transaction&gt;0346&lt;/transaction&gt;
+      &lt;store&gt;10001199&lt;/store&gt;
+      &lt;register&gt;533&lt;register&gt;
+      &lt;associate&gt;
+         &lt;code&gt;4903&lt;/code&gt;
+         &lt;name&gt;Julie Smith&lt;/name&gt;
+      &lt;/associate&gt;
+      &lt;item&gt;
+         &lt;code&gt;52 33842&lt;/code&gt;
+         &lt;name&gt;COMMAND FR MDS&lt;/name&gt;
+         &lt;upc&gt;738708169636&lt;/upc&gt;
+         &lt;price&gt;10.99&lt;/price&gt;
+         &lt;taxable&gt;yes&lt;/taxable&gt;
+         &lt;discount&gt;0&lt;discount&gt;
+         &lt;coupon&gt;
+            &lt;name&gt;none&lt;/name&gt;
+            &lt;absolute&gt;0&lt;/absolute&gt;
+            &lt;percent&gt;0&lt;/percent&gt;
+            &lt;code&gt;0&lt;/code&gt;
+         &lt;/coupon&gt;
+         &lt;rebate&gt;
+            &lt;total&gt;0&lt;/total&gt;
+            &lt;valid&gt;00/00/0000-00/00/0000&lt;/valid&gt;
+            &lt;code&gt;000&lt;/code&gt;
+            &lt;reference/&gt;
+         &lt;/rebate&gt;
+         &lt;total&gt;10.99&lt;total&gt;
+         &lt;currency&gt;US DOLLAR&lt;/currency&gt;
+         &lt;returnable&gt;90&lt;returnable&gt;
+         &lt;exchangable&gt;90&lt;/exchangable&gt;
+         &lt;warranty&gt;365&lt;/warranty&gt;
+      &lt;/item&gt;
+      &lt;currency&gt;US DOLLAR&lt;/currency&gt;
+      &lt;subtotal&gt;10.99&lt;/subtotal&gt;
+      &lt;tax&gt;08.250&lt;/tax&gt;
+      &lt;taxtotal&gt;.91&lt;/taxtotal&gt;
+      &lt;total&gt;11.90&lt;/total&gt;
+      &lt;pay&gt;
+        &lt;cash&gt;5.00&lt;/cash&gt;
+        &lt;credit&gt;
+           &lt;type&gt;MASTER&lt;/type&gt;
+           &lt;account&gt;1990&lt;/account&gt;
+           &lt;auth&gt;839026E&lt;/auth&gt;
+           &lt;date&gt;12/14/2006&lt;/date&gt;
+           &lt;total&gt;6.90&lt;/total&gt;
+        &lt;/credit
+      &lt;/pay&gt;
+      &lt;signature&gt;ja3ml.sl39-03msbndilsldx&lt;/signature&gt;
+    &lt;/iReceipt&gt;
+</pre>
+<h3>
+    iCoupon</h3>
+    <p>iCoupon can be a good addition providing convenient electronic form of coupons.</p>
+    <h3>
+        Attention Entrepreneurs and Investors</h3>
+<p>You can be first who gets iReceipt in his/her pocket. Do not miss this 
+opportunity. Please <a href="mailto:jaddressbook@gmail.com">contact me</a>.</p>
+<p><a href="javascript:history.back()">Back</a></p>
+<p class="copy">Copyright&copy; 2006, 2007 Dmitriy Rogatkin</p>
+</body>
+</html>

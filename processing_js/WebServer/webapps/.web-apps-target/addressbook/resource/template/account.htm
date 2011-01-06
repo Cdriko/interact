@@ -1,0 +1,63 @@
+<!--  $Id: account.htm,v 1.7 2008/04/24 04:07:15 dmitriy Exp $  -->
+<script>
+  function addAccntRow(name) {
+     var et = document.getElementById(name);
+     var nr = et.insertRow(et.rows.length-1);
+     var i=0;
+     var nc = nr.insertCell(i++);
+     nc.innerHTML = '<input type="checkbox" name="'+name+'mark">';
+     nc = nr.insertCell(i++);
+     nc.innerHTML = '<input type="text" value="" name="'+name+'value">';
+     nc = nr.insertCell(i++);
+     nc.innerHTML = '<input type="text" value="" name="'+name+'description">';
+     nc = nr.insertCell(i++);
+     nc.innerHTML = '<input type="text" value="" name="'+name+'name">';
+     nc = nr.insertCell(i++);
+     nc.innerHTML = '<input type="password" value="" name="'+name+'password"><input type="hidden" name="enc'+name+'password" value=" ">';
+     nc = nr.insertCell(i++);
+     nc.innerHTML = '<input type="text" value="" name="'+name+'link">';
+  }
+
+  function displayPassword(td,field,url,name) {
+    makeIFrameAjaxCall('Contactview/ajax/getPassword?account='+escape(field)+'&accountlink='+escape(url)+
+        '&hash=@contact.getName*()*.hashCode*()*@&name='+encodeURIComponent("@contact.getName*()*.getLast*()*@")+'&folder=@folder@',
+        function(html) {
+           td.innerHTML='<input type="text" value="'+html+'" name="'+name+'password"><input type="hidden" name="encaccountpassword" value=" ">';
+           td.onclick=null;
+           td.firstChild.focus();
+        });
+  }
+</script>
+<table id="account" name="account">
+  <tr>
+     <th>X</th>
+     <th>@label.id@</th>
+     <th>@label.description@</th>
+     <th>@label.account@</th>
+     <th>@label.password@</th>
+     <th colspan="2">@label.access@</th>
+  </tr>
+  @account(
+  <tr>
+    <td><input type="checkbox" name="accountmark"></td>
+    <td onclick="makeEditable(this, '@^element.getValue*()*@', 'accountvalue')" style="cursor: pointer">@element.getValue*()*@
+        <input type="hidden" value="@element.getValue*()*@" name="accountvalue">
+        <input type="hidden" value="@element.isHashed*()*@" name="accounthash"></td>
+    <td onclick="makeEditable(this, '@^element.getDescription*()*@', 'accountdescription')" style="cursor: pointer">@element.getDescription*()*@<input type="hidden" name="accountdescription" value="@element.getDescription*()*@"></td>
+    <td onclick="makeEditable(this, '@^element.getName*()*@', 'accountname')" style="cursor: pointer">@element.getName*()*@<input type="hidden" name="accountname" value="@element.getName*()*@"></td>
+    <td onclick="displayPassword(this, '@^element.getValue*()*@', '@element.getLink*()*@', 'account')" style="cursor: pointer">********<input type="hidden" name="encaccountpassword" value="@request.getAttribute*(cipher)*.encrypt*(java.lang.String^@element.getPassword*()*@)*@"><input type="hidden" name="accountpassword" value=" "></td>
+    <td>@element.getLink*()*{ @" "(&nbsp;)@ @(<a href="@element.getLink*()*@" target="_blank">@commonlabel.go@</a>)@ }@</td>
+    <td onclick="makeEditable(this, '@^element.getLink*()*@', 'accountlink')" style="cursor: pointer">@element.getLink*()*@<input type="hidden" name="accountlink" value="@element.getLink*()*@"></td>
+  </tr>
+  )@
+<tr>
+  <td colspan="5">
+    <table border="0">
+      <tr>   
+        <td><div class="b-button-g" onClick="addAccntRow('account')">@commonlabel.add@</div></td>
+        <td><div class="b-button-g" onClick="deleteRows('account')">@commonlabel.delete@</div></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>

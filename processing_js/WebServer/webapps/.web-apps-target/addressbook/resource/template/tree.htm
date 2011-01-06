@@ -1,0 +1,69 @@
+@treeviewfolder(
+  <div @mark{@_mark(style="background-color:white")@}@>
+      <table cellspacing=0 cellpadding=0 border=0 >
+         <tr>
+            @treeline(
+                  @rootnode(
+                    <td title="root"><img src='@treeimages@/space.gif' border=0 width=16 height=18></td>
+                    <td>
+                       <a href='@page@?nodeid=@:nodeid@@state(&state=@:state@)@&tree=folder&@parameters@'>
+                          <img src='@treeimages@/home.gif'
+                          border=0 width=16 height=16></a></td>
+                    <td>
+                       <img src='@treeimages@/space.gif' border=0 width=3 height=10></td>
+                    <td>                       
+                       <img src='@treeimages@/space.gif' border=0 width=3 height=10><b>@name@</b>
+                       <img src='@treeimages@/space.gif' border=0 width=3 height=10></td>
+                  )@
+                  @opennode(
+                    <td>
+                       <a href='@page@?nodeid=@nodeid@@state(&state=@:state@)@&tree=folder&@parameters@'>
+                          <img src='@treeimages@/minus@vpos@.gif' 
+                          border=0 width=16 height=16></a></td> <!-- _first, _notlast, _last -->
+                    <td>
+                       <a href='@page@?nodeid=@nodeid@@state(&state=@:state@)@&tree=folder&@parameters@'>
+                          <img src='@treeimages@/folder_o.gif'
+                          border=0 width=16 height=16></a></td>
+                    <td>
+                       <img src='@treeimages@/space.gif' border=0 width=3 height=10></td>
+                    <td nowrap>
+                       <a href='@page@?nodeid=@nodeid@@state(&state=@:state@)@&tree=folder&@parameters@@.link@'>
+                       <img src='@treeimages@/space.gif' border=0 width=3 height=10>@mark{@_mark(<b>)@}@@name@@mark{@_mark(</b>)@}@</a>
+                       <img src='@treeimages@/space.gif' border=0 width=3 height=10></td>
+                  )@
+                  @shiftlevel(
+                       <td><img src='@treeimages@/@vpos@.gif' border=0 width=16 height=16></td>
+                  )@
+                  @element(
+                       <td><img src='@treeimages@/line@vpos@.gif' border=0 width=16 height=16></td>
+                         <!-- _first, _notlast, _last -->
+                       <td><a href='@page@?nodeid=@:nodeid@@state(&state=@:state@)@&tree=folder&@parameters@'>
+                         <img src='@treeimages@/@spec@.gif' border=0 width=16 height=16></a></td>
+                       <td><img src='@treeimages@/space.gif' border=0 width=3 height=10></td>
+                       <td nowrap>
+                           <a href='@page@?nodeid=@:nodeid@@state(&state=@:state@)@&tree=folder&@parameters@@.link@'>
+                           <img src='@treeimages@/space.gif' border=0 width=3 height=10>@mark{@_mark(<b>)@}@@name@@mark{@_mark(</b>)@}@</a>
+                           <img src='@treeimages@/space.gif' border=0 width=3 height=10></td>
+                  )@
+                  @closenode(
+                    <td>
+                       <a href='@page@?nodeid=@nodeid@@state(&state=@:state@)@&tree=folder&@parameters@'>
+                          <img src='@treeimages@/plus@vpos@.gif' 
+                          border=0 width=16 height=16></a></td> <!-- _first, _notlast, _last -->
+                    <td>
+                       <a href='@page@?nodeid=@nodeid@@state(&state=@:state@)@&tree=folder&@parameters@'>
+                          <img src='@treeimages@/folder.gif'
+                          border=0 width=16 height=16></a></td>
+                    <td>
+                       <img src='@treeimages@/space.gif' border=0 width=3 height=10></td>
+                    <td nowrap>
+                       <a href='@page@?nodeid=@nodeid@@state(&state=@:state@)@&tree=folder&@parameters@@.link@'>
+                       <img src='@treeimages@/space.gif' border=0 width=3 height=10>@mark{@_mark(<b>)@}@@name@@mark{@_mark(</b>)@}@</a>
+                       <img src='@treeimages@/space.gif' border=0 width=3 height=10></td>
+                  )@
+            )@
+         </tr>
+      </table>
+   </div>
+)@
+<!-- $Id: tree.htm,v 1.1 2006/05/10 06:17:34 rogatkin Exp $ -->

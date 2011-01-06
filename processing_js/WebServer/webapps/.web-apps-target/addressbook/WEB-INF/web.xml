@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--DOCTYPE web-app
+    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.4//EN"
+    "http://java.sun.com/dtd/web-app_2_4.dtd"-->
+<!--- $Id: web.xml,v 1.4 2006/07/04 04:56:21 rogatkin Exp $
+  jAddressbook web app
+    -->
+<web-app>
+  <servlet>
+    <servlet-name>jAddressbook</servlet-name>
+    <servlet-class>addressbook.AddressBookWeb</servlet-class>
+    <init-param>
+        <param-name>properties</param-name>
+        <param-value>/WEB-INF/config/jaddressbook.properties</param-value>
+    </init-param>
+  </servlet> 
+  <servlet-mapping>
+    <servlet-name>jAddressbook</servlet-name>
+    <url-pattern>/ab/*</url-pattern>
+    <url-pattern>/contacts/*</url-pattern>
+  </servlet-mapping>
+
+  <welcome-file-list> 
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>jaddressbook.htm</welcome-file>
+  </welcome-file-list> 
+  <error-page>
+     <error-code>404</error-code>
+     <location>/404.htm</location>
+  </error-page>
+  <error-page>
+     <exception-type>java.lang.NullPointerException</exception-type>
+     <location>/null.htm</location>
+  </error-page>
+  <locale-encoding-mapping-list>
+    <locale-encoding-mapping>
+      <locale>ja</locale>
+      <encoding>Shift_JIS</encoding>
+    </locale-encoding-mapping>
+    <locale-encoding-mapping>
+      <locale>zh_TW</locale>
+      <encoding>Big5</encoding>
+    </locale-encoding-mapping>
+    <locale-encoding-mapping>
+      <locale>ru_RU</locale>
+      <encoding>IBM866</encoding>
+    </locale-encoding-mapping>
+  </locale-encoding-mapping-list>
+  <listener>
+	<listener-class>addressbook.servlet.model.OperationsFinalizer</listener-class>
+  </listener>
+  <listener>
+	<listener-class>addressbook.servlet.model.RegisterRequestCleaner</listener-class>
+  </listener>
+</web-app>

@@ -1,0 +1,15 @@
+Dear @.name@,
+We have created an account for you. Please confirm your e-mail address.
+by clicking or copying and pasting the link in an address bar of your browser
+     @url@/Emailvalidator?token=@token@&name=@:name@&submit.x=1 ,
+and your account will have been activated. You can enjoy all features of jAddressBook after that.
+
+Sincerely,
+Administrator of Web jAddressBook.
+mailto:@AB_MAIL@
+
+You've received this message because you requested information from our website, 
+one of our partner websites, sent a SPAM message to our website or through an offline
+publication in the past 12 months. To be removed, please email
+mailto:@AB_MAIL@ and include REMOVE in the Subject. We never share,
+rent, or sell your email address.

@@ -1,0 +1,20 @@
+<script>
+   <!--  make it include to reuse 
+   function initFields() {
+      var login = getFormField('login'); 
+      login.onblur = function() {
+           makeGenericAjaxCall(baseServURI +'/ajax/isLoginAllowed?login='+login.value, null, true, function (result) {
+               if ('T' == result) {
+                  getFormField('submit').disabled = false;
+                  message('');
+               } else {
+                  getFormField('submit').disabled = true;
+                  message('already_taken');
+               }
+           });
+      };
+   }
+   //  -->
+</script>
+<div>@label.login@: @login@</div>
+@%'profile.htmt'@

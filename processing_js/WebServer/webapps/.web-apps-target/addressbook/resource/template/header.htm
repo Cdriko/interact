@@ -1,0 +1,9 @@
+<!-- add onunload even handler to save in case of browser closing 
+   $Id: header.htm,v 1.1 2006/05/10 06:17:34 rogatkin Exp $ -->
+<table border="0" width="100%" id="headermenu" cellspacing="0">
+	<tr bgcolor="#A0A0C0">
+		<td align="left" class="header_text">@addressbook.AddressBookFrame.PROGRAMNAME@ @addressbook.AddressBookFrame.VERSION@.@addressbook.AddressBookFrame.BUILD@</td>
+		<td align="right" class="header_text" style="cursor: pointer" onclick="javascript:document.location='Registry?mode=edit'">@commonlabel.account@: <b>@session.user_id@</b> @commonlabel.last_signed@: @session.lastlogin?Dcommonlabel.timestamp@</td>
+		<td align="right" class="header_text" style="cursor: pointer" onclick="javascript:document.location='Login?signoff=1'">@commonlabel.signout@</td>
+	</tr>
+</table>

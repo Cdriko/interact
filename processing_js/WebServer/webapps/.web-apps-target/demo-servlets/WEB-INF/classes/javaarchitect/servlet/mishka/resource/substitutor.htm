@@ -1,0 +1,96 @@
+<html>
+<!-- these are test cases for new substitutor features
+    $Id: substitutor.htm,v 1.3 2005/11/22 05:50:47 rogatkin Exp $
+Here is a test URL to invoke:
+ http://systemi-l1/MetricStream/Testsub?start=94&color=blue&x=2&something=2&when=05/05/03
+-->
+<body>
+<h2>@header@</h2>
+<p><h4>Loop test</h4>
+<p>you should see numbers from 3 to 5
+<p>
+@numbers[3..5,1](@value@<br>)@
+<p>  using step parameter every second after 2 by 10
+<p>
+@numbers[2..10,2](@value@<br>)@
+<p>   using variable limits from @start@ and up to array limit
+<p>
+@numbers[@start@..,1](@value@<br>)@
+<p> 
+<h4>This is 4th element</h4>
+@numbers[3](@value@<br>)@
+
+<h4>switch test </h4>
+<p>
+@color{
+@red(<font color=red>This is red  - @color@</font>)@
+@green(<font color=green>This is green</font>)@
+@(<font color=@color@>This is other @color@</font>)@
+}@
+<p> <h5> data range  test </h5>
+<p>
+@x{
+@0..4(x is between 0 and 4<br>)@
+@..0,10(x less than 0 or 10<br>)@
+@9..(bigger than 8 @x@<br>)@
+@hello, bye, " ok"(x is hello bye or &nbsp;ok<br>)@
+@ @something@ (x is @something@<br> )@
+@(x is @x@)@}@
+<p>date range test
+<p>
+@when{
+@ 10/10/02..@today@(between 10/10/02 and now<br>)@
+@(some other time @when@)@
+}@
+<h4>Format test</h4>
+<p> 
+it was on @today?DMM/dd/yy EEE@ or on @today?Ddate_format@ or on @today?D'MM/dd''yy@
+<p>
+something costly $@x?C00.00@
+<h3>You should see <i>switch</i></h3>
+<p>
+When <b>side_url</b> is defined, you should see URL link<br>
+If <b>side_logo</b> is defined, then the <u>link</u> will be image link.
+<p>
+@side_url{
+@"",(@side_url@)@
+@(
+<p>&nbsp;<a href="@side_url@" target="_top">here
+   @side_logo{
+      @""(@side_url@)@
+      @(<img src="@side_logo@" border=0>)@
+    }@
+    </a></p>
+)@
+}@
+<h3>Include</h3>
+@*'copy.txt'@
+<h3>Process template</h3>
+@%'copy.htm'@
+<p>One more 
+<p>
+@%copy@
+<h3>Method call</h3>
+today.getTime()=
+@today.getTime*()*@;
+<p>More complex call: myobject.format('3456',(java.lang.String)today,1009); <br>
+@myobject.format*('3456',java.lang.Object^@today@,1009)*@
+<p>Array work, call myobject.toArray('name','red','blue','yellow'); <br>
+@myobject.toArray*(name,red,blue,yellow)*(
+<font color="@name@">@name@</font><br>)@
+
+@myobject.toArray*(name,red,blue,yellow)*[0..1](
+<font color="@name@">@name@</font><br>)@
+<h3>Hello Substitutor example</h3>
+@page_map.put*(java.lang.Object^foo,java.lang.Object^Substitutor)*@
+
+<h1>Hello @foo@!</h1>
+
+<h2>Test <b>switch</b> by function result</h2>
+ @myobject.getColor*(red)*{@red(<font color=red>This is in <b>red</b></font>)@@blue(No blue)@@(none of them)@}@
+
+<br>
+<input type="radio" @myobject.isPreferable*()*{@true(checked)@@()@}@>
+<hr>
+</body>
+</html>

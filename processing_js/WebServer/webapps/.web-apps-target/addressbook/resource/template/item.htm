@@ -1,0 +1,85 @@
+<!-- $Id: item.htm,v 1.8 2007/02/01 05:01:35 rogatkin Exp $  -->
+ <script>
+   function writeNew() {
+     document.write('@commonlabel.new@');
+   }
+ </script>
+ <fieldset>
+   @items(
+      @name{
+         @value(
+           <legend> 
+             @value{
+               @""(<script>writeNew();</script>)@
+               @(@value@)@
+             }@
+           </legend>
+         )@
+      }@
+   )@
+   @items(
+      <label for="@name@">
+         @label@
+         @name{
+           @description(
+              <textarea name="@name@" rows="2" cols="45">@value@</textarea>
+           )@
+           @quality(
+               <select name="@name@">
+                 <option   @value{@DVD(selected)@}@>DVD</option>
+                 <option   @value{@VCD(selected)@}@>VCD</option>
+                 <option   @value{@TV(selected)@}@>TV</option>
+                 <option   @value{@HD(selected)@}@>HD</option>
+                 <option   @value{@VCR(selected)@}@>VCR</option>
+               </select>
+           )@
+           @format(
+               <select name="@name@">
+                 <option   @value{@MPEG4+5.1(selected)@}@>MPEG4+5.1</option>
+                 <option   @value{@MPEG4+2(selected)@}@>MPEG4+2</option>
+                 <option   @value{@MPEG2+5.1(selected)@}@>MPEG2+5.1</option>
+                 <option   @value{@MPEG2+2(selected)@}@>MPEG2+2</option>
+                 <option   @value{@MPEG1(selected)@}@>MPEG1</option>
+                 <option   @value{@OTHER(selected)@}@>OTHER</option>
+               </select>
+           )@
+           @rate(
+               <select name="@name@">
+                 <option   @value{@G(selected)@}@>G</option>
+                 <option   @value{@PG(selected)@}@>PG</option>
+                 <option   @value{@PG13(selected)@}@>PG13</option>
+                 <option   @value{@R(selected)@}@>R</option>
+                 <option   @value{@X(selected)@}@>X</option>
+                 <option   @value{@NR(selected)@}@>NR</option>
+               </select>
+           )@
+           @type(
+               <select name="@name@">
+                 <option   @value{@Action & Adventure(selected)@}@>Action &amp; Adventure</option>
+                 <option   @value{@Anime & Animation(selected)@}@>Anime &amp; Animation</option>
+                 <option   @value{@Children & Family(selected)@}@>Children &amp; Family</option>
+                 <option   @value{@Classics(selected)@}@>Classics</option>
+                 <option   @value{@Comedy(selected)@}@>Comedy</option>
+                 <option   @value{@Documentary(selected)@}@>Documentary</option>
+                 <option   @value{@Drama(selected)@}@>Drama</option>
+                 <option   @value{@Horror(selected)@}@>Horror</option>
+                 <option   @value{@Romance(selected)@}@>Romance</option>
+                 <option   @value{@Sci-Fi & Fantasy(selected)@}@>Sci-Fi &amp; Fantasy</option>
+                 <option   @value{@Television(selected)@}@>Television</option>
+                 <option   @value{@Special Interest(selected)@}@>Special Interest</option>
+               </select>
+           )@
+           @(
+             <input type="text" name="@name@" value="@value@">
+           )@
+         }@
+       </label>
+  )@
+  <table border="0">
+   <tr align="right">
+    <td><div onclick="changeEntry('')" class="b-button-mid">@commonlabel.submit@</div></td>
+    <td><div onclick="getElement('details').innerHTML='';" class="b-button-mid">@commonlabel.cancel@</div></td>
+   </tr>
+  </table>
+</fieldset>
+<input type="hidden" name="item" value="@element.getId*()*@">

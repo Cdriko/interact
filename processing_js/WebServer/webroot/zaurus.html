@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>TJWS on Sharp Zaurus</title>
+</head>
+<body>
+    <h3>Hints to compile Zaurus version</h3><p>
+        I use cross compilation with the latest version J2SDK, to make sure that result
+        version will run on Zaurus the following compilation options used:</p>
+    <p>
+        <font face="Courier" size="2">-source 1.1 -target 1.1 -bootclasspath "<a href="file:///C:/Program%20Files/Java/j2re1.1/lib/core.jar">C:\Program
+            Files\Java\j2re1.1\lib\core.jar</a>;<a href="file:///C:/Program%20Files/Java/j2re1.1/lib/core.jar">C:\Program
+                Files\Java\j2re1.1\lib\classes.jar</a>"</font></p>
+    <p>
+        Note that core.jar extracted from Zaurus and classes.jar is system classes from
+        J2SDK 1.1.8.</p>
+    <h3>
+        Note for OpenZaurus users</h3>
+    <p>
+        If you use this server running on original Zaurus OS (it's good idea to run&nbsp;
+        home web site to save some electricity) and going to update your version to OpenZaurus
+        3.x, then do not forget to extract Jeode. Supplied kaffe for OpenZaurus is quite
+        unstable and you can lose possibility to run this web server on it. Good instructions
+        how to move Jeode from Zaurus OS to OpenZaurus you can find <a href="http://www.uk-dave.com/tutorials/zaurus/java-oz.shtml">
+            here</a>.</p>
+    <h3>
+        FAQ (Zaurus)</h3>
+    <p>
+        I got some flow of questions regarding Zaurus version and running servlets on it,
+        so I decided to provide short FAQ.</p>
+    <p>
+        Q: When I try to reach my servlet of Zaurus using <a href="http://localhost/MyServlet">
+            http://localhost/MyServlet</a>.class I'm getting page not found error, what
+        can be wrong?</p>
+    <p>
+        A: Most frequent cause of this problem, that you need to add a servlet definition
+        in servlet .properties file and add a reference to this file to a start script using
+        key -s.</p>
+    <p>
+        Q: I created servlet.properties file and add MyServlet to it, but I am still not
+        getting the servlet running, what can be a cause?</p>
+    <p>
+        A: You probably forgot to add your servlet classes location in class path in a start
+        script of a server.</p>
+
+</body>
+</html>

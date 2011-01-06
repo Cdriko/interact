@@ -1,0 +1,280 @@
+<html>
+
+<head>
+<title>jAddressBook</title>
+<style>
+<!--
+input  { padding:0; font-family: Arial; font-size: 8pt; background-color: #FFFFFF; border-left-width:1px; border-right-style:solid; border-right-width:1px; border-top-width:1px; border-bottom-width:1px  }
+.warn        { font-family: Arial Narrow; font-size: 8pt; color: #CC0000; 
+               border: 1px solid #808080; background-color: #C0C0C0 }
+body,p,li,div,td    { font-family: Tahoma; font-size: 9pt }
+h4           { font-family: Tahoma; color: #808080; font-size: 11pt }
+h2           { font-family: Tahoma; color: #A0A0A0; font-size: 14pt }
+-->
+</style>
+</head>
+
+<script src="/addressbook/ajaxhelper.js" language="Javascript"></script>
+
+<script>
+  function checkLogin(form) {
+    //alert(formValues2String(form));
+    //makeGenericAjaxCall("ab/Login/ajax/check?name="+escape(form.name.value)+'&password='+escape(form.password.value),
+    makeIFrameAjaxSubmit("ab/Login/ajax/check?", form, "",
+   //  null, true, 
+      function(html) {
+          if (html == "Ok") {
+             //var input = document.createElement('INPUT');
+             //input.type = 'hidden';
+             //input.name = 'submit';
+             //input.value = '1';
+             //form.appendChild(input);
+             // TODO: change Ajax call to do actual login if everything OK, so
+             // instead of double submit just load front page
+             // problem is how to extract cookie and set it to main document
+             // maybe Ajax call has to return cookie instead of OK?
+             //window.location = 'ab/Abfrontview';
+             //document.location = 'ab/Abfrontview';
+             form.elements['submit.x'].disabled = false;
+             form.submit();
+          } else
+             document.all.msg.innerHTML = '<font color=red>' + html + '</font>';
+      }, null, 'submittar');
+  }
+  function handleEnterSubmission (field, evt) {
+     var keyCode = evt.which ? evt.which : evt.keyCode;
+     if (keyCode == 13) {
+       checkLogin(field.form);
+       return false;
+     }
+     else 
+       return true;
+  }
+
+</script> 
+<body>
+
+<h2>Web Interfaced jAddressBook</h2>
+<table border="0" width="100%" id="table1">
+	<tr>
+		<td colspan="2">
+		<h4>What, Why, Where?</h4>
+		<p>An address book is a example of most generic type of personal records for 
+		every individual. The simplest and smartest way to keep track of 
+		your contacts is memorizing telephone numbers, 
+		e-mails, addresses, pagers, links to web sites, area of interests and so 
+		on. Unfortunately memory of many people has limitation to store 200-500 
+		contacts. So, if you need to manage contact information 
+		thousands people, then you may need to use an external memory, for example a 
+		memory of your personal computer. An address book will be offered by your 
+		operation system and also e-mail programs so you do not need extra 
+		software. However in some cases, some people need something different, 
+		like:</p>
+		<ol>
+			<li>An application independency</li>
+			<li>OS independency</li>
+			<li>High availability</li>
+			<li>Native and web UI</li>
+			<li>Auto update contact information</li>
+			<li>High security</li>
+			<li>Sharing certain details of contact information</li>
+			<li>Publishing area of expertise, interests and so on for automatic 
+			finding contact information</li>
+			<li>Direct connection with e-mail programs</li>
+			<li>Storing some extra like links bookmarks, certificates, and 
+			passwords</li>
+			<li>Organize all your vehicles documents (insurance, warranties, service &amp; maintenance)
+            </li>
+			<li>Itemize all your credit cards (card numbers, balance, toll-free 
+			numbers)</li>
+			<li>Itemize your insurance policies (home, medical, dental, vision, 
+			etc.)</li>
+			<li>Organize your financial documents (accounts, savings, bonds, 
+			stocks, CD's, 401K)</li>
+			<li>Organize all your essential household information (deed, fuse 
+			box location,&nbsp; power shut-off, sprinkler shutoff, water 
+			shut-off, purchase related documents)</li>
+			<li>Prioritize all your legal documents (divorce, child custody, 
+			leases, Last Will and Testament, Living Will, military documents, 
+			passports, Power of Attorney, real estate deeds, trusts)</li>
+			<li>Organize all your educational information (transcripts, 
+			financial aid documents, correspondence)</li>
+			<li>Itemize your warranties (receipts, manuals, maintenance 
+			contracts)</li>
+		</ol>
+		</td>
+		<td valign="top" bgcolor="#EDF4FE" width="217">
+		<form method="POST" action="ab/Login" name="login" enctype="multipart/form-data">
+                   <table border="0" cellpadding="6">
+                     <tr>
+                       <td colspan="2">
+   			             <div>Login<br><input name="name" autocomplete="off" size="10"></div>
+		               </td>
+                     </tr>
+                     <tr>
+                       <td style="height: 52px">
+                    		<div>Password<br><input size="8" type="password" name="password" ONKEYDOWN="return handleEnterSubmission(this, event)"></div>
+                       </td>
+                       <td valign="bottom" style="height: 52px">
+             		   <div style="cursor: pointer" onclick="checkLogin(document.login)">[go]</div>
+             		   <img src="http://library.mat.uniroma1.it/pics/key.ico.gif" alt="lock" onclick="document.getElementById('secret').style.visibility='visible'">
+			               <input disabled type="hidden" name="submit.x" value="1">
+                       </td>
+                      </tr>
+                      <tr>
+                        <td  colspan=2><div id="secret" style="visibility:hidden"><input name="skey" type="file" /></div></td>
+                      </tr>
+                   </table>
+		</form>
+		<div id="msg"></div>
+                <p>No account yet? <a href="ab/Registry">Sign on</a>
+                <p><a href="ab/Webstart">Start Java client</a></p>
+                <p>Visit <a href="http://jaddressbook.sourceforge.net" target="_blank">jAddressBook Home</a> at SourceForge.Net</p>
+                <div><iframe name="submittar" id="submittar" height="0px" width="0px" style="width:0px;height:0px;border:0px"></iframe></div></td>
+	</tr>
+	<tr>
+		<td colspan="3">
+		<h4>Solution</h4>
+		<p>Many people were tried and trying to find a solution, so I am among 
+		of them. I started work on an address book in 1998 and planned to make 
+		it as P2P network of Java based clients allowing to exchange 
+		information. Later I started work on web UI based versions. My original 
+		idea was to keep track to contacts supported by principal contact 
+		information holders. It should provide up to date information. I noticed 
+		that some companies tried to implement this idea, for example Plaxo. 
+		However, I didn't find their approach comfortable for me. I'd prefer to 
+		use a system with high level of customization and open 
+		sources. So, finally I decided to continue working on jAddressbook. I hope to find 
+		people who are interested in such idea and willing to contribute to the 
+		project. </p>
+		<h4>Participating</h4>
+		<p>To participate in this project no any special skills or background 
+		required. However to be involved in particular development some 
+		knowledge of Java and web design can require. You will need also to 
+		download <a href="http://7bee.j2ee.us/bee/index-bee.html">a great 
+		building tool 7bee</a>.</td>
+    </tr>
+    <tr>
+		<td colspan="3">
+		<h4>Developer notes</h4>
+		<p>First you will need to get project sources. Setup
+		<a href="https://sourceforge.net/cvs/?group_id=36187">CVS for that</a>.
+		</p>
+		</td>
+   </tr>
+   <tr>
+	<td colspan="3">
+		<h4>Related projects</h4>
+		<p>Here is a list of other projects which provide a similar to 
+		jAddressBook capabilities. The list was found using FineSearch. </p>
+                <ol>
+                <li><a href="http://passwordsafe.sourceforge.net/index.html">Password Safe</a>
+                <li><a href="http://www.homeconvenience.com/">Home onvenience</a>
+                </ol>
+        </td>
+   </tr> 
+   <tr>
+		<td colspan="3">
+		<h4>Acknowledgement</h4>
+		<p>I highly appreciated help and support of the following people:</p>
+                <marquee direction="up" scrollamount="1.5" loop=-1 height=100>
+                <table border=0>
+                  <tr>
+                    <td>Angelo Griffin,</td>
+                    <td>Helen Small,</td>
+                    <td>Gus Crosby,</td>
+                    <td>Tori Craig,</td>
+                    <td>Giselle Shaw,</td>
+                    <td>Helen Childers,</td>
+                  </tr>
+                  <tr>
+                    <td>Paula Hendricks,</td>
+                    <td>Jennifer Crow,</td>
+                    <td>Helena Kramer,</td>
+                    <td>Martha Xiong,</td>
+                    <td>Ellen Woodard,</td>
+                    <td>Katherine Schmitt,</td>
+                  </tr>
+                  <tr>
+
+                    <td>Yvonne Fournier,</td>
+                    <td>Sonya Rivera,</td>
+                    <td>Kate Knight,</td>
+                    <td>Mathew Anderson,</td>
+                    <td>Wendy Shapiro,</td>
+                    <td>Cathy Burger,</td>
+
+                  </tr>
+                  <tr>
+                    <td>Vicki Engle,</td>
+                    <td>Lindsey Huff,</td>
+                    <td>Allison Silver,</td>
+                    <td>Abraham Reed,</td>
+                    <td>Vicki Deleon,</td>
+                    <td>Nathaniel Adams,</td>
+
+                  </tr>
+                  <tr>
+                    <td>Skyler Roberts,</td>
+                    <td>Martha Langley,</td>
+                    <td>Amanda North,</td>
+                    <td>Aiden Griffin,</td>
+                    <td>Kate Mohr,</td>
+                    <td>Ayden Edwards,</td>
+
+                  </tr>
+                  <tr>
+                    <td>Dianna Ransom</td>
+                    <td>Spencer Jenkins</td>
+                    <td>Kelly Braun</td>
+                    <td>Lindsey Cash</td>
+                    <td>Mitchell Smith</td>
+                    <td>Chad Adams</td>
+                  </tr>
+                  <tr>
+                    <td>Rex Harrison</td>
+                    <td>Gregory Anderson</td>
+                    <td>Debbie Chavez</td>
+                    <td>Erna Haines</td>
+                    <td>Omar Sharif</td>
+                    <td colspan=1>Tuesday Weld</td>
+                  </tr>
+                  <tr>
+                    <td>John Wayne</td>
+                    <td>Lisa Fisher</td>
+                    <td>Brandon Reed</td>
+                    <td>Tuesday Weld</td>
+                    <td>Ashton Rodriguez</td>
+                    <td>Gloria Maria Fajardo</td>
+                  </tr>
+                  <tr>
+                    <td>Julia Charlene Newmeyer</td>
+                    <td>Ruben Perez</td>
+                    <td>Caden Parker</td>
+                    <td>Vivian Shultz</td>
+                    <td>Jennifer Hartley</td>
+                    <td>Amanda Valentine</td>
+                  </tr>
+                  <tr>
+                    <td>Vivian Yazzie</td>
+                    <td>Parker Garcia</td>
+                    <td>Gerardo Carter </td>
+                    <td>Kayden Lopez</td>
+                    <td>Randi Thacker</td>
+                    <td>Allison Crockett</td>
+                  </tr>
+                  <tr>
+                    <td>Jeremiah Murphy</td>
+                    <td>Melanie Cleveland</td>
+                    <td>Diego Young</td>
+                    <td>Terri Whitfield</td>
+                    <td>Melanie Atwood</td>
+                    <td>Vicki Corbett</td>
+                  </tr>
+                </table>
+                </marquee>
+		</td>
+   </tr>
+</table>
+</body>
+</html>

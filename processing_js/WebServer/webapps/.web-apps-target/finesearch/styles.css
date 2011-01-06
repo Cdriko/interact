@@ -1,0 +1,11 @@
+body,p,li,div,td,select    { font-family: Tahoma; font-size: 9pt }
+th                  { font-family: Tahoma; font-size: 10pt; font-weight: bolder }
+.rr {}
+.hr { background-color: #EEE0D0 }
+.but { cursor: pointer; font-weight: bolder }
+.menulabel{
+position: absolute; cursor: hand;
+color: #FFFFFF; width: 75; text-align: center;
+background-color: #000000; z-index: 2;
+}
+.foot {font-family: Tahoma; font-size: 8pt;}

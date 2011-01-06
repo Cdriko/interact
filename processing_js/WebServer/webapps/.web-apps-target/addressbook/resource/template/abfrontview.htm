@@ -1,0 +1,323 @@
+<html>
+<title>jAddressBook of @session.user_id@</title>
+<!-- $Id: abfrontview.htm,v 1.18 2008/04/24 04:07:15 dmitriy Exp $ -->
+<link rel="stylesheet" href="/addressbook/styles.css" type="text/css" media="all"/>
+<script src="/addressbook/ajaxhelper.js" language="Javascript"></script>
+<script src="/addressbook/common.js" language="Javascript"></script>
+<script>
+  var nodeId = '@nodeid@';
+  function editContact(name,hash) {
+      //
+      window.location="Contactview?name="+encodeURIComponent(name)+"&hash="+hash+"&folder=@:nodeid@@statefolder(&state=@:state@)@&tree=folder";
+  }
+  function editCollection(name,hash) {
+      //
+      window.location="Collectionmc?name="+encodeURIComponent(name)+"&hash="+hash+"&folder=@:nodeid@@statefolder(&state=@:state@)@&tree=folder";
+  }
+  function submitWith(mode) { 
+    if (checkSelected() == false)
+       return;
+    document.contacts.elements[mode].disabled = false;
+    document.contacts.submit();
+  }
+  function displaySearch(search,sortField) {
+     makeGenericAjaxCall('Abfrontview/ajax/Search?nodeid=@:nodeid@&search='+encodeURIComponent(search)+'&sort='+sortField,
+        null, true, function(html) {
+           if (document.all)
+             document.all['contacts_tab'].innerHTML = html;
+           else
+             document.getElementById('contacts_tab').innerHTML = html;
+        }, null);
+
+  }
+  // just hide/show current loaded contact elements
+  function displayInternalSearch(search,sortField) {
+  }
+
+  function sendMail(addr) {
+     document.location = 'mailto:'+addr;
+  }
+
+  function sh(d) {
+//     if (d.style.display == 'none') {
+     if (d.innerHTML == '@commonlabel.show@') {
+      d.innerHTML='@commonlabel.hide@';
+      document.getElementById('alpa_index').style.display="";
+     } else {
+      d.innerHTML='@commonlabel.show@';
+      document.getElementById('alpa_index').style.display="none";
+     }
+  }
+
+  var oldHLd;
+  function highL(td) {
+    if (oldHLd)
+      oldHLd.style.backgroundColor = "#FFFFFF";
+    oldHLd = td;
+    oldHLd.style.backgroundColor = "#C0FFFF";
+  }
+
+  function nodeOper(infield,oper) {
+     makeGenericAjaxCall('Abfrontview/ajax/TreeChange?nodeid=@:nodeid@@statefolder(&state=@:state@)@&tree=folder&mode='+oper+'&newnode='+encodeURIComponent(infield.value),
+        null, true, function(html) {
+           infield.value = ""; 
+           if (document.all)
+             document.all['treeview'].innerHTML = html;
+           else
+             document.getElementById('treeview').innerHTML = html;
+           // update right pane
+           if (oper == 'Delete') {
+            document.getElementById('contacts_tab').innerHTML='deleted';
+            document.contacts.folder.value='';
+           }
+        }, null);
+  }
+  
+  function updateTree(url) {
+      makeGenericAjaxCall(url+'mode=Select', null, true, function(html) {
+           try {
+             document.getElementById('targetFolderSelector').innerHTML = html;
+           }catch(e) {
+              alert(e);
+           }
+        }, null);
+  } 
+
+  var doFolder;
+  function createTreeSelectionLayer(x,y,extra) {
+      try {
+         document.body.removeChild(document.getElementById('targetFolderSelector'));
+      } catch(e) {}
+      doFolder = extra;
+      var layer = document.createElement('DIV');
+      layer.style.position = 'absolute';
+      layer.style.left = x+'px';
+      layer.style.top = y+'px';
+      layer.style.width = '200px'; layer.style.height = '180px'
+      layer.style.backgroundColor = '#e0e6e8';
+      layer.style.overflow = "scroll"
+      layer.id='targetFolderSelector';
+      makeGenericAjaxCall('Abfrontview/ajax/TreeChange?nodeid=@:nodeid@&tree=folder&mode=Select',
+        null, true, function(html) {
+           layer.innerHTML = html;
+        }, null);
+      document.body.appendChild(layer);
+  }
+
+  function copyTo(turl, val) {
+    if (doFolder == false && checkSelected() == false)
+       return;
+
+     document.body.removeChild(document.getElementById('targetFolderSelector'));
+     if(doFolder) {
+        makeGenericAjaxCall(turl+'&nodeid=@:nodeid@&mode=Copy',
+           null, true, function(html) {
+             if (document.all)
+               document.all['treeview'].innerHTML = html;
+             else
+               document.getElementById('treeview').innerHTML = html;
+            document.getElementById('contacts_tab').innerHTML='moved';
+            document.contacts.folder.value='';
+        }, null);
+     } else {
+       document.contacts.elements['getthem'].value = val;
+       submitWith('getthem');
+     }
+  }
+  
+  function compose() {
+    if (checkSelected() == false)
+       return;
+    var eaddr = '';
+// todo check if only one el 
+    if (contacts.contact == null)
+        return;
+    for(var i=0;i<contacts.contact.length;i++)
+        if (document.forms.contacts.contact[i].checked) {
+           eaddr += document.forms.contacts.email[i].value+';';
+           document.forms.contacts.contact[i].checked = false;
+        }
+    sendMail(eaddr);
+  }
+  function checkSelected() {
+    if (contacts.contact == null)
+       return false;
+    var was = contacts.contact.checked == true;
+    if (was == false)
+      for(var i=0;i<contacts.contact.length;i++)
+        if (contacts.contact[i].checked) {
+           was = true;
+           break;
+        }
+    if (was == false) 
+       document.getElementById('error_holder').innerHTML = "@label.nothing_selected@";
+    else
+       document.getElementById('error_holder').innerHTML = '';
+    return was;
+  }
+  function troggleImport() {
+    var el = document.getElementById('import_tab');
+    if (el) 
+       if (el.style.display=='')
+         el.style.display='none';
+       else
+        el.style.display='';
+  }
+  function updateCheck(el, hash, name) {
+     makeGenericAjaxCall('Abfrontview/ajax/CheckTrigger?name='+encodeURIComponent(name)+'&hash='+hash+'&folder=@:nodeid@'+'&checked='+el.checked,
+        null, true, function(html) {
+           if ("Ok" == html) ;
+        }, null);
+  }
+  function print(n) {
+     window.open("Printview?nodeid="+encodeURIComponent(n),null,"height=200,width=400,status=yes,toolbar=no,menubar=no,location=no");
+  }
+  var checkState = false;
+  function triggerChecks() {
+    for(var i=0;i<contacts.contact.length;i++) {
+        document.forms.contacts.contact[i].checked = checkState;
+        var hashname = document.forms.contacts.contact[i].value.split("_", 2);
+        updateCheck(document.forms.contacts.contact[i], hashname[0], hashname[1]);
+    }
+    checkState = !checkState;
+  }
+  // import data
+  function import1() {
+      makeIFrameAjaxSubmit('Abfrontview/ajax/merge', document.importform, 'm', function (code) {
+         // 
+         getElement('error').innerHTML=code;
+	troggleImport();
+      }, null, 'hiddenif');
+  }
+</script>
+ @%'header.htm'@
+<div id="error">@error@</div>
+<table border="0" width="100%" id="frontview" cellspacing=0 cellpadding=0>
+	<tr>
+		<td colspan="2" align="right">
+                    <table name="menu" border="0" cellspacing="0" cellpadding="8">
+                      <tr valign="top">
+                        <td>
+                          <form name="searchform">
+                             <label for="search"  style="cursor: pointer" onclick="displaySearch(document.searchform.search.value,'')">@label.search@<input type="text" name="search" id="search" onkeyup="displaySearch(document.searchform.search.value+'.*','')">&gt;</label>
+                          </form>
+                        </td>
+                        <td style="cursor: pointer"><div onclick="troggleImport()">@label.import@</div>
+                           <div id="import_tab" style="display:none">
+                             <p class="fineprint">Use Webstarted Swing client to import contacts</p>
+                             <form name="importform" method="post" enctype="multipart/form-data">
+                               <input type="file" name="importdata"><br>
+                               <input type="radio" name="importtype" value="1" disabled>@label.override@
+                               <input type="radio" name="importtype" value="2" checked>@label.merge@
+                               <input type="radio" name="importtype" value="3" disabled>@label.discard@
+                               &nbsp;<a href="javascript:void(0)" onclick="javascript:import1()">@label.process@</a>
+                             </form>
+                           </div>  
+                        </td>
+                        <td style="cursor: pointer" onclick="javascript:document.location='Settingsview'">@label.settings@</td>
+                        <td>
+                           <a href="Registry?mode=edit">@label.registry@</a>
+                        </td>
+                        @BLOG{
+                             @Pebble(<td> <a href="@PEBBLE_HOME@">@commonlabel.blog@</a></td>)@}@
+                      </tr>
+                    </table>
+                </td>
+	</tr>
+        <tr>
+          <td colspan="2" valign="top">
+            <table border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td>
+                  <div onclick="sh(this)" style="cursor: pointer">@commonlabel.show@</div>
+                </td>
+                <td><div style="position: relative;left:6;padding-right: 10px;">Aa...</div></td>
+                <td>
+                   <div id="alpa_index" name="alpa_index" style="display:none">
+                   <table border="0" cellpadding="2">
+                     <tr>
+                       @alphabet_n(<td style="cursor: pointer" onclick="displaySearch('(@ucx@|@lcx@).*','');highL(this)">@uc@@lc@</td>)@
+                     </tr>
+                     <tr>
+                       @alphabet(<td style="cursor: pointer" onclick="displaySearch('(@uc@|@lc@).*','');highL(this)">@uc@@lc@</td>)@
+                        <td style="cursor: pointer" align="right" onclick="displaySearch('.*','');highL(this)">@commonlabel.all@</td>
+                     </tr>
+                   </table>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </td> 
+        </tr>
+	<tr>
+		<td valign="top" width="*">
+                  <div id="treeview" style="background-color: #f0f6f8"> <!-- Tree -->
+                      @commonlabel.navigation@:
+                      @%'tree.htm'@
+                  </div>
+                  <div id="tree_man">
+                     <form name="treeform">
+                     <table border="0">
+                       <tr>
+                         <td colspan="2"><input type="text" name="nodename"></td>                 
+                       </tr>     
+                       <tr>
+                         <td style="cursor: pointer" onclick="nodeOper(document.treeform.nodename,'Add')">[@commonlabel.add@]</td>
+                         <td style="cursor: pointer" onclick="nodeOper(document.treeform.nodename,'Modify')">[@commonlabel.rename@]</td>
+                       </tr>
+                       <tr>
+                         <td style="cursor: pointer" onclick="nodeOper(document.treeform.nodename,'Delete')">[@commonlabel.delete@]</td>
+                         <td style="cursor: pointer" onclick="createTreeSelectionLayer(this.width+getOffsetLeft(this),getOffsetTop(this)+16,true)">[@commonlabel.move@]</td>
+                       </tr>
+                     </table>
+                     </form>
+                  </div>
+                </td>
+		<td width="80%" valign="top">
+                   <form name="contacts" method="POST">
+                   <!-- todo provide selection of dest folder on get them -->
+                   <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                     <tr style="background-color:#dae0f0" valign="middle">
+                      @nodeid{
+                        @Shared(<td><div onclick="submitWith('getthem')">[@commonlabel.getthem@]</div></td>)@
+                        @Trash(<td class="td-but"><div onclick="submitWith('getthem')">[@commonlabel.getthem@]</div></td>)@
+                        @(
+                          <td style="cursor: pointer"><div style="vertical-align:middle" onclick="getElement('new_menu').style.display=''"><img src="/addressbook/image/New.gif" border="0" alt="@label.newcontact@"></div>
+                             <!-- pull down menu  -->
+                             <div style="display:none;position:absolute;background-color:#dae0f0;border-style:solid;border-width:1;width:100" id=new_menu name=new_menu onmouseleave="this.style.display='none';">
+                                  <a href="Contactview?nodeid=@:nodeid@@statefolder(&state=@:state@)@&tree=folder">[@label.newcontact@]</a>
+                     <!-- not allowed for person only, TODO more robust for person type folder apporach -->
+                              @nodeid{
+                                @Persons,jAddressBook,()@
+                                @(
+                                  <br>
+                                  <a href="Collectionmc?nodeid=@:nodeid@@statefolder(&state=@:state@)@&tree=folder">[@label.newlist@]</a>)@
+                             }@
+                             </div>
+                          </td>
+                          <td style="cursor: pointer"><div onclick="submitWith('share')">[@commonlabel.share@]</div></td>
+                          <td style="cursor: pointer" onclick="if (checkSelected()) createTreeSelectionLayer(getOffsetLeft(this),getOffsetTop(this)+16,false)">[@commonlabel.copy@]</td>)@
+                      }@
+                      <td style="cursor: pointer"><div onclick="submitWith('delete')">[@commonlabel.delete@]</div></td>
+                      <td class="td-but"><div onclick="compose();">[@commonlabel.compose@]</div></td>
+                      <td class="td-but"><div onclick="print('@:nodeid@');">[@commonlabel.print@]</div></td>
+                     </tr>
+                   </table>
+                   <div id="contacts_tab" name="contacts_tab" style="overflow-x :hidden; overflow-y :scroll; display: block; height:330px;">
+                     @%'contacts.htm'@
+                   </div>
+                   <div id="error_holder"></div>
+                   <input disabled type="hidden" name="delete" value="1">
+                   <input disabled type="hidden" name="share" value="1">                   
+                   <input disabled type="hidden" name="getthem" value="Persons">
+                   <input type="hidden" name="folder" value="@nodeid@">
+                   @statefolder(<input type="hidden" name="state" value="@:state@">)@
+                   <input type="hidden" name="submit.x" value="1">
+                   </form>
+                </td>
+	</tr>
+</table>
+<iframe name="hiddenif" id="hiddenif" src="#" height="0px" width="0px" border="0" style="width:0px;height:0px;border:0px"></iframe>
+
+@%'footer.htm'@
+</html>

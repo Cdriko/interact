@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<poll>
+   <title>What features you'd like to see in the next TJWS?</title>
+   <duration>20w</duration>
+   <type>mulitselect</type>
+   <show-result>yes</show-result>
+  <vote>
+       <title>More app server services, like JNDI, JDBC Pool..</title>
+       <fill-required>no</fill-required> 
+  </vote>
+  <vote>
+       <title>Clustering, session replication...</title>
+       <fill-required>no</fill-required> 
+  </vote>
+  <vote>
+       <title>Admin console for deployment and monitoring</title>
+       <fill-required>no</fill-required> 
+  </vote>
+  <vote>
+       <title>Runtime deployment</title>
+       <fill-required>no</fill-required> 
+  </vote>
+  <vote>
+       <title>Other, please specify</title>
+       <fill-required>yes</fill-required> 
+  </vote>
+</poll>

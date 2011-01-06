@@ -1,0 +1,63 @@
+<head>
+<style type="text/css">
+  DIV#title { background:efe; font-weight: bold; font-size:76% }
+  DIV#error_ban { font-size:82%; color:red; }
+  DIV#vote_option { font-family: arial,sans-serif; font-size:64%;}
+</style>
+<script>
+   //<!--
+   function submitForm() {
+      var formIdx = 0;  // enumerate forms and find required by name
+      // check if voted
+      if (valButton(document.forms[formIdx].vote) == null)
+          document.getElementById('error_ban').innerHTML = 'Please check off a vote';
+      else
+          document.forms[formIdx].submit();
+   }
+   function btnByValue(value) {
+     var formIdx = 0; 
+     var btns = document.forms[formIdx].vote;
+     for (var i =0; i<btns.length; i++) {
+       if (document.forms[formIdx].vote[i].value == value) 
+          return document.forms[formIdx].vote[i];
+     }
+   }
+   // this function copyright Stephen Chapman
+   function valButton(btn) {
+      var cnt = -1;
+      for (var i=btn.length-1; i > -1; i--) {
+        if (btn[i].checked) {cnt = i; i = -1;}
+      }
+      if (cnt > -1) return btn[cnt].value;
+      else return null;
+   }
+   
+   //-->
+</script>
+</head>
+<div>
+<div id="title">@model.getTitle*()*@</div>
+<div id="error_ban"></div>
+<form name="poll-@model.getTitle*()*@">
+@model.isMultiSelectable*()*{
+  @true(@model.getVotes*()*(
+     <div id="vote_option"><input type="checkbox" name="vote" value="@element.title@">@element.title@
+         @element.fillable{
+            @true(<input type="text" name="@element.title@" onfocus="btnByValue('@element.title@').checked=true;">)@
+         }@
+     </div>
+    )@
+  )@
+  @(@model.getVotes*()*(
+     <div id="vote_option"><input type="radio" name="vote" value="@element.title@">@element.title@
+         @element.fillable{
+            @true(<input type="text" name="@element.title@" onfocus="btnByValue('@element.title@').checked=true;">)@
+         }@
+     </div>
+    )@
+  )@
+}@
+<input type=hidden name="submit.x" value="1">
+<input type=button value="Vote" onclick="submitForm()">&nbsp;&nbsp;<a href="Result">View result</a>
+</form>
+</div>

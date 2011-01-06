@@ -1,0 +1,19 @@
+      @.ajax.initHandlers*(java.lang.Object^@model@)*@
+      @.ajax.submitValidation*(java.lang.Object^@model@)*@
+      @.ajax.initialCascading*(java.lang.Object^@model@)*@
+      @.ajax.initGadgets*(java.lang.Object^@model@)*@
+      // TODO provide init section in page include
+      function init() {
+         //alert(window.location.href);
+         formName = '@pageservicename@'; // defined in form.js
+         // TODO check for ending '/'
+         baseServURI = '@request.getContextPath*()*@'+ '@request.getServletPath*()*@' + '/' + formName;
+         //alert(baseServURI);
+         initializeFieldsHandlers();
+         initialCascading();
+         if (typeof initFields == 'function')
+         	initFields();
+         if (gadgetHandlers != undefined)
+            for (var g in gadgetHandlers)
+               gadgetHandlers[g]();
+      }

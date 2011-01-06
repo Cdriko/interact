@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE web-app
+    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+    "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+<web-app>
+    <filter>
+    	<filter-name>BasicAuth</filter-name>
+    	<filter-class>org.javaarchitect.sqlfair.BasicAuthFilter</filter-class>
+    	<init-param>
+    		<param-name>USER</param-name>
+    		<param-value>admin</param-value></init-param>
+    	<init-param>
+    		<param-name>PASSWORD</param-name>
+    		<param-value>admin</param-value></init-param></filter>
+    <filter-mapping>
+    	<filter-name>BasicAuth</filter-name>
+    	<servlet-name>SqlFair servlet</servlet-name>
+    </filter-mapping>
+
+
+  <servlet>
+    <servlet-name>SqlFair servlet</servlet-name>
+    <servlet-class>org.aldan3.servlet.Main</servlet-class>
+    <init-param>
+        <param-name>properties</param-name>
+        <param-value>/WEB-INF/sqlfair.properties</param-value>
+    </init-param>
+  </servlet> 
+
+  <servlet-mapping>
+    <servlet-name>SqlFair servlet</servlet-name>
+    <url-pattern>/sqlfair/*</url-pattern>
+  </servlet-mapping>
+
+  <welcome-file-list> 
+    <welcome-file>blank.html</welcome-file>
+  </welcome-file-list> 
+<!-- uncomment for app server auth 
+  <security-constraint>
+  <web-resource-collection>
+    <web-resource-name>Entire SQLFair</web-resource-name>
+    <url-pattern>/*</url-pattern>
+  </web-resource-collection>
+  <auth-constraint>
+    <role-name>admin</role-name>
+  </auth-constraint>
+</security-constraint> 			
+<login-config>
+  <auth-method>BASIC</auth-method>
+  <realm-name>default</realm-name>
+</login-config>
+<security-role>
+  <description>
+    The role that is required to log in to SQLFair
+  </description>
+  <role-name>admin</role-name>
+</security-role>
+  -->
+
+  <security-constraint> 
+    <web-resource-collection> 
+      <web-resource-name>ECP</web-resource-name> 
+      <url-pattern>/*</url-pattern> 
+      <http-method>POST</http-method> 
+      <http-method>GET</http-method> 
+    </web-resource-collection> 
+    <auth-constraint> 
+      <role-name>User</role-name> 
+    </auth-constraint> 
+  </security-constraint>
+
+  <login-config>
+      <auth-method>CLIENT-CERT</auth-method>
+      <realm-name>myrealm</realm-name>
+  </login-config>
+
+  <security-role> 
+    <role-name>User</role-name>
+    <!--
+    <externally-defined/>
+    -->
+  </security-role>
+
+</web-app>

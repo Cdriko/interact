@@ -1,0 +1,38 @@
+<HTML>
+<HEAD>
+<SCRIPT LANGUAGE=javascript>
+<!--
+var frame_exists  = 0;
+var ix; with (top.window) { for ($ix=0; $ix<frames.length; $ix++)
+   if (frames[$ix].name == "UserInput") frame_exists = 1;
+   if (frames.length != 3 || !frame_exists) top.window.location = "Entrance";
+ }; 	
+//-->
+</SCRIPT>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=@encoding@">
+<TITLE>ChatHouse - Input frame</TITLE>
+</HEAD>
+<BODY bgcolor="#666666" vlink="#FFFFEE" link="#FFFFFF" onLoad="ready()">
+<!-- $Id: user_input.htm,v 1.15 2001/01/23 04:19:52 dmitriy Exp $ -->
+<form method="post" action="Input?sendto=@:user@" id=InputForm name=InputForm enctype="multipart/form-data">
+<INPUT id=text name=text size="46">&nbsp;<INPUT id=input type=submit value=Enter name=submit>
+&nbsp;<INPUT id=private type=submit value="Lock" name=private>
+&nbsp;<INPUT id=cancel type=submit value=Exit name=cancel>
+&nbsp;<input type="file" name="attachment">
+&nbsp;<FONT SIZE=1><FONT color=white>@.user((<A href="Input?sendto=">all</A>))@</FONT>
+ <A href="Notification?sendto=@:user@">notification</A>
+</FONT>
+<SCRIPT LANGUAGE=javascript>
+<!--
+function ready()
+{
+  this.focus();
+  document.InputForm.text.focus();
+}
+//-->
+</SCRIPT>
+</form>
+
+</BODY>
+</HTML>

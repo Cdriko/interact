@@ -1,0 +1,18 @@
+<link rel="stylesheet" href="@contextpath@/css/styles.css" type="text/css" media="all"/>
+<!-- No dynamic change of width yet -->
+@request.setAttribute*(columns,java.lang.Object^@columns@)*@
+@request.setAttribute*(cataloger,java.lang.Object^@cataloger@)*@
+@request.setAttribute*(contextpath,java.lang.Object^@contextpath@)*@
+<!-- TODO no table, just <div <div with width from css -->
+<table border=0 cellpadding=2 cellspacing=0>
+@list(
+  <tr class=normalitem onmouseover="if (this.className=='normalitem') this.className='overitem';this.firstChild.innerHTML='<input type=checkbox name=id>';" 
+      onmouseout="if (this.className=='overitem') this.className='normalitem';this.firstChild.innerHTML='<img src=@request.contextpath@/image/tree/song.gif>'">
+    @request.setAttribute*(element,java.lang.Object^@element@)*@
+      <td><img src="@request.contextpath@/image/tree/song.gif" border=0><input type=checkbox name=id value="@@"></td>
+    @request.columns(
+      <td id=@element@>@request.getAttribute*(cataloger)*.getMediaInfo*(@request.element@)*.get*(java.lang.String^@element@)*@</td>
+    )@
+  </tr>
+)@
+</table>

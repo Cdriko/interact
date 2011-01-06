@@ -1,0 +1,32 @@
+th,.smallHeader     {background-color: #f0f6f8; font-family: Georgia; font-size: 8pt;}
+.footer {font:x-small; color:#777; display:inline}
+
+.rightmenu_s2 {
+cursor:default;
+font:menutext;
+position:absolute;
+text-align:left;
+font-family: Arial, Helvetica, sans-serif;
+font-size: 10pt;
+width:120px;
+background-color:menu;
+border:1 solid buttonface;
+visibility:hidden;
+border:2 outset buttonhighlight;
+}
+.rightmenuitems {
+padding-left:15px;
+padding-right:10px;
+}
+
+.selecteditem {
+  background-color:#afa;
+}
+
+.overitem {
+   background-color:#cfc;
+}
+
+.normalitem {
+  background-color:white;
+}

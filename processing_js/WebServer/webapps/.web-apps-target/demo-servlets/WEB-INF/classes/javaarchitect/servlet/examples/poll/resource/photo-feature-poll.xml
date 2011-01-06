@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<poll>
+   <title>Which is most important next feature of MediaCChest for iPod?</title>
+   <duration>20w</duration>
+   <type>singleselect</type>
+   <show-result>yes</show-result>
+  <vote>
+       <title>Photo library</title>
+       <fill-required>no</fill-required> 
+  </vote>
+  <vote>
+       <title>Ripping music</title>
+       <fill-required>no</fill-required> 
+  </vote>
+  <vote>
+       <title>Another feature, please specify</title>
+       <fill-required>yes</fill-required> 
+  </vote>
+</poll>

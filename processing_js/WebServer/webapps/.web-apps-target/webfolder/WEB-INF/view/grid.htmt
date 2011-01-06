@@ -1,0 +1,10 @@
+<!-- Grid template -->
+
+@grid(
+  @element(
+    <div style="position:absolute;left:@x@;top:@y@;width:@w@;height:@h@;border:1px solid black;overflow:hidden;padding:2px 0px 0px 2px" title="@model.comment@">
+      <div style="display:table-caption">@model.title@</div>
+      @.model.content@
+    </div>  
+  )@
+)@

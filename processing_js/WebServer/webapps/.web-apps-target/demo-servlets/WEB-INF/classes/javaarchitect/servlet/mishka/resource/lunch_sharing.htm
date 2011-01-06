@@ -1,0 +1,58 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=@encoding@">
+<title>Lunch Shared Payments</title>
+</head>
+<body> 
+<h2>Balance and payments history</h2>
+<p align=center><font color=red>@erroralert@</font></p>
+<form method=POST action=Paymentsharing name="Paymentform">
+<center>
+<table border="0">
+  <tr>
+    <th>date/payer</th>
+    @gang(<th width="20" VALIGN=TOP>@headname(<br>)@</th>)@
+    <th BGCOLOR=BLACK><FONT COLOR=WHITE>D<BR>e<BR>l<BR>e<BR>t<BR>e</FONT></th>
+  </tr>
+  @lunchevent(
+  <tr BGCOLOR=@color(#DDDDDD)@>
+    <td>@date@</td>
+    @lunchevent(
+    <td width="20" align=right>@status@</td>)@
+    <td BGCOLOR=BLACK align=center><A HREF="Paymentsharing?delete=@:date@"><FONT COLOR=WHITE>X</FONT></A></td>
+  </tr>)@
+  <tr BGCOLOR=black>
+    <td><FONT COLOR=WHITE><B>Total balance</B></FONT></td>
+    @balance(<td nowrap width="20" align=right><FONT COLOR=WHITE><B>@balance@</B></FONT></td>)@
+    <td width=10 BGCOLOR=WHITE>&nbsp;</TD>
+  </tr>
+  <tr>
+    <td><input type="text" name="date" value="@date@"></td>
+  @current(
+    <td width="20"><input type="radio" value="@name@" name="payer" @checked@><br>
+    <input type="checkbox" name="name" value="@name@" @namechecked@></td>)@
+    <td>&#1079;&#1072;&#1087;&#1083;&#1072;&#1090;&#1080;&#1083;<br>&#1087;&#1086;&#1082;&#1091;&#1096;&#1072;&#1083;</TD>
+  </tr>
+</table>
+</center>
+<p align=right>
+<input type="submit" value="Calculate" name="submit" tabindex="0">&nbsp;
+     &nbsp;<input type="reset" value="Undo" name="Undo" tabindex="1">
+</p>
+</form>
+<form method=POST action="Paymentsharing?addmem=1" name="AddMemform">
+&nbsp; 
+<table border="0" width="82%" cellpadding="0">
+  <tr>
+    <td width="27%">
+        <input type="text" name="member" value="@name@"><input type="submit" value="Add a member" name="submit" tabindex="0"></td>
+    <td width="73%" align="right"><a href="Paymentsharing?save=1">[save]</a>&nbsp;
+    <a href="Download?name=paymentslog.xml">[download]</a>&nbsp;&nbsp;
+    <a href="Boardeditor">[edit message board]</a></td>
+  </tr>
+</table>
+</form>
+  <p align=center><a href="frontpage">[Back to Message Board]</a></p>
+
+</body>
+</html>

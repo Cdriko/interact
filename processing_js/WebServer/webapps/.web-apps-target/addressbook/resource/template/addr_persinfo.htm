@@ -1,0 +1,252 @@
+<!-- $Id: addr_persinfo.htm,v 1.7 2008/04/24 04:07:15 dmitriy Exp $  -->
+<script>
+// TODO: filter quotes in names, like ' and "
+   var addrs = [ @address('@^element.getDescription*()*@',)@ ''];
+   var commmts = [ @commentary('@^element.getDescription*()*@',)@ ''];
+//   var selColor;
+
+   function showAddress(addr) {
+     // todo consider introspect elements of nav table
+     // todo use a function to screen possible \r\n
+     for (var i=0; i<addrs.length; i++)
+        if (addr == addrs[i]){ // use for (var ca in addrs)
+           document.all[addr+'#adr'].style.display="";
+           document.all['tabadr_'+addr].className='taba';
+//           document.all['tabadr_'+addr].style.backgroundColor= "#C0C0D0";
+//           selColor = document.all['tabadr_'+addr].style.backgroundColor;
+        } else if (addrs[i] != '') {
+           document.all[addrs[i]+'#adr'].style.display="none";
+//           document.all['tabadr_'+addrs[i]].style.backgroundColor = '#FFFFFF';
+           document.all['tabadr_'+addrs[i]].className = 'tabi';
+        }
+     
+   }
+
+
+   function showComment(cmt) {
+     for (var c in commmts) 
+        if (cmt == commmts[c]) {
+           document.getElementById(cmt+'#cmt').style.display="";
+           document.all['tabcmt_'+cmt].className = 'taba';
+           //document.all['tabcmt_'+cmt].style.backgroundColor= "#C0C0D0";
+           //selColor = document.all['tabcmt_'+cmt].style.backgroundColor;
+@RTE{
+ @htmlArea(
+// <!-- { -- html area -- -->
+           initEditor(cmt+'#rte');
+// <!-- -- html area -- } -->
+  )@
+ @FCKeditor(
+	var oFCKeditor = new FCKeditor( cmt+'#rte' ) ;
+	oFCKeditor.BasePath	= '/addressbook/FCKEditor/' ;
+      oFCKeditor.ToolbarSet = 'Basic';
+	oFCKeditor.ReplaceTextarea() ;
+  )@
+}@
+        } else if (commmts[c] != '') {
+           document.getElementById(commmts[c]+'#cmt').style.display="none";
+           //document.all['tabcmt_'+commmts[c]].style.backgroundColor = '#FFFFFF';
+           document.all['tabcmt_'+commmts[c]].className = 'tabi';
+        }
+   }
+
+   function addItem(name) {  
+     var table = document.all ? // IE
+           document.all[name] :
+           document.getElementById ? // NN6 or other DOM compliant browser
+             document.getElementById(name) : null;
+     if(table) {        
+        var tr =table.rows[0];
+        var tc = tr.insertCell(tr.cells.length);
+        var nid = 'addr_'+tr.cells.length;
+        tc.innerHTML = '<div class="taba" id="tabadr_'+nid+'" onclick="showAddress('+"'"+nid+"'"+')"><input type="text" size="8" name="addressdescription" value="'+nid+'"></div>';
+        document.all['address'].insertAdjacentHTML('beforeEnd', '<div id="'+nid+'#adr"><textarea rows="4" cols="40" name="addressvalue"></textarea></div>');
+        addrs = addrs.concat(nid);
+        showAddress(nid);
+     }
+
+   }
+   // TODO create generic add/delete methods
+   function deleteAItem(name) {
+     for (var a in addrs) 
+        if (addrs[a] != '') {
+//           if (document.all['tabadr_'+addrs[a]].style.backgroundColor == selColor) {
+           if (document.all['tabadr_'+addrs[a]].className == 'taba') {
+              document.all['tabadr_'+addrs[a]].innerHTML = "";
+              document.getElementById(addrs[a]+'#adr').innerHTML = "";
+              addrs.splice(a,1);
+              break; // TODO it won't work for freshly added elements
+           }
+        }
+   }
+
+   function editADescr(name) {
+     for (var a in addrs) 
+        if (addrs[a] != '') {
+//           if (document.all['tabadr_'+addrs[a]].style.backgroundColor == selColor) {
+           if (document.all['tabadr_'+addrs[a]].className == 'taba') {
+              document.all['tabadr_'+addrs[a]].innerHTML = '<input type="text" size="16" name="addressdescription" value="'+addrs[a]+'">';
+           }
+        }
+   }
+
+   function deleteItem(name) {
+     for (var c in commmts) 
+        if (commmts[c] != '') {
+           //if (document.all['tabcmt_'+commmts[c]].style.backgroundColor == selColor) {
+           if (document.all['tabcmt_'+commmts[c]].className == 'taba') {
+              document.all['tabcmt_'+commmts[c]].innerHTML = "";
+              document.getElementById(commmts[c]+'#cmt').innerHTML = "";
+              commmts.splice(c,1);
+              break;
+           }
+        }
+   }
+   function addCItem(name) {  
+     var table = document.all ? // IE
+           document.all[name] :
+           document.getElementById ? // NN6 or other DOM compliant browser
+             document.getElementById(name) : null;
+     if(table) {        
+        var tr =table.rows[0];
+        var tc = tr.insertCell(tr.cells.length);
+        var nid = 'comment_'+tr.cells.length;
+        tc.innerHTML = '<div class="taba" id="tabcmt_'+nid+'" onclick="showComment('+"'"+nid+"'"+')"><input type="text" size="16" name="commentarydescription" value="'+nid+'"></div>';
+        document.all['commentary'].insertAdjacentHTML('beforeEnd', '<div id="'+nid+'#cmt"><textarea style="width:100%" rows="20"  wrap="virtual" id="'+nid+'#rte" name="commentaryvalue"></textarea></div>');
+        commmts = commmts.concat(nid);
+@RTE{
+ @htmlArea(
+// <!-- { -- html area -- -->
+        var moreeditors = editors.concat(nid+'#rte');
+        for (var e in editors) 
+          moreeditors[e] = editors[e];
+        editors = moreeditors;
+// <!-- -- html area -- } -->
+ )@
+ @FCKeditor(
+	var oFCKeditor = new FCKeditor( nid+'#rte' ) ;
+	oFCKeditor.BasePath	= '/addressbook/FCKEditor/' ;
+        oFCKeditor.ToolbarSet = 'Basic';
+	oFCKeditor.ReplaceTextarea() ;
+  )@
+}@
+        showComment(nid);
+     }
+   }
+   function editCDescr(name) {
+     for (var c in commmts) 
+        if (commmts[c] != '') {
+           if (document.all['tabcmt_'+commmts[c]].className == 'taba') {
+              document.all['tabcmt_'+commmts[c]].innerHTML = '<input type="text" size="16" name="commentarydescription" value="'+commmts[c]+'">';
+           }
+        }
+   }
+   function showMap() {
+     for (var a in addrs) 
+        if (addrs[a] != '') {
+           if (document.getElementById('tabadr_'+addrs[a]).style.backgroundColor == selColor) {
+               //alert("Map:"+document.getElementById(addrs[a]).firstChild.value);
+               // todo make this module configurable
+               document.location='http://maps.yahoo.com/maps_result?addr='+encodeURIComponent(document.getElementById(addrs[a]).firstChild.value)+'csz=&country=us';
+           }
+        }
+   }
+   var attProgress = false;
+   function attachFile(sel) {
+      if (attProgress) {
+	alert("Previous loading not finished yet.");
+        return;
+      }
+      sel.selectedIndex = 0;
+      blur();
+      if (navigator.userAgent.search(/MSIE/i) != -1 && document.forms[0].hash.value != '') {
+        frames['fileupload'].document.forms[0].picture.click();
+        if (frames['fileupload'].document.forms[0].picture.value.length>0) {
+           document.getElementById('picture_holder').insertAdjacentHTML("beforeEnd", '<p>'+frames['fileupload'].document.forms[0].picture.value+'</p>');
+           // below doesn't work for some reason, so need to fine more robust approach then timeout
+           //frames['fileupload'].onreadystatechange = function() {
+           //   alert(frames['fileupload'].readyState);
+           //};
+           //frames['fileupload'].document.forms[0].iupload.click();
+           frames['fileupload'].document.forms[0].submit();
+           //setTimeout("checkUpload()", 1000);
+        }
+      } else {
+        var pics = document.getElementById("picture");
+        var pin = document.createElement('input');
+        pin.type='file';
+        pin.name='picture';
+        pics.insertAdjacentElement("afterBegin", pin); 
+        pics.insertAdjacentElement("afterBegin",  document.createElement('br'));
+        //document.forms[0].appendChild(pin);
+      }
+   }
+   function markUploaded(p) {
+       var res = new Function("return "+p)();
+       var pics = document.getElementById("picture_holder");
+       var picim = document.createElement('<img src="Pictureloader?value='+res.value+'&index='+res.ix+'" border="0" alt="'+res.comment+'">');
+       pics.insertAdjacentElement("beforeEnd", picim);
+       pics.insertAdjacentHTML("beforeEnd",res.comment); 
+       pics.insertAdjacentElement("beforeEnd", document.createElement('<input type="checkbox" name="deletepicture" value="'+res.ix+'">'));
+       pics.insertAdjacentHTML("beforeEnd", 'X');
+    }
+</script>
+  <iframe name="fileupload" id="fileupload" src="Contactview/ajax/FileUpload?name=@contact.getName*()*.getLast*()*@&hash=@contact.getName*()*.hashCode*()*@&folder=@:folder@" height="0px" width="0px" border="0" style="width:0px;height:0px;border:0px"></iframe>
+
+<div id="title">@label.title@<input type="text" id="title" name="title" value="@contact.getTitle*()*@"></div>
+<div id="dob">@label.dob@ <input type="text" name="dob" value="@contact.getDOB*()*?Dlabel.dobformat@">@label.dobformat@</div>
+<div id="address">
+  <div class="smallHeader">@label.address@</div>
+  <table id="addresstab" name="addresstab">
+   <tr>
+     @address(<td><div class="tabi" id="tabadr_@element.getDescription*()*@" onclick="showAddress('@^element.getDescription*()*@')" ondblclick="editADescr('@^element.getDescription*()*@')"> @element.getDescription*()*@<input type="hidden" name="addressdescription" value="@element.getDescription*()*@"></div></td>)@
+    </tr>
+  </table>
+  @address(<div id="@element.getDescription*()*@#adr" style="display:none"><textarea cols="40" rows="4" name="addressvalue">@element.getFormated*()*@</textarea>
+           <a target="_blank" href="http://maps.yahoo.com/maps_result?addr=@:element.street@&csz=@:element.city@,@element.state@+@element.zip@&country=us">@commonlabel.map@</a>
+           </div>)@
+</div>
+<table border="0">
+  <tr>   
+    <td><div class="b-button-g" onClick="addItem('addresstab')">@commonlabel.add@</div></td>
+    <td><div class="b-button-g" onClick="deleteAItem()">@commonlabel.delete@</div></td>
+  </tr>
+</table>
+<!-- comment part -->
+<div id="commentary">
+ <div class="smallHeader">@label.commentary@</div>
+ <table id="commentarytab" name="commentarytab">
+   <tr> 
+      @commentary(<td><div class="tabi" id="tabcmt_@element.getDescription*()*@" onclick="showComment('@^element.getDescription*()*@')" ondblclick="editCDescr('@^element.getDescription*()*@')">@element.getDescription*()*@<input type="hidden" name="commentarydescription" value="@element.getDescription*()*@"></div></td>)@
+   </tr>
+ </table>
+ @commentary(<div id="@element.getDescription*()*@#cmt" style="display:none"><textarea style="width:100%" rows="20" id="@element.getDescription*()*@#rte" name="commentaryvalue">@element.getValue*()*@</textarea></div>)@
+</div>
+<table border="0">
+  <tr>   
+    <td><div class="b-button-g" onClick="addCItem('commentarytab')">@commonlabel.add@</div></td>
+    <td><div class="b-button-g" onClick="deleteItem('commentarytab')">@commonlabel.delete@</div></td>
+  </tr>
+</table>
+
+<div id="attachments">
+ <div class="smallHeader">@label.attachment@</div>
+<div id="picture">
+  <p>
+  <select id="uploadtrigger" onchange="attachFile(this)">
+    <option>@label.attach@: </option>
+    <option value='File'>@label.file@</option>
+    <option value='Picture'>@label.picture@</option>
+  </select>
+</div>
+<!--input type="file" name="picture"-->
+<div id="picture_holder">
+</div>
+@picture(
+ <div>
+   <img src="Pictureloader?value=@element.getValue*()*@&index=@index@" border="0">
+   @element.getDescription*()*@ <input type="checkbox" name="deletepicture" value="@index@">X
+ </div>
+)@ 
+</div>
+

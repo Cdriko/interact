@@ -1,0 +1,1 @@
+255#"\J9\PPRO11\bin\j9.exe" "-jcl:ppro11" "-cp" "\Program Files\WS\webserver.jar;\Program Files\WS\servlet.jar" "Acme.Serve.Main" "-a" "\Program Files\WS\aliases.properties" "-p" "80" "-l" 

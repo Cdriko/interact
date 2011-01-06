@@ -1,0 +1,8 @@
+<form name=login action="@contextpath@@servletpath@/@action@" target="@target@" method="POST">
+   <label for="@label.login@">@label.label_login@ <div class="field_val@ua_code@"><input type="text" name="@label.login@" value="@login_v@"></div></label>
+   <label for="@label.password@">@label.label_password@ <div class="field_val@ua_code@"><input type="password" name="@label.password@"></div></label>
+   <label for="@label.remember@">@label.label_remember@ <div class="field_val@ua_code@"><input type="checkbox" name="remember" value="true" @model.remember{@true(checked)@}@></div></label> 
+   <label for="@label.keep@">@label.label_keep@ <div class="field_val@ua_code@"><input type="checkbox" name="keep" value="true" @model.keep{@true(checked)@}@></div></label>
+   <input type="hidden" value="@referer@" name="referer">
+   <div><input type="submit" value="@label.signon@" name="submit"></div>
+</form>

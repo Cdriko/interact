@@ -1,0 +1,11 @@
+<!--  message  -->
+<form method="POST" action="@contextpath@@servletpath@/@action@">
+<center><h3>@model.title@</h3></center>
+<p>
+<center>@.model.message@</center>
+<p>
+<center><input type="submit" name="submit" value="Confirm">
+   &nbsp; <input type="submit" name="submit" value="Cancel"></center>
+   <input type="hidden" name="payload" value="@model.payload@">
+   <input type="hidden" name="caller" value="@caller@">
+</form>

@@ -1,0 +1,28 @@
+<html>
+<head>
+  <script>
+     function init() {
+         if (@upload@ == 0) {
+            //document.forms.attach.browsefile.click();
+            //parent.updateUploadStatus('@target@', '@name@', document.forms.attach.browsefile.value);
+            //document.forms.attach.submit();
+            
+            parent.updateUploadStatus('@target@', '@name@', '');
+         } else if (@upload@ == 1) {
+            parent.uploadDone('@name@', '@filename@', '@id@', '@divid@', '@action@');
+         }
+     }
+     function readyTo() {
+           document.forms.attach.submit();
+     }
+  </script>
+</head>
+<body onload="init();">
+<form name="attach" method="POST" action="@action@?upload=1" id="attach" enctype="multipart/form-data">
+   <input type="file" name="browsefile">
+   <input type="hidden" name="submit.x" value="1">
+   <input type="hidden" name="divid" value="@divid@">
+   <input type="hidden" name="name" value="@name@">
+</form>
+</body>
+</html>

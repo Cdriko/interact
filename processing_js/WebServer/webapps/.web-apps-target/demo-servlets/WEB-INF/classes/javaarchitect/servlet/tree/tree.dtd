@@ -1,0 +1,39 @@
+<!-- $Id: tree.dtd,v 1.3 2000/12/30 03:50:39 dmitriy Exp $
+  Copyright (c) Dmitriy Rogatkin 2000
+-->
+
+<!-- Usage:
+  put this DTD inside DOCTYPE and place it in the begining of XML file 
+   <!DOCTYPE TREE
+    [
+      .. the DTD here with following document
+    ]
+   >
+   or
+   use 
+    <!DOCTYPE TREE SYSTEM "tree.dtd">
+-->
+
+  <!ELEMENT TREE (NODE*)>
+  <!ATTLIST TREE
+         NAME    CDATA #IMPLIED
+  >
+
+  <!ATTLIST NODE
+         NAME    CDATA #IMPLIED
+         ID      ID    #REQUIRED
+         IMAGE   CDATA #IMPLIED
+         COMMENT CDATA #IMPLIED
+  >
+
+  <!ELEMENT NODE (NODE|ELEMENT)*>
+
+  <!ELEMENT ELEMENT (#PCDATA)>
+
+  <!ATTLIST ELEMENT
+         NAME    CDATA #IMPLIED
+         ID      ID    #REQUIRED
+         IMAGE   CDATA #IMPLIED
+         COMMENT CDATA #IMPLIED
+  >
+

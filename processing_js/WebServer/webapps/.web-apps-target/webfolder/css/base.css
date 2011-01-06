@@ -1,0 +1,39 @@
+.top_bar {background-color: #CCCCFF;}
+.bar_button
+    {
+       font-family: Arial, Helvetica, sans-serif; color: #FFFFFF; text-align: center; text-indent: 1em; background-color: #999999; border: 1px solid #FFFFFF;
+        margin: 2px; font-size: xx-small; cursor: pointer; display: inline; 
+        padding-right: 1em; padding-left: 1em;
+    }
+.logo {font-family: 'Arial Black'; font-size: large; color: #FFFFFF;}  
+.navi_hist_bar { font-weight: bold;}
+
+label {display:block; position:relative;padding:2px 5px 2px;font-weight:bolder;margin:3px 4px 3px} 
+
+.tiny_center {text-align:center; font-size:8px;}
+
+.form_header, .sub_header { font-family:Segoe UI, Tahoma,Verdana,Arial,sans-serif; font-size:12pt;}
+
+.sub_header, H4 { display:block; font-size:11pt; font-weight:bold; color:#333333}
+
+.req_mark {display:inline; color: #EE2222; font-size:xx-small; vertical-align:top;} 
+
+.alert_msg {color:#EE1111; background-color:#FFAAAA;}
+
+.portlet_header {background-color:#9999DD; color:#EEEEFF; font-size:12pt;width:auto}
+
+.attn_line {background-color:#CCCCCC; font-weight:bold}
+
+.field_val {display:run-in;position:absolute;left:17em;top:0}
+
+a.reg_ref:visited {color:black;text-decoration:none}
+a.reg_ref:hover {color:black;text-decoration:underline;font-weight:bold}
+a.reg_ref:link {color:black;text-decoration:none}
+a.reg_ref:active {color:black;text-decoration:none}
+
+div#tabs {background:#DDFDDF}
+div#tab {display:inline;margin:3px 0.5em 3px 0.5em;}
+a.atab:visited {color:#333333}
+a.atab:hover {color:#DDDDDD;text-decoration:underline}
+a.atab:link {color:#777777}
+a.atab:active {color:#DDDDDD}

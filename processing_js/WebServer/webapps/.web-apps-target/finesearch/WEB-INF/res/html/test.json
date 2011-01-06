@@ -1,0 +1,4 @@
+<table border=0>
+  @numbers(
+   <tr><td>@element@</td></tr>)@
+</table>

@@ -1,0 +1,71 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=@encoding@">
+<META HTTP-EQUIV="Refresh" CONTENT="60; URL=Roomlist?nodeid=@:nodeid@@staterooms(&state=@:state@)@&tree=rooms">
+  <STYLE TYPE='text/css'> a:hover {color: rgb(255,33,33);text-decoration: underline;} 
+  td {font-size: 10px; font-family: Verdana,Arial; } </STYLE>
+<!-- $Id: rooms_page.htm,v 1.21 2006/04/26 06:15:06 rogatkin Exp $ -->
+<TITLE>ChatHouse - Room list</TITLE>
+</HEAD>
+<BODY bgcolor="#666666" text="#C0C0C0" link="#FFFFFF" vlink="#FFFF99">
+<h3>Current rooms available</h3>
+  @treeviewrooms(
+      <table cellspacing=0 cellpadding=0 border=0>
+         <tr>
+            @treeline(
+                  @rootnode(
+                    <td title="root"><img src='@treeimages@/space.gif' border=0 width=16 height=18></td>
+                    <td>
+                       <a href='@page@?nodeid=@:nodeid@@state(&state=@:state@)@&tree=rooms&@parameters@'>
+                          <img src='@treeimages@/home.gif'
+                          border=0 width=16 height=16></a></td>
+                    <td>
+                       <img src='@treeimages@/space.gif' border=0 width=3 height=10></td>
+                    <td>                       
+                       <img src='@treeimages@/space.gif' border=0 width=3 height=10><b>@name@</b>
+                       <img src='@treeimages@/space.gif' border=0 width=3 height=10></td>
+                  )@
+                  @opennode(
+                    <td><a href='@page@?nodeid=@:nodeid@@state(&state=@:state@)@&tree=rooms&@parameters@'>
+                          <img src='@treeimages@/minus@vpos@.gif' 
+                          border=0 width=18 height=18></a></td><!-- _first, _notlast, _last -->
+                    <td><a href='@page@?nodeid=@:nodeid@@state(&state=@:state@)@&tree=rooms&@parameters@'>
+                          <img src='@treeimages@/folder_o.gif'
+                          border=0 width=18 height=18></a></td>
+                    <td><a href="@.link@">
+                          <img src='@spec@.gif' border=0 width=12 height=12>@name@</a>
+                       <img src='@treeimages@/space.gif' border=0 width=3 height=10>
+                    </td>
+                  )@
+                  @shiftlevel(
+                       <td><img src='@treeimages@/@vpos@.gif' border=0 width=18 height=18></td>
+                  )@
+                  @element(
+                       <td><img src='@treeimages@/line@vpos@.gif' border=0 width=18 height=18></td>
+                         <!-- _first, _notlast, _last -->
+                       <td><a href='@page@?nodeid=@:nodeid@@state(&state=@:state@)@&tree=rooms&@parameters@'>
+                         <img src='@treeimages@/@spec@@mark@.gif' border=0 width=18 height=18></a></td>
+                       <td><img src='@treeimages@/space.gif' border=0 width=3 height=10></td>
+                       <td><a href="@.link@">
+                           <img src='@treeimages@/space.gif' border=0 width=3 height=10>@name@</a>
+                           <img src='@treeimages@/space.gif' border=0 width=3 height=10>
+                       </td>
+                  )@
+                  @closenode(
+                    <td><a href='@page@?nodeid=@:nodeid@@state(&state=@:state@)@&tree=rooms&@parameters@'><img src='@treeimages@/plus@vpos@.gif' 
+                          border=0 width=18 height=18></a></td> <!-- _first, _notlast, _last -->
+                    <td><a href='@page@?nodeid=@:nodeid@@state(&state=@:state@)@&tree=rooms&@parameters@'><img src='@treeimages@/folder.gif'
+                          border=0 width=18 height=18></a></td>
+                    <td><a href="@.link@"><img src='@spec@.gif' border=0 height=12 width=12>@name@</a>
+                       <img src='@treeimages@/space.gif' border=0 width=3 height=10></td>
+                  )@
+            )@
+         </tr>
+      </table>
+    )@
+<p><a href="Roomlist?nodeid=@:nodeid@@staterooms(&state=@:state@)@&tree=rooms">Refresh</a></p>
+<p>&nbsp;<img src="Image/dlogo.jpg"><br>
+<a href=http://7bee.j2ee.us/bee/index-bee.html"><img src="http://7bee.j2ee.us/bee/7bee_logo_avatar.png" border=0></a></p>
+</BODY>
+</HTML>

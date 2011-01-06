@@ -1,0 +1,140 @@
+<html>
+<!-- $Id: contactview.htm,v 1.9 2007/07/27 02:54:47 rogatkin Exp $  -->
+<title>@name@</title>
+<link rel="stylesheet" href="/addressbook/styles.css" type="text/css" media="all"/>
+<script src="/addressbook/ajaxhelper.js" language="Javascript"></script>
+<script src="/addressbook/ia.js" language="Javascript"></script>
+
+@RTE{
+ @htmlArea(
+<!-- { -- html area -- -->
+<script type="text/javascript">
+  _editor_url = "/addressbook/editor/";
+  _editor_lang = "en";
+</script>
+<script type="text/javascript" src="/addressbook/editor/htmlarea.js"></script>
+<!-- -- html area -- } -->
+  )@
+  @FCKeditor(
+<script type="text/javascript" src="/addressbook/FCKEditor/fckeditor.js"></script>
+  )@
+}@
+
+<script type="text/javascript">
+@RTE{
+ @htmlArea(
+// <!-- { -- html area -- -->
+var editors = new Array(@commentary('@^element.getDescription*()*@#rte',)@'');
+   function initEditor(name) {
+     if (editors[name] == null) {
+        editors[name] = new HTMLArea(name);
+        editors[name].generate();
+     }
+     return false;
+   }
+// <!-- -- html area -- } -->
+  )@
+}@
+   function applyContact() {
+      // TODO submit in a hidden iframe
+      fillEmpties(document.contactview);
+      makeIFrameAjaxSubmit("Contactview/ajax/applyChanges", document.forms.contactview); 
+   }
+
+   function submitContact() {
+     document.contactview.elements['submit.x'].disabled = false;
+     fillEmpties(document.contactview);
+@RTE{
+ @htmlArea(
+// <!-- { -- html area -- -->
+     if (document.contactview.onsubmit)
+         document.contactview.onsubmit();
+// <!-- -- html area -- } -->
+ )@
+}@
+     FormNeedsSaving = false;
+     document.contactview.submit();
+   }
+   function showTab(name) {
+      var tabs = ['general', 'details', 'web', 'cert' ];
+      for (var i=0; i<tabs.length; i++) 
+       if (tabs[i] == name) {
+          document.all[tabs[i]+'.tab'].style.display="";
+          document.all[tabs[i]].className = 'taba';
+       } else {
+          document.all[tabs[i]+'.tab'].style.display="none";
+          document.all[tabs[i]].className = 'tabi';
+       }    
+   }
+   function fillEmpties(form) {
+     for (var e = 0; e < form.elements.length; e++) {
+       var el = form.elements[e];
+       if ( el.type == 'text' || el.type == 'textarea' ||
+          el.type == 'password') { 
+          if (el.value == '') 
+              el.value = ' ';
+       }
+     }
+   }
+   function checkModified() {
+   }
+
+   var FormNeedsSaving = false;
+
+   if (window.attachEvent) window.attachEvent('onload', addChangeHandlers);
+
+   function addChangeHandlers() {
+   }
+
+   onbeforeunload= function() {
+      if (FormNeedsSaving) return "@label.confirmdiscard@";
+   };
+</script>
+<body onload="showTab('general')" onunload="checkModified()">
+<!-- TODO: make it optional for ajaxed page -->
+ @%'header.htm'@
+<!--div style="display:none"-->
+<!--/div-->
+<form name="contactview" action="Contactview" method="post" enctype="multipart/form-data">
+<div>@label.name@<div><input type="text" name="name" value="@name@" size="62" onchange="document.title=this.value;FormNeedsSaving=true;">
+     <img src="/addressbook/image/triangle.gif"><input type="checkbox" name="me"><label>@label.me@</label></div></div>
+<div id="error"><blink>@error@</blink></div>
+<table id="nav_tabs">
+<tr>
+  <td><div id="general" onClick="showTab('general')" class="taba">@label.general@</div></td>
+  <td><div id="details" onClick="showTab('details')" class="tabi">@label.details@</div></td>
+  <td><div id="web"  onClick="showTab('web')" class="tabi">@label.web@</div></td>
+  <td><div id="cert" onClick="showTab('cert')" class="tabi">@label.cert@</div></td>
+  
+</tr>
+</table>
+<div id="general.tab" style="display:none">
+ @%'general.htm'@
+</div>
+<div id="details.tab" style="display:none">
+ @%'addr_persinfo.htm'@
+</div>
+<div id="web.tab" style="display:none">
+ @%'web.htm'@
+</div>
+<div id="cert.tab" style="display:none">
+ @%'cert.htm'@
+</div>
+<input type="hidden" name="beforename" value="@contact.getName*()*.getLast*()*@">
+<input type="hidden" name="hash" value="@contact.getName*()*.hashCode*()*@">
+<input type="hidden" name="folder" value="@folder@">
+<!-- preserve tree state -->
+@state(<input type="hidden" name="state" value="@element@">)@
+<input disabled type="hidden" name="submit.x" value="1">
+</form>
+<div align="right">
+<table border="0" cellpadding="10">
+  <tr>
+     @readonly{@true()@@(<td onClick='submitContact()' style="cursor: pointer">[@commonlabel.ok@]</td>
+                         <td onClick='applyContact()'>@commonlabel.apply@</td>)@}@<td style="cursor: pointer" onClick="window.location='abfrontview?nodeid=@:folder@@state(&state=@:element@)@'">[@commonlabel.cancel@]</td>
+  </tr>
+</table>
+</div>
+@%'footer.htm'@
+</body>
+</html>

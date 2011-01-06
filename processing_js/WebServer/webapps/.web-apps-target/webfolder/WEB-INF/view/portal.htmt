@@ -1,0 +1,10 @@
+<h3>Welcome to the Portal @label.portal@ </h3>
+<div style="position:relative;width:99%;height:86%">
+  @rows(
+       @cols(
+          <div style="position:absolute;border:1px solid black;top:@ptop@;left:@pleft@;width:@pwidth@;height:@pheight@"><div class="portlet_header">@title@</div>
+          <div id="portlet@portletid@" style="padding:2px 0.5em 2px 0.5em;height:90%;overflow:auto">@%portlet_template@</div>          
+           @pageinfo(<div style="width:90%;text-align:right">@.com.beegman.webbee.util.pagenation.pagenation*(@pageinfo@)*@</div>)@</div>
+       )@
+  )@
+</div>

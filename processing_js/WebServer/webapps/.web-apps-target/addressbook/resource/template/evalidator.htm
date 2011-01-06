@@ -1,0 +1,18 @@
+<html>
+<!-- $Id: evalidator.htm,v 1.2 2008/03/14 08:35:43 dmitriy Exp $ -->
+<link rel="stylesheet" href="/addressbook/styles.css" type="text/css" media="all"/>
+@error{
+@""(
+Dear @name@,<br>
+E-mail's been just sent to @email@, and you have to receive it shortly. 
+It will contain a link for activation the account. If you did not receive e-mail in next few hours, then please
+contact our customer service at <a href="mailto:@AB_MAIL@">@AB_MAIL@</a>.
+<center>
+<a href="Login">Login</a>
+</center>)@
+}@
+<p>
+@error@
+<p>
+@%'footer.htm'@
+</html>

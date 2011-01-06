@@ -1,0 +1,101 @@
+<html>
+<!-- $Id: registry.htm,v 1.7 2007/11/26 03:55:55 rogatkin Exp $
+   http://www.gatescript.com/events.html -->
+<link rel="stylesheet" href="/addressbook/styles.css" type="text/css" media="all"/>
+<script src="/addressbook/ajaxhelper.js" language="Javascript"></script>
+<script src="/addressbook/common.js" language="Javascript"></script>
+<script>
+   var errorMessages = ['Ok', '@label.error_passwordsnotmatch@', '@label.error_existingname@', '@label.error_nousername@'];
+   function validateName(nameField) {
+        makeJSONAjaxCall('/addressbook/ab/@servlet@/ajax?name='+nameField.value, null, true, 
+          function(answer) {
+            if(answer[0].error>0)
+              displayError("@commonlabel.error@ "+errorMessages[answer[0].error]+(answer[0].suggestion?' @label.recommend@ '+
+              answer[0].suggestion:''));
+            else {
+              displayError(null)
+              document.all.imageverification.innerHTML = '<img src="Challengeimage?name='+nameField.value+'">@label.challengetoken@<p>'
+                        +'<input type="text" name="challengetoken" autocomplete="off" onkeydown="return submitFormOnEnter(this, event)">';
+            }
+          }, null
+        );
+   }
+   function matchPwds() {
+       if (document.registry.password.value != document.registry.password2.value)
+          displayError(errorMessages[1]);
+       else
+          displayError(null);
+   }
+   function expandPassRecov(checkbox) {
+          document.all.passrecovsec.style.display=checkbox.checked?"":"none";
+   }
+   function displayError(msg) {
+     if (!msg || msg == "")
+        document.all.error.style.display="none";
+     else {
+        document.all.error.innerHTML = msg;
+        document.all.error.style.display="block";
+     }
+   }
+          
+</script>
+@mode{
+ @edit(@%'header.htm'@)@
+}@
+<ul>
+<li><div id="error" class="error_block" style.display="@error{@(none)@}@">@error@</div>
+</ul>
+<form name="registry" action="/addressbook/ab/@servlet@">
+<div class="smallHeader">@label.header@</div>
+<div class="label">@label.name@<div class="form-field">@mode{
+  @edit(@name@ <input type="hidden" name="name" value="@name@">)@
+  @(<input type="text" name="name" value="@name@" onBlur="validateName(this)"> 
+  <div style="position:absolute;left:200">@.label.temp_email@</div>)@
+  }@</div></div>
+<div class="label">@label.email@<div class="form-field"><input type="text" name="email" value="@email@"></div>
+  
+</div>
+<div class="label">@label.pass@<div class="form-field"><input type="password" name="password"></div></div>
+<div class="label">@label.passrep@<div class="form-field"><input type="password" name="password2" onBlur="matchPwds()"></div></div>
+@mode{
+@edit(
+<div class="label">@label.access_key@<div class="form-field"><input type="password" name="access_key"></div></div>
+<input type="hidden" name="mode" value="edit">
+)@}@
+<p>
+<div class="label">@label.language@<div class="form-field"><input type="text" name="language" value="@language@"></div></div>
+<div class="label">@label.timezone@<div class="form-field"><input type="text" name="timezone" value="@timezone@"></div></div>
+<p>
+<div class="label">@label.need_password_recovery@ <input type="checkbox" name="recovery" onClick="expandPassRecov(this)" @secret_question{@"",()@@(checked)@}@></div>
+<div @secret_question{@"",(style="display:none")@}@ id="passrecovsec">
+<div class="label">@label.secret_q@<div class="form-field"><input type="text" name="secret_question" value="@secret_question@"></div></div>
+<div class="label">@label.secret_a@<div class="form-field"><input type="text" name="secret_answer" value="@secret_answer@"></div></div>
+</div>
+@BLOG{
+  @Pebble(
+   @mode{
+     @edit( <div class="label">@label.create_pebble_account@ <input type="checkbox" name="pebble" value="1"></div> )@
+     @(@label.future_pebble_account@)@
+   }@
+  )@
+}@
+<div id="imageverification">
+@mode{
+@edit()@
+@( @name{@""()@ @(<img src="Challengeimage?name=@name@">@label.challengetoken@<p>
+                     <input type="text" value="@challengetoken@" name="challengetoken" autocomplete="off" onkeydown="return submitFormOnEnter(this, event)">)@}@ )@
+}@
+
+</div>
+<div id="submit" onClick="document.registry.submit()">
+<span class="b-button"><span class="b-button-mid">@label.go@</span><span class="b-button-invisible"></span></span>
+</div>
+<input type="hidden" name="submit.x" value="1">
+</form>
+@mode{
+ @edit()@
+ @(<p class="warn">This service is intended for demonstration purposes only. Use of this system to store sensitive data is prohibited.</p>)@
+}@
+
+@%'footer.htm'@
+</html>

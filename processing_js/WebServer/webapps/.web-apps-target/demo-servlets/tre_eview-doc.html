@@ -1,0 +1,67 @@
+<html>
+<title>Servlet Tree View Control</title>
+<body background="treebg.png">
+<table border="1" width="100%" bgcolor="#C0C0C0" bordercolorlight="#C0C0C0" bordercolordark="#000000">
+  <tr>
+    <td width="50%">
+      <h2>TreeView Servlet Control</h2>
+    </td>
+    <td width="50%">
+      <h2>TreeView Control and search crawlers</h2>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <h3>Why servlets</h3>
+      <p>Tree like navigation elements are widely used in web sites designs.
+      Most popular are JavaScript based implementations, since they have very sleek
+      appearance and&nbsp; do not require server access for their traversing. Some
+      limited drag and drop operations are possible too. However, due JS performance and memory limitation,
+      they can't handle too big trees (usually 1000 nodes
+      is limit). Even more sleeker can be a Java applet or ActiveX control
+      implementation, however they require certain type of VM or browser. So, if
+      your requirements to have dynamic or very big tree or supporting any
+      browser and platform, then server side tree controls can be
+      only solution.
+      Server side implementation can be based on any server side scripting, like
+      PHP, ASP, or JSP. However this particular example is servlet based, just
+      to demonstrate power ness of servlet technology.</p>
+      <h3>Implementation notes&nbsp;</h3>
+      <ol>
+        <li>This is reference implementation of tree view for a tree defined in XML file</li>
+        <li>You need to implement a class implementing interface Traversable to implement any other tree</li>
+        <li>Note, object null is considered as root element&nbsp;</li>
+        <li>Name of framework servlet rogatkin.servlet.Dispatcher, however it can be subclassed&nbsp;</li>
+        <li>This servlet reads init file treeview.properties where defined:
+- WorkerPrefix - package prefix of tree view implementation, can be selected any desirable,
+has to have . at end
+- TEMPLATEROOT - resource root, can be file, http, or class root related
+- treeimages - subservlet or relative path to images used in tree
+- DefaultServant - default sub servlet (optional)
+- XMLTREE - used a particular implementation, for example XML file</li>
+        <li>demrog.jar and implementation classes have to be added in class path or placed in lib in 
+  context directory when servlet container used</li>
+        <li>For custom icon or/and link use<br>
+          side_url=http://www.gena.crocodile.org<br>
+          side_logo=http://www.gena.crocodile.org/gena-logo.gif</li>
+      </ol>
+      <p>&nbsp;</td>
+    <td width="50%" valign="top">
+      <h3>Where is a problem</h3>
+      <p>Generally number of states can reach O(n!) at traversing of a tree,
+      where n is number of nodes. Obviously it makes impossible for web crawlers
+      to traverse entire tree. So, such popular crawlers as google, simple stop
+      at certain point and significant part of web site can be left not indexed.
+      For example this page you will never see in any search engines. I know
+      only one crawler designed by IBM research center which capable to index
+      most of pages navigated over a tree control.&nbsp; Therefore if you need
+      to get your page indexed reachable through a tree control, then provide all links in hidden &lt;div&gt; on
+      first page for all such page. Since search engines will provide a wrong
+      referer for such pages, should have JavaScript,
+      which checks if a page displayed as standalone and automatically reload
+      page in framed form controllable by a tree control.</td>
+  </tr>
+</table>
+
+</body>
+</html>

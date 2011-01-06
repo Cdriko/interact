@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
+<web-app>
+  <context-param>
+     <param-name>SEARCH_ENGINES</param-name>
+     <param-value>finesearch.r.GoogleSearchAdapter,finesearch.r.MsnSearchAdapter</param-value>
+     <description>Comma separated search engines plug-in classes</description>
+  </context-param>
+  <servlet>
+    <servlet-name>servletToJsp</servlet-name>
+    <servlet-class>finesearch.vc.servlet.servletToJsp</servlet-class>
+  </servlet> 
+  <servlet>
+    <servlet-name>FineSearch</servlet-name>
+    <servlet-class>finesearch.vc.servlet.Main</servlet-class>
+    <init-param>
+        <param-name>properties</param-name>
+        <param-value>/WEB-INF/cfg/finesearch.properties</param-value>
+    </init-param>
+  </servlet> 
+  <servlet-mapping>
+    <servlet-name>FineSearch</servlet-name>
+    <url-pattern>/search/*</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>servletToJsp</servlet-name>
+    <url-pattern>/servletToJsp</url-pattern>
+  </servlet-mapping>
+  <welcome-file-list> 
+    <welcome-file>blank.html</welcome-file>
+  </welcome-file-list> 
+</web-app>

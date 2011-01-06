@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>@title@</title>
+  <style type="text/css">
+     <!--/* <![CDATA[ */
+          @@import url(@contextpath@/css/base.css);
+            BODY, TD, FONT, INPUT, SELECT, TEXTAREA { font-family: Lucida Grande,Verdana,Arial; font-size: 11px; }
+         body {height:100%}
+         P {margin:0.2em 1em 0.1em 1em}
+        #container {
+         min-height:100%;
+         position:absolute;
+         height:100%;
+         width:98%;
+         top:0;left:2%
+        }
+        #footer {
+          position:absolute;
+          bottom:0;
+          width:98%;
+          background:#ffffff;
+          /*height:4em;*/
+        }
+        #status {
+             padding-left:10em;
+             height:2em;
+             background:#fee;@error(
+             background-image:url(@request.getContextPath*()*@/image/exclam.gif);
+             background-repeat:no-repeat;
+             padding-left:2em;)@
+        }
+       #payload {
+        position:absolute;
+        top:13%;
+        height:85%;
+        width:100%;
+        padding-top:0.5em;
+       overflow:auto
+       }
+       #modal_background {
+         position: absolute;
+         left: 0;
+         top: 0;
+         width: 100%;
+         height: 100%;
+ 
+      	 z-index: 99;
+	     background-color:#333333;
+	     display: none;
+	     opacity: 0.40;
+	     filter: alpha(opacity=40)
+     }  
+       /* ]]> */-->
+  </style>
+  <style type="text/css">
+     @%'insert/headcss.htmt'@
+  </style>
+  <script src="@contextpath@/js/ajaxhelper.js" language="Javascript"></script>
+  <script src="@contextpath@/js/common.js" language="Javascript"></script>
+  <script src="@contextpath@/js/form.js" language="Javascript"></script>
+  <script>
+      function goto(loc) {
+         document.location='@contextpath@@request.getServletPath*()*@/'+loc;
+      }
+  </script>
+  <script>
+     @%'insert/headjs.htmt'@
+  </script>
+  @%headextra@
+</head>
+<body onload="init()">
+<div id="container">
+<table width="100%" border=0 class="top_bar">
+  <tr><td align="left" width="*"><div class="logo">@app_name@</div></td>
+  <td>@%stationary@</td>
+  <!-- top button line -->
+     <td align="right" width="50%">
+  @toplinks(<div class="bar_button" title="@element.getDescription*()*@" onclick="goto('@element.getAnchor*()*@')" 
+        >@element.getTitle*()*@</div>)@
+      </td></tr>
+</table>
+<!-- tabs (todo use insert) -->
+<div id="tabs">@tabs(<div id="tab" title="@element.getDescription*()*@"><a class="atab" href="@element.getAnchor*()*@">@element.getTitle*()*@</a></div>)@</div>
+<div class="navi_hist_bar">
+@history(
+  @history.iterator*()*(
+<a class="reg_ref" href="@element.getUrl*()*@">@element.getTitle*()*@</a>&gt;)@)@</div>
+<div id="payload">
+@%request.INNER_VIEW@
+</div>
+<div id="footer">
+<div id="status">@error@</div>
+<!-- use include of copyright -->
+@%copyright@&nbsp;<!--<img src="Avatar" border="0" alt="@commonlabels.avatar@">-->
+</div>
+</div>
+</body>
+</html>
