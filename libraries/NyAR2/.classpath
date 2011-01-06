@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/NyARToolKit"/>
+	<classpathentry kind="lib" path="/home/cpbotha/opt/processing/lib/core.jar"/>
+	<classpathentry kind="lib" path="/home/cpbotha/opt/processing/lib/pde.jar"/>
+	<classpathentry kind="lib" path="/home/cpbotha/opt/processing/libraries/opengl/library/jogl.jar"/>
+	<classpathentry kind="lib" path="/home/cpbotha/opt/processing/libraries/opengl/library/opengl.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
