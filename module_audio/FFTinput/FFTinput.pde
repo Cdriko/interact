@@ -11,7 +11,7 @@ float x, y, rayon;
 
 void setup()
 {
-  size(512, 200);
+  size(512, 200, P3D);
   smooth();
   noStroke();
   x=width/2;
@@ -32,20 +32,25 @@ void draw()
   volMax=fft.getBand(0);//------------------------------- l'amplitude sur la bande 0 pour initialiser le volume à chaque rafraichissement du prog
   for(int i = 0; i < fft.specSize(); i++)
   {
-    fill(0, vert, 0);
-    ellipse(x, y, rayon, rayon);
+
     if(fft.getBand(i)>volMax)volMax=fft.getBand(i);//---- on cherche le volume maximum du spectre
     if(volMax>13) {//------------------------------------ passé un certains seuil le cercle s'agrandit et devient vert
-      vert+=0.004f;
-      rayon+=0.001f;
+      vert+=volMax*0.000051f;//---------------------------- la couleur change en fonction de la dynamque du volume
+      rayon+=volMax*0.000051f;
     }
     else {
-      vert-=0.004f;
-      rayon-=0.003f;
+      vert-=0.0004f;
+      rayon-=0.0015f;
     }
   }
+  fill(0, vert, 0);
+  lights();
+  translate(x, y);
+  sphereDetail(35);
+  sphere(rayon);
   vert = constrain(vert, 0, 255);
   rayon = constrain(rayon, 15, height/2);
+  println(volMax);
 }
 
 void stop()
