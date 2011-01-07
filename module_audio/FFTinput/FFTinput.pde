@@ -34,7 +34,7 @@ void draw()
   {
 
     if(fft.getBand(i)>volMax)volMax=fft.getBand(i);//---- on cherche le volume maximum du spectre
-    if(volMax>13) {//------------------------------------ passé un certains seuil le cercle s'agrandit et devient vert
+    if(volMax>20) {//------------------------------------ passé un certains seuil le cercle s'agrandit et devient vert
       vert+=volMax*0.000051f;//---------------------------- la couleur change en fonction de la dynamque du volume
       rayon+=volMax*0.000051f;
     }
