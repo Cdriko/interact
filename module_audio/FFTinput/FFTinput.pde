@@ -43,14 +43,13 @@ void draw()
       rayon-=0.0015f;
     }
   }
-  fill(0, vert, 0);
+  vert = constrain(vert, 0, 255);
+  rayon = constrain(rayon, 15, height/2);
+  fill(0, vert, 0,125);
   lights();
   translate(x, y);
   sphereDetail(35);
   sphere(rayon);
-  vert = constrain(vert, 0, 255);
-  rayon = constrain(rayon, 15, height/2);
-  println(volMax);
 }
 
 void stop()
