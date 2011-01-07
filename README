@@ -1,10 +1,24 @@
-C'est pour essayer de comprendre comment marche git
-
-
-
-
-<<<<<<< HEAD
-j'écris un truc dans le fichier readme
-=======
-salu
 >>>>>>> cc05f4248089bbdd23dd6a41d1c9df5da16e3d5f
+
+//-------------------------------------------------------------------------------------------
+Projet utilisé dans le cadre du séminaire interactivité mené à l'école de design de Nantes, 
+conjointement par l'association Ping et des intervenants extérieurs.
+Toutes les ressources et codes contenus dans les dossier de ce dépôt sont disponibles suivant les conditions
+suivantes :
+
+/*--------------------------------------------SEMINAIRE INTERACTIVITE JANVIER 2011
+    Copyright (C) <2010>  <Cedric Doutriaux, Julien Bellanger, Thomas Bernardi>
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
