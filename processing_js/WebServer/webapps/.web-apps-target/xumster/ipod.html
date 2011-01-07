@@ -1,0 +1,83 @@
+<html>
+<head>
+<title>Xumster web iPod Manager</title>
+<link rel="stylesheet" href="css/styles.css" type="text/css" media="all"/>
+<style type="text/css">
+  DIV#container{ 
+   width: 100%;
+   text-align: left;
+   height:100%;
+   background:#fff;
+  }
+  DIV#menu{ 
+   width: 100%;
+   position:absolute;
+   text-align: right;
+   height:1.5em;
+   background:#fff;
+  }
+  DIV#tree {
+    width:20%;
+    position:absolute;
+    top:3em;
+    background:#fff;
+    height:76%;
+  }
+  DIV#imagepreview {
+    width:20%;
+    position:absolute;
+    top:80%;
+    background:#eea;
+    height:20%;
+  }    
+
+  DIV#workarea {
+    width:80%;
+    position:absolute;
+    top:3em;
+    left:21%;
+    height:88%;
+    background:ffe;
+  }
+  DIV#status {
+    width:79%;
+    position:absolute;
+    top:92%;
+    left:21%;
+    height:1.5em;
+    background:fff;
+  }
+  DIV#footer {
+    width:79%;
+    position:absolute;
+    top:96%;
+    left:21%;
+    height:1.5em;
+    background:efe;
+  }
+
+</style>
+<script src="js/ajaxhelper.js" language="Javascript"></script>
+<script src="js/common.js" language="Javascript"></script>
+<script>
+  function activate() {
+     base_url = document.URL + 'ipod/';
+     getMenu();
+  }
+  function getMenu() {
+     render('Controll', 'menu');
+  }
+</script>
+</head>
+<body onload="activate()">
+ <div id=container>
+  <!-- menu area -->
+   <div id="menu"></div>
+   <div id=tree><iframe id=treeframe src="ipod/Tree" width="100%" height="100%" frameborder=0 scrolling=auto></iframe></div>
+   <div id=imagepreview></div>
+   <div id=workarea><iframe id=mainviewframe src="ipod/List?type=songlist" width="100%" height="100%" frameborder=0 scrolling=auto></iframe></div>
+   <div id=status></div>
+   <div id=footer> <div class=footer><a href="about.html">Xumster</a>  &copy; 2007 Dmitriy Rogatkin</div></div>
+ </div> <!-- container -->
+</body>
+</html>

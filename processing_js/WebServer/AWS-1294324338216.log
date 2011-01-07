@@ -1,0 +1,137 @@
+[Thu Jan 06 15:32:18 CET 2011] Deploying demo-servlets
+[Thu Jan 06 15:32:18 CET 2011] Deploying xumster
+[Thu Jan 06 15:32:19 CET 2011] Deploying weatherserver
+[Thu Jan 06 15:32:19 CET 2011] Deploying ChatHouse
+[Thu Jan 06 15:32:19 CET 2011] Deploying finesearch
+[Thu Jan 06 15:32:19 CET 2011] Deploying sqlfair
+[Thu Jan 06 15:32:19 CET 2011] Deploying addressbook
+[Thu Jan 06 15:32:19 CET 2011] Deploying webfolder
+[Thu Jan 06 15:32:19 CET 2011] Deploying poll
+[Thu Jan 06 15:32:20 CET 2011] Servlet overriden by rogatkin.web.WebAppServlet@913fe2, for path:/demo-servlets
+[Thu Jan 06 15:32:22 CET 2011] Servlet overriden by rogatkin.web.WebAppServlet@1dff3a2, for path:/xumster
+[Thu Jan 06 15:32:22 CET 2011] Servlet overriden by rogatkin.web.WebAppServlet@76cbf7, for path:/poll
+[Thu Jan 06 15:32:23 CET 2011] sqlfair> Security constraints are not supported
+[Thu Jan 06 15:32:23 CET 2011] sqlfair> Login config is not supported
+[Thu Jan 06 15:32:23 CET 2011] sqlfair> Security roles are not supported
+[Thu Jan 06 15:32:23 CET 2011] Servlet overriden by rogatkin.web.WebAppServlet@3901c6, for path:/sqlfair
+[Thu Jan 06 15:32:23 CET 2011] ChatHouse> ChatHouse: Dispatcher:  Problem of loading a config as a resource conf/chatservlet.properties. java.lang.NullPointerException
+[Thu Jan 06 15:32:23 CET 2011] ChatHouse> ChatHouse: Dispatcher:  Probleam loading a config as file. java.io.FileNotFoundException: conf/chatservlet.properties (No such file or directory)
+[Thu Jan 06 15:32:23 CET 2011] ChatHouse> ChatHouse: IOException at reading messages [java.io.FileNotFoundException: messageboard.properties (No such file or directory)
+[Thu Jan 06 15:32:23 CET 2011] Servlet overriden by rogatkin.web.WebAppServlet@1db4f6f, for path:/ChatHouse
+[Thu Jan 06 15:32:23 CET 2011] Servlet overriden by rogatkin.web.WebAppServlet@12f0999, for path:/webfolder
+[Thu Jan 06 15:32:23 CET 2011] Servlet overriden by rogatkin.web.WebAppServlet@1b8e059, for path:/addressbook
+[Thu Jan 06 15:32:24 CET 2011] Servlet overriden by rogatkin.web.WebAppServlet@132e13d, for path:/weatherserver
+[Thu Jan 06 15:32:24 CET 2011] Servlet overriden by rogatkin.web.WebAppServlet@16fa474, for path:/finesearch
+/127.0.0.1:8080 - - [06/janv./2011:15:34:21 +0100] "GET / HTTP/1.1" 200 4 464 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:34:21 +0100] "GET /dlogo.jpg HTTP/1.1" 200 4 371 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:34:21 +0100] "GET /favicon.ico HTTP/1.1" 404 287 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:35:36 +0100] "GET /exemples HTTP/1.1" 404 287 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:35:36 +0100] "GET /favicon.ico HTTP/1.1" 404 287 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:35:39 +0100] "GET /exemples/ HTTP/1.1" 404 287 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:35:39 +0100] "GET /favicon.ico HTTP/1.1" 404 287 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:35:48 +0100] "GET /examples/ HTTP/1.1" 200 1 323 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:35:49 +0100] "GET /favicon.ico HTTP/1.1" 404 287 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:35:53 +0100] "GET /examples/js/ HTTP/1.1" 200 1 177 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:35:53 +0100] "GET /favicon.ico HTTP/1.1" 404 287 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:35:57 +0100] "GET /examples/js/simple.html HTTP/1.1" 200 2 326 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:35:57 +0100] "GET /examples/style.css HTTP/1.1" 200 892 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:35:57 +0100] "GET /processing.js HTTP/1.1" 200 689 635 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:35:58 +0100] "GET /favicon.ico HTTP/1.1" 404 287 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:36:02 +0100] "GET /favicon.ico HTTP/1.1" 404 287 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:36:03 +0100] "GET /examples/js/3d.html HTTP/1.1" 200 4 428 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:36:03 +0100] "GET /examples/js/pjs.png HTTP/1.1" 200 31 521 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:36:03 +0100] "GET /favicon.ico HTTP/1.1" 404 287 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:36:05 +0100] "GET /favicon.ico HTTP/1.1" 404 287 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:36:06 +0100] "GET /favicon.ico HTTP/1.1" 404 287 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:36:10 +0100] "GET /examples/basic/ HTTP/1.1" 200 6 486 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:36:10 +0100] "GET /examples/init.js HTTP/1.1" 200 1 739 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:36:10 +0100] "GET /favicon.ico HTTP/1.1" 404 287 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:36:22 +0100] "GET /examples/basic/displaying.html HTTP/1.1" 200 1 752 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:36:22 +0100] "GET /examples/basic/data/arch.jpg HTTP/1.1" 200 24 286 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:36:22 +0100] "GET /favicon.ico HTTP/1.1" 404 287 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:36:26 +0100] "GET /favicon.ico HTTP/1.1" 404 287 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:36:30 +0100] "GET /examples/basic/sprite.html HTTP/1.1" 200 2 604 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:36:30 +0100] "GET /examples/basic/data/sky.jpg HTTP/1.1" 200 4 094 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:36:30 +0100] "GET /examples/basic/data/teddy.gif HTTP/1.1" 200 1 072 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:36:30 +0100] "GET /favicon.ico HTTP/1.1" 404 287 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:36:36 +0100] "GET /favicon.ico HTTP/1.1" 404 287 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:37:09 +0100] "GET /favicon.ico HTTP/1.1" 404 287 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:37:12 +0100] "GET /examples/custom/ HTTP/1.1" 200 1 065 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:37:13 +0100] "GET /favicon.ico HTTP/1.1" 404 287 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:37:14 +0100] "GET /examples/custom/snake.html HTTP/1.1" 200 3 513 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:37:14 +0100] "GET /examples/custom/data/dirt.jpg HTTP/1.1" 200 34 935 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:37:15 +0100] "GET /favicon.ico HTTP/1.1" 404 287 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:37:18 +0100] "GET /favicon.ico HTTP/1.1" 404 287 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:37:26 +0100] "GET /favicon.ico HTTP/1.1" 404 287 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:37:29 +0100] "GET /examples/seneca/ HTTP/1.1" 200 6 807 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:37:29 +0100] "GET /favicon.ico HTTP/1.1" 404 287 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:37:34 +0100] "GET /examples/seneca/curveVertex3D/ HTTP/1.1" 200 1 029 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:37:34 +0100] "GET /favicon.ico HTTP/1.1" 404 287 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:37:37 +0100] "GET /examples/seneca/curveVertex3D/curveVertex.htm HTTP/1.1" 200 2 968 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:37:37 +0100] "GET /examples/seneca/curveVertex3D/curveVertex-PJava.png HTTP/1.1" 200 7 628 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:37:37 +0100] "GET /examples/seneca/curveVertex3D/curveVertex.pjs HTTP/1.1" 200 615 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:37:37 +0100] "GET /favicon.ico HTTP/1.1" 404 287 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:37:43 +0100] "GET /favicon.ico HTTP/1.1" 404 287 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:37:45 +0100] "GET /favicon.ico HTTP/1.1" 404 287 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:37:46 +0100] "GET /examples/seneca/ellipse/ HTTP/1.1" 200 1 230 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:37:46 +0100] "GET /favicon.ico HTTP/1.1" 404 287 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:37:48 +0100] "GET /examples/seneca/ellipse/ellipse.html HTTP/1.1" 200 900 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:37:48 +0100] "GET /examples/seneca/ellipse/ellipse.png HTTP/1.1" 200 1 285 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:37:48 +0100] "GET /examples/seneca/ellipse/ellipse.pjs HTTP/1.1" 200 512 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:37:48 +0100] "GET /favicon.ico HTTP/1.1" 404 287 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:37:56 +0100] "GET /favicon.ico HTTP/1.1" 404 287 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:37:57 +0100] "GET /favicon.ico HTTP/1.1" 404 287 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:38:01 +0100] "GET /examples/seneca/saveStrings/ HTTP/1.1" 200 990 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:38:01 +0100] "GET /favicon.ico HTTP/1.1" 404 287 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:38:07 +0100] "GET /favicon.ico HTTP/1.1" 404 287 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:38:10 +0100] "GET /examples/seneca/text/ HTTP/1.1" 200 1 233 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:38:10 +0100] "GET /favicon.ico HTTP/1.1" 404 287 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:38:11 +0100] "GET /examples/seneca/text/textTest2.html HTTP/1.1" 200 3 345 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:38:12 +0100] "GET /favicon.ico HTTP/1.1" 404 287 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:38:34 +0100] "GET /favicon.ico HTTP/1.1" 404 287 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:40:25 +0100] "GET /favicon.ico HTTP/1.1" 404 287 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:40:28 +0100] "GET /favicon.ico HTTP/1.1" 404 287 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:41:02 +0100] "GET /examples/seneca/ HTTP/1.1" 200 6 807 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:41:02 +0100] "GET /favicon.ico HTTP/1.1" 404 287 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:41:11 +0100] "GET /examples/seneca/ HTTP/1.1" 200 6 807 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:41:11 +0100] "GET /favicon.ico HTTP/1.1" 404 287 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:41:23 +0100] "GET /examples/seneca/ HTTP/1.1" 200 6 807 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:41:23 +0100] "GET /favicon.ico HTTP/1.1" 404 287 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:41:47 +0100] "HEAD /examples/seneca/ HTTP/1.1" 200 306 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:41:53 +0100] "HEAD /examples/seneca HTTP/1.1" 302 345 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:41:53 +0100] "HEAD /examples/seneca/ HTTP/1.1" 200 306 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:42:19 +0100] "GET /examples HTTP/1.1" 302 338 - -
+[Thu Jan 06 15:42:19 CET 2011] IO error: java.net.SocketException: Connection reset in processing a request from /127.0.0.1:8080 / java.net.Socket
+/127.0.0.1:8080 - - [06/janv./2011:15:42:19 +0100] "GET /examples/ HTTP/1.1" 200 1 323 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:42:19 +0100] "GET /favicon.ico HTTP/1.1" 404 287 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:42:22 +0100] "HEAD /examples/ HTTP/1.1" 200 306 - -
+No cofiguration data for abandoned accounts.
+/127.0.0.1:8080 - - [06/janv./2011:15:44:13 +0100] "HEAD /examples HTTP/1.1" 302 338 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:44:13 +0100] "HEAD /examples/ HTTP/1.1" 200 306 - -
+/0:0:0:0:0:0:0:1:8080 - - [06/janv./2011:15:44:14 +0100] "GET /examples/ HTTP/1.1" 200 1 323 - -
+/0:0:0:0:0:0:0:1:8080 - - [06/janv./2011:15:44:14 +0100] "GET /favicon.ico HTTP/1.1" 404 287 - -
+/0:0:0:0:0:0:0:1:8080 - - [06/janv./2011:15:44:17 +0100] "GET /favicon.ico HTTP/1.1" 404 287 - -
+/0:0:0:0:0:0:0:1:8080 - - [06/janv./2011:15:45:29 +0100] "GET /examples HTTP/1.1" 302 338 - -
+/0:0:0:0:0:0:0:1:8080 - - [06/janv./2011:15:45:29 +0100] "GET /examples/ HTTP/1.1" 200 1 323 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:50:18 +0100] "GET /examples/basic/ HTTP/1.1" 200 6 486 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:50:18 +0100] "GET /examples/init.js HTTP/1.1" 200 1 739 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:50:18 +0100] "GET /examples/style.css HTTP/1.1" 200 892 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:50:18 +0100] "GET /processing.js HTTP/1.1" 200 689 635 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:50:19 +0100] "GET /favicon.ico HTTP/1.1" 404 287 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:50:23 +0100] "GET /favicon.ico HTTP/1.1" 404 287 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:50:25 +0100] "GET /examples/custom/ HTTP/1.1" 200 1 065 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:50:25 +0100] "GET /favicon.ico HTTP/1.1" 404 287 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:50:29 +0100] "GET /examples/custom/molten.html HTTP/1.1" 200 7 686 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:50:29 +0100] "GET /favicon.ico HTTP/1.1" 404 287 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:50:54 +0100] "GET /favicon.ico HTTP/1.1" 404 287 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:50:55 +0100] "GET /favicon.ico HTTP/1.1" 404 287 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:50:57 +0100] "GET /examples/screens/ HTTP/1.1" 200 3 866 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:50:58 +0100] "GET /favicon.ico HTTP/1.1" 404 287 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:50:59 +0100] "GET /examples/screens/Picture+17.png HTTP/1.1" 200 10 612 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:50:59 +0100] "GET /favicon.ico HTTP/1.1" 404 287 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:51:01 +0100] "GET /favicon.ico HTTP/1.1" 404 287 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:51:03 +0100] "GET /favicon.ico HTTP/1.1" 404 287 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:51:06 +0100] "GET /examples/topics/ HTTP/1.1" 200 4 600 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:51:07 +0100] "GET /favicon.ico HTTP/1.1" 404 287 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:52:28 +0100] "GET /examples/topics/follow3.html HTTP/1.1" 200 2 646 - -
+/127.0.0.1:8080 - - [06/janv./2011:15:52:28 +0100] "GET /favicon.ico HTTP/1.1" 404 287 - -

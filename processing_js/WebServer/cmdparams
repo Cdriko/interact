@@ -1,0 +1,1 @@
+-nohup -a aliases.properties -p  "80" -l -c "cgi-bin" -dataSource datasource.properties -j org.apache.jasper.servlet.JspServlet -org.apache.jasper.servlet.JspServlet.classpath %classpath% -org.apache.jasper.servlet.JspServlet.scratchdir %deploydir%/WEB-INF 

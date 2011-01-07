@@ -1,0 +1,27 @@
+<!-- $Id: list.htm,v 1.10 2006/12/09 06:53:40 rogatkin Exp $
+   The include is used for operation with list of items, as movies, song, pictures -->
+<div name="details" id="details"></div>
+<div class="scrollist">
+<table border=0>
+   <tr>
+     <th>X</th>
+     @headers(
+       <th><div class="td-but" onclick="changeEntry('?sort=@type@')">@label@</div></th>
+     )@
+     @entries(
+       <tr>
+          <td><input type="checkbox" name="entry" value="@element.getId*()*@" ></td>
+          <td onclick="updateItem(@element.getId*()*@)" class="td-but">
+            @items[0](
+                @element@
+            )@          
+          </td>
+          @items[1..](
+             <td>@element@</td>
+          )@
+       </tr>
+     )@
+</table>
+</div>
+<input type="hidden" name="beforename" value="@contact.getId*()*@">
+<input type="hidden" name="hash" value="@contact.hashCode*()*@">

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE TREE SYSTEM "../tree.dtd">
+<TREE NAME="Demo of servlet TreeView control" IMAGE="home"> 
+  <NODE NAME="Home" ID="N00" IMAGE="home">/demo-servlets/blank.htm</NODE>
+  <NODE NAME="Dmitriy Rogatkin's Software highlits" ID="N11">
+    <NODE NAME="7Bee 1.0.2" ID="N7bee12">
+       <ELEMENT NAME="Overview" ID="N7bee13">http://7bee.j2ee.us/bee/index-bee.html</ELEMENT>
+       <ELEMENT NAME="Download" ID="N7bee15" IMAGE="plob">http://7bee.j2ee.us/download/bee-1.0.2.zip</ELEMENT>
+    </NODE>
+    <NODE NAME="MediaChest 1.5" ID="N12">
+       <ELEMENT NAME="Overview" ID="N13">http://mediachest.sourceforge.net/</ELEMENT>
+       <ELEMENT NAME="Release notes" ID="N14">http://mediachest.sourceforge.net/history.html</ELEMENT>
+       <ELEMENT NAME="Download" ID="N15" IMAGE="plob">http://sourceforge.net/project/showfiles.php?group_id=35208</ELEMENT>
+    </NODE>
+    <NODE NAME="R-AddressBook 1.3" ID="N16">
+       <ELEMENT NAME="Overview" ID="N17">http://jaddressbook.sourceforge.net/</ELEMENT>
+       <ELEMENT NAME="Download" ID="N18" IMAGE="plob">http://sourceforge.net/project/showfiles.php?group_id=36187</ELEMENT>
+       <ELEMENT NAME="Try" ID="N18T" IMAGE="net">/addressbook/</ELEMENT>
+    </NODE>
+    <NODE NAME="FineSearch 1.0 beat" ID="FSP">
+       <ELEMENT NAME="Read about it" ID="FSRAI">http://searchdir.sourceforge.net/</ELEMENT>
+       <ELEMENT NAME="Try it" ID="FSPD" IMAGE="net">/finesearch/</ELEMENT>
+    </NODE>
+    <NODE NAME="Chat House 1.0" ID="N19">
+       <ELEMENT NAME="Overview" ID="N20">/ChatHouse/readme.htm</ELEMENT>
+       <ELEMENT NAME="Download WAR" ID="N21a" IMAGE="plob">/download/ChatHouse.war</ELEMENT>
+       <ELEMENT NAME="Try it!" ID="N30" IMAGE="net">/ChatHouse/chat</ELEMENT>
+    </NODE>
+    <NODE NAME="xBox 1.0" ID="N22">
+       <ELEMENT NAME="Overview" ID="N23">http://xbox.sourceforge.net/</ELEMENT>
+       <ELEMENT NAME="Download" ID="N24" IMAGE="plob">http://xbox.sourceforge.net/download/xbox.zip</ELEMENT>
+    </NODE>
+    <NODE NAME="Upload servlet" ID="N25">
+       <ELEMENT NAME="Overview" ID="N26">/demo-servlets/servlet_http_uploader.htm</ELEMENT>
+       <ELEMENT NAME="Download" ID="N27" IMAGE="plob">/download/UploadServlet.zip</ELEMENT>
+    </NODE>
+    <NODE NAME="Mini Java Web Server" ID="N28">
+       <ELEMENT NAME="Overview" ID="N29">http://tjws.sourceforge.net/</ELEMENT>
+       <ELEMENT NAME="Download" ID="N29a" IMAGE="plob">http://sourceforge.net/project/showfiles.php?group_id=35209</ELEMENT>
+    </NODE>
+    <NODE NAME="TreeView servlet" ID="N35">
+       <ELEMENT NAME="Overview" ID="N36">/demo-servlets/tre_eview-doc.html</ELEMENT>
+       <ELEMENT NAME="Download demo" ID="N37" IMAGE="plob">/download/demo-servlets.war</ELEMENT>
+       <ELEMENT NAME="Check XML" ID="N38" IMAGE="net">/demo-servlets/simpletree.xml</ELEMENT>
+    </NODE>
+    <NODE NAME="Lunch duties calculation" ID="N45">
+       <ELEMENT NAME="Calculate" ID="N46" IMAGE="net">/demo-servlets/lunch</ELEMENT>
+    </NODE>
+  </NODE>
+  <NODE NAME="C:\" ID="N1">
+     <ELEMENT NAME="autoexec.bat" ID="N2">file:/C:\autoexec.bat</ELEMENT>
+     <NODE NAME="Program Files" ID="N3">
+       <NODE NAME="Visual Studio" ID ="N4">
+         <NODE NAME="bin" ID="N5">
+            <ELEMENT NAME="vc.exe" ID="N6">file:/C:\Program Files\Visual Studio\bin\vc.exe</ELEMENT>
+         </NODE>
+       </NODE>
+       <NODE NAME="Far Manager" ID ="N7">
+         <ELEMENT NAME="far.exe" ID="N8">file:/C:\Program Files\far\far.exe</ELEMENT>
+       </NODE>
+    </NODE>
+  </NODE>
+  <NODE NAME="My Network Places" ID="N9">
+    <ELEMENT NAME="Entire Network" ID="N10" IMAGE="net">/davenport/</ELEMENT>
+  </NODE>
+  <ELEMENT NAME="Blog" ID="BLOG" IMAGE="blog">/blog/</ELEMENT>
+  <ELEMENT NAME="Contact me" ID="N33" IMAGE="mail">mailto:jAddressBook@gmail.com</ELEMENT>
+  <ELEMENT NAME="Snoop servlet(jsp)" ID="N34" IMAGE="java">/demo-servlets/snoop.jsp</ELEMENT>
+  <ELEMENT NAME="View XML source for this control" ID="N34-2" IMAGE="plob">/demo-servlets/WEB-INF/classes/javaarchitect/servlet/tree/resource/simpletree.xml</ELEMENT>
+
+  <!--ELEMENT NAME="Посмотрите на меня" ID="N34-1" IMAGE="java">/download/me.jpg</ELEMENT-->
+</TREE>

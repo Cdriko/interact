@@ -1,0 +1,5 @@
+@model(
+<div>
+  <div style="position:relative"><input type="checkbox" name="id" value="@element.id@"><div style="position:absolute;float:right">@element.label@</div></div>
+</div>
+)@

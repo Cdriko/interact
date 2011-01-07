@@ -1,0 +1,6 @@
+	<script>
+	  var A_TCALSIDX = new Object();
+	  A_TCALSIDX.index =0;
+	</script>
+	<script language="JavaScript" src="@contextpath@/js/calendar_us.js"></script>
+	<link rel="stylesheet" href="@contextpath@/css/calendar.css">

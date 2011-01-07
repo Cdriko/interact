@@ -1,0 +1,6 @@
+[Desktop Entry]
+Comment=Web Server
+Exec=runws
+Icon=wsz
+Type=Application
+Name=Web Server

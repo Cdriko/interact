@@ -1,0 +1,71 @@
+<!-- $Id: mvtree.htm,v 1.1 2006/05/10 06:17:34 rogatkin Exp $
+    this tree view used for move/copy target -->
+@treeviewfolder(
+      <table cellspacing=0 cellpadding=0 border=0>
+         <tr>
+            @treeline(
+                  @rootnode(
+                    <td title="root"><img src='@treeimages@/space.gif' border=0 width=16 height=18></td>
+                    <td>
+                       <a href="javascript:updateTree('@page@/ajax/TreeChange?nodeid=@:nodeid@@state(&state=@:state@)@&tree=folder&@parameters@')">
+                          <img src='@treeimages@/home.gif'
+                          border=0 width=16 height=16></a></td>
+                    <td>
+                       <img src='@treeimages@/space.gif' border=0 width=3 height=10></td>
+                    <td>
+                       <a href="javascript:copyTo('@page@/ajax/TreeChange?newnode=@state(&state=@:state@)@&tree=folder&@parameters@@.link@','')">
+                       <img src='@treeimages@/space.gif' border=0 width=3 height=10><b>@name@</b></a>
+                       <img src='@treeimages@/space.gif' border=0 width=3 height=10></td>
+                  )@
+                  @opennode(
+                    <td>
+                       <a href="javascript:updateTree('@page@/ajax/TreeChange?nodeid=@nodeid@@state(&state=@:state@)@&tree=folder&@parameters@')">
+                          <img src='@treeimages@/minus@vpos@.gif' 
+                          border=0 width=16 height=16></a></td> <!-- _first, _notlast, _last -->
+                    <td>
+                       <a href="javascript:updateTree('@page@/ajax/TreeChange?nodeid=@nodeid@@state(&state=@:state@)@&tree=folder&@parameters@')">
+                          <img src='@treeimages@/folder_o.gif'
+                          border=0 width=16 height=16></a></td>
+                    <td>
+                       <img src='@treeimages@/space.gif' border=0 width=3 height=10></td>
+                    <td nowrap>
+                       <a href="javascript:copyTo('@page@/ajax/TreeChange?newnode=@nodeid@@state(&state=@:state@)@&tree=folder&@parameters@@.link@', '@nodeid@')">
+                       <img src='@treeimages@/space.gif' border=0 width=3 height=10>@name@</a>
+                       <img src='@treeimages@/space.gif' border=0 width=3 height=10></td>
+                  )@
+                  @shiftlevel(
+                       <td><img src='@treeimages@/@vpos@.gif' border=0 width=16 height=16></td>
+                  )@
+                  @element(
+                       <td><img src='@treeimages@/line@vpos@.gif' border=0 width=16 height=16></td>
+                         <!-- _first, _notlast, _last -->
+                       <td><a href="javascript:updateTree('@page@/ajax/TreeChange?nodeid=@nodeid@@state(&state=@:state@)@&tree=folder&@parameters@')">
+                         <img src='@treeimages@/@spec@.gif' border=0 width=16 height=16></a></td>
+                       <td><img src='@treeimages@/space.gif' border=0 width=3 height=10></td>
+                       <td nowrap>
+                           <a href="javascript:copyTo('@page@/ajax/TreeChange?newnode=@nodeid@@state(&state=@:state@)@&tree=folder&@parameters@@.link@', '@nodeid@')">
+                           <img src='@treeimages@/space.gif' border=0 width=3 height=10>@name@</a>
+                           <img src='@treeimages@/space.gif' border=0 width=3 height=10></td>
+                  )@
+                  @closenode(
+                    <td>
+                       <a href="javascript:updateTree('@page@/ajax/TreeChange?nodeid=@nodeid@@state(&state=@:state@)@&tree=folder&@parameters@')">
+                          <img src='@treeimages@/plus@vpos@.gif' 
+                          border=0 width=16 height=16></a></td> <!-- _first, _notlast, _last -->
+                    <td>
+                       <a href="javascript:updateTree('@page@/ajax/TreeChange?nodeid=@nodeid@@state(&state=@:state@)@&tree=folder&@parameters@')">
+                          <img src='@treeimages@/folder.gif'
+                          border=0 width=16 height=16></a></td>
+                    <td>
+                       <img src='@treeimages@/space.gif' border=0 width=3 height=10></td>
+                    <td nowrap>
+                       <a href="javascript:copyTo('@page@/ajax/TreeChange?newnode=@nodeid@@state(&state=@:state@)@&tree=folder&@parameters@@.link@', '@nodeid@')">
+                       <img src='@treeimages@/space.gif' border=0 width=3 height=10>@name@</a>
+                       <img src='@treeimages@/space.gif' border=0 width=3 height=10></td>
+                  )@
+            )@
+         </tr>
+      </table>
+)@
+<p>
+<div style="cursor: pointer" onclick="javascript:document.body.removeChild(getElementById('targetFolderSelector'))">[@commonlabel.close@]</div>

@@ -1,0 +1,13 @@
+<head>
+<style type="text/css">
+  DIV#title { background:efe; font-weight: bold; font-size:76% }
+  DIV#vote_option { display:inline;position:relative;left:6px;top:0; font-family: arial,sans-serif;font-size:68%}
+  DIV#vote_bar {font-size:82%;padding-top:2px;padding-bottom:0}
+</style>
+</head>
+<div id="title">@model.getTitle*()*@</div>
+<div>Poll result</div>
+@javaarchitect.servlet.examples.poll.PollModel.calculatePercentage*(java.util.List^@model.getVotes*()*@)*(
+     <div id="vote_bar">
+        <div style="width:108px;display:inline"><div style="position:relative;display:inline;left:4px;background-color:green;width:@element.count@px;padding:0"></div></div><div id="vote_option">@element.title@ : @element.count@%</div></div>
+)@

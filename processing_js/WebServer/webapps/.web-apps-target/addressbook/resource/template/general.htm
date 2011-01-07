@@ -1,0 +1,135 @@
+<!-- $Id: general.htm,v 1.3 2008/03/14 08:02:22 dmitriy Exp $  -->
+<script>
+  function addRow(name) {
+     var et = document.all[name];
+//        et.rows();
+     var nr = et.insertRow(et.rows.length-1);
+     var nc = nr.insertCell(0);
+     nc.innerHTML = '<input type="checkbox" name="'+name+'mark">';
+     nc = nr.insertCell(1);
+     nc.innerHTML = '<input type="radio" name="'+name+'defualt">';
+     nc = nr.insertCell(2);
+     //nc.innerHTML = '';
+     // todo: figure out how to use dynamic call name
+     if (name == 'email')
+	 editType(nc, '');
+     else
+         editTelType(nc, '');
+     nc = nr.insertCell(3);
+     nc.innerHTML = '<input type="text" value="" name="'+name+'description">';
+     var i=4;
+     if (name == 'email')
+         nc = nr.insertCell(i++);
+     nc = nr.insertCell(i);
+     nc.innerHTML = '<input type="text" value="" name="'+name+'value">';
+
+  }
+ function special(xStr){  
+   var qt=/"/g; 
+   xStr=xStr.replace(qt,"&quot;");
+   return xStr; 
+ }
+
+  function deleteRows(name) {
+    var table = 
+    document.all ? // IE
+      document.all[name] :
+    document.getElementById ? // NN6 or other DOM compliant browser
+      document.getElementById(name) :
+        null; // no access and then you script table.rows for instance
+    if (table) // browser supports TABLE access
+      // use table.rows for instance color rows alternatingly
+      for (var r = table.rows.length-1; r >= 0; r--) {
+        if (table.rows[r].cells[0].firstChild.checked)
+          table.deleteRow(r);
+      }
+  }
+  function telephoneFormat(tel) {
+  }
+  function emailFormat(tel) {
+  }
+  function makeEditable(td, val, name, blur) {
+    if (blur)
+       td.innerHTML = '<input type="text" name="'+name+'" value="'+special(val)+'" onBlur="'+blur+'">';
+    else
+       td.innerHTML = '<input type="text" name="'+name+'" value="'+special(val)+'">';
+     td.onclick=null;
+     td.firstChild.focus();
+  }
+  function editType(td, val) {
+     td.innerHTML = '<select name="emailtype">'
+          @type(+'<option>@type@</option>')@
+      +'</select>';
+     td.onclick=null;
+  }
+  function editTelType(td, val) {
+     td.innerHTML = '<select name="tphonetype">'
+          @tphonetype(+'<option>@type@</option>')@
+      +'</select>';
+     td.onclick=null;
+  }
+</script>
+
+<table name="email"' id="email">
+<tr>
+  <th>&nbsp;</th>
+  <th>@label.default@</th>
+  <th>@label.type@</th>
+  <th>@label.nick@</th>
+  <th>&nbsp;</th>
+  <th>@label.email@</th>
+</tr>
+@email(
+<tr>
+  <td><input type="checkbox" name="emailmark"></td>
+  <td><input type="radio" name="emaildefault" value="@index@" @element.isPreferable*()*{@true(checked)@}@></td>
+  <td onClick="editType(this, '@^element.getType*()*@')">@element.getType*()*@<input type="hidden" name="emailtype"  value="@element.getType*()*@"></td>
+  <td onClick="makeEditable(this, '@^element.getDescription*()*@', 'emaildescription', null)">@element.getDescription*()*@<input type="hidden" name="emaildescription" value="@element.getDescription*()*@"></td>
+  <!-- link to send mail will depend on used e-mail type 
+       for gmail
+       http://mail.google.com/mail/h/1rfq1rm2xbl4l/?cs=wh&v=b&to=@element.getNormalized*()*@
+   -->
+  <td><a href="mailto:@element.getNormalized*()*@">@commonlabel.go@</a></td>
+  <td onClick="makeEditable(this, '@^element.getNormalized*()*@', 'emailvalue', 'emailFormat(this)')">@element.getNormalized*()*@<input type="hidden" name="emailvalue" value="@element.getNormalized*()*@" onBlur="emailFormat(this)"></td>  
+</tr>
+)@
+<tr>
+  <td colspan="6">
+    <table border="0">
+     <tr>   
+       <td><div class="b-button-g" onClick="addRow('email')">@commonlabel.add@</div></td>
+       <td><div class="b-button-g" onClick="deleteRows('email')">@commonlabel.delete@</div></td>
+     </tr>
+    </table>
+  </td>
+</tr>
+</table>
+
+<table id="tphone">
+<tr>
+  <th>&nbsp;</th>
+  <th>@label.default@</th>
+  <th>@label.type@</th>
+  <th>@label.nick@</th>
+  <th>@label.telephone@</th>
+</tr>
+@tphone(
+<tr>
+  <td><input type="checkbox" name="tphonemark"></td>
+  <td><input type="radio" name="tphonedefault" value="@index@" @element.isPreferable*()*{@true(checked)@}@></td>
+  <td onClick="editTelType(this, '@^element.getType*()*@')">@element.getType*()*@<input type="hidden" name="tphonetype"  value="@element.getType*()*@"></td> <!-- use JS HTML LOV -->
+  <td onClick="makeEditable(this, '@^element.getDescription*()*@', 'tphonedescription', null)">@element.getDescription*()*@<input type="hidden" name="tphonedescription" value="@element.getDescription*()*@"></td>
+  <td onClick="makeEditable(this, '@^element.getNormalized*()*@', 'tphonevalue', 'telephoneFormat(this)')">@element.getNormalized*()*@<input type="hidden" name="tphonevalue" value="@element.getNormalized*()*@" onBlur="telephoneFormat(this)"></td>  
+</tr>
+)@
+<tr>
+  <td colspan="5">
+    <table border="0">
+     <tr>   
+       <td><div class="b-button-g" onClick="addRow('tphone')">@commonlabel.add@</div></td>
+       <td><div class="b-button-g" onClick="deleteRows('tphone')">@commonlabel.delete@</div></td>
+     </tr>
+    </table>
+  </td>
+</tr>
+</table>

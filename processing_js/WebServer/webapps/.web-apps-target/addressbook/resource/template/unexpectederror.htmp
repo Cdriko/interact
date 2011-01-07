@@ -1,0 +1,17 @@
+<html>
+<title>Unexpected error in @servlet@</title>
+<link rel="stylesheet" href="/addressbook/styles.css" type="text/css" media="all"/>
+<body>
+<!-- $Id: unexpectederror.htmp,v 1.2 2006/09/20 03:49:23 rogatkin Exp $ -->
+<h2>Error: <font color="red">@error@</font></h2>
+<pre>
+@tracelog@
+</pre>
+<p>
+@servlet@
+<p>
+<a href="@referer@">continue</a>
+</p>
+@%'footer.htm'@
+</body>
+</html>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
+<web-app>
+  <servlet>
+    <servlet-name>xumster</servlet-name>
+    <servlet-class>org.xumster.webapp.Main</servlet-class>
+    <init-param>
+        <param-name>properties</param-name>
+        <param-value>/WEB-INF/config/xumster.properties</param-value>
+    </init-param>
+  </servlet> 
+  <servlet-mapping>
+    <servlet-name>xumster</servlet-name>
+    <url-pattern>/ipod/*</url-pattern>
+  </servlet-mapping>
+  <listener>
+	<listener-class>org.xumster.webapp.Main</listener-class>
+  </listener>
+  <welcome-file-list> 
+    <welcome-file>ipod.html</welcome-file>
+  </welcome-file-list> 
+</web-app>

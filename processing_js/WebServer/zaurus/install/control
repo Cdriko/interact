@@ -1,0 +1,8 @@
+Package: wsz
+Installed-Size: 120k
+Filename: ./wsz_1.0_arm.ipk
+Version: 1.0
+Architecture: arm
+Maintainer: Dmitriy Rogatkin dmitriy@mochamail.com
+Description: Java Web Server with servlet support
+Section: Java

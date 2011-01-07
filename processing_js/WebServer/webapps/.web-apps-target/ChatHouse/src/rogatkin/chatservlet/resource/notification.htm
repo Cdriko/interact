@@ -1,0 +1,26 @@
+<HTML>
+<HEAD>
+<TITLE>ChatHouse - Notification</TITLE>
+</HEAD>
+<BODY bgcolor="#666666">
+<FORM id=notification name=notification action="Notification" method=post>
+<P><FONT COLOR=white>Send mail to: &nbsp; <input id=email name=email value="@email@">&nbsp;&nbsp;when 
+a user:&nbsp; <INPUT id=name name=name value="@name@" size="15">&nbsp;
+  <SELECT id=condition size=1 name=condition> 
+  <OPTION value=joins selected>joins</OPTION>
+  <OPTION value=leaves>leaves</OPTION>
+  <OPTION value=invites>invites to</OPTION>
+  <OPTION value=ridof>get rid of</OPTION>
+  </SELECT>&nbsp;&nbsp;room:&nbsp;<SELECT id=rooms name=room_sel>
+            <option @selected@>Any</option>
+          @room_sel(
+          <option value="@room_name@" @selected@>@room_name@ (@size@)</option>
+          )@
+  </SELECT>&nbsp;<INPUT id=notify type=submit value=OK name=submit></FONT>&nbsp;
+   <A href="Input?sendto=@:user@"><FONT size=1 color=white>cancel</FONT></A><BR>
+   <FONT size=1 color=#dddd88 face=Verdana><b>To get rid of all previously assigned notifications, just provide
+   e-mail and select <i>get rid of</i>.</b></FONT></P>
+   <INPUT type="hidden" name="sendto" id="sendto" value="@.user@">
+</FORM>
+</BODY>
+</HTML>

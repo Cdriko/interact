@@ -1,0 +1,145 @@
+<html>
+<!-- Search Director Copyright &copy; 2006,2007 Dmitriy Rogatkin, All rights reserved. -->
+<title>Aldan3 template engine tests</title>
+<link rel="stylesheet" href="/finesearch/styles.css" type="text/css" media="all"/>
+<script src="/finesearch/ajaxhelper.js" language="Javascript"></script>
+<script>
+  var timer = setTimeout('showNumbers();', 5000);
+
+  function showNumbers() {
+     clearTimeout(timer); // needed?
+     makeIFrameAjaxCall('Test/ajax/retrieveNumber', 
+         function (html) {
+            document.getElementById('recetviewed').innerHTML=html;
+            timer = setTimeout('showNumbers();', 20000);
+         } , function(e) {
+              window.status='error'+e;
+         }
+      ) ;
+  }
+
+
+  function submitNumber() {
+      makeIFrameAjaxSubmit('Test/ajax/viewNumber', document.forms.numberform, null,
+        function (html) {
+           document.getElementById('status').innerHTML=html;
+        }, null, 'entrysub');
+     document.getElementById('submitform').style.display='none';
+  }
+  function showForm() {
+     document.getElementById('submitform').style.display='block';
+  }
+  function getJsp() {
+     makeGenericAjaxCall('Test/ajax/Testview', null, true, function(html) {
+        document.getElementById('jsp_area').innerHTML=html;
+    });
+  }
+</script>
+<body>
+Result:<br>
+<table border="1" width="100%">
+  <tr>
+    @ROWS.get*(0)*.getNames*()*(<th >@element@</th>)@
+  </tr>
+  @ROWS(
+  <tr>
+    @element.getNames*()*(<td @element{@age(align="center")@}@>@.parent.getValue*(java.lang.String^@element@)*@
+      <br>@request.getAttribute*(name)*.getName2*(java.lang.String^@request.getAttribute*(fela)*@,java.lang.String^@element@)*@
+    </td>)@
+  </tr>
+  )@
+</table>
+<table>
+  @items(
+     <tr>
+       <td>@label@</td>
+       <td>
+         @name{
+           @description(
+              <textarea name="@name@" rows="2" cols="45">@value@</textarea>
+           )@
+           @quality(
+               <select name="@name@">
+                 <option   @value{@DVD(selected)@}@>DVD</option>
+                 <option   @value{@VCD(selected)@}@>VCD</option>
+                 <option   @value{@TV(selected)@}@>TV</option>
+                 <option   @value.toString*()*{@less,@func.getName*(BLUR)*@,@func.getName*(HD)*@(selected)@}@>HD</option>
+                 <option   @value{@VCR(selected)@}@>VCR</option>
+               </select>
+           )@
+           @(
+             <input type="text" name="@name@" value="@value@">
+           )@
+         }@
+       </td>
+     </tr>
+  )@
+</table>
+Simple select: <select>
+   @items( <option value="@name.toString*()*@" @value.toString*()*{@@func.getName*(HD)*@(selected)@}@>@label@</option>  )@
+   </select>
+<p>
+Request by: @request.fela@
+<p>
+Name from request attribute function call:
+  @request.getAttribute*(name)*.getName2*(java.lang.String^@request.getAttribute*(fela)*@,two)*@
+</p>
+<p>
+Vote for the best legs:
+<table border=0>
+  @vote[0..,3](
+    <tr>
+       @parent[@index@..@finesearch.vc.Test.add*(@index@,2)*@](<td><input type=checkbox value="@element.getValue*(id)*@">@element.getValue*(name)*@</td>)@
+    </tr>
+  )@
+</table>
+</p>
+<p>
+  @request.setAttribute*(sel_val,java.lang.Object^@test.trim*()*.toUpperCase*()*@)*@
+  [@request.sel_val@]
+</p>
+
+<p>
+Cookie work:
+@java.util.Arrays.toString*([Ljava.lang.Object;^@request.getCookies*()*@)*@
+<table border=0>
+ <tr><th colspan=2>Cookies</th></tr>
+ @request.getCookies*()*(
+   <tr><td>@element.getName*()*@</td><td>@element.getValue*()*@</td></tr>)@
+</table>
+</p>
+<p>
+Recent viewed:
+<div id=recetviewed></div>
+Status:<div id=status style="display:inline;color:red"></div>
+<div onclick="showForm()">Show</div>
+<div id=submitform>
+   <form name=numberform method=POST action="Test/ajax/viewNumber"> 
+    <fieldset>
+      <legend>
+        New lucky number
+      </legend>
+       <label for=id>Number<input type=text name=id style="text-align:right"></label>
+       <label for=go onclick="submitNumber()">Go</label>
+    </fieldset>
+   </form>
+</div>
+</p>
+<h4>Session work</h4>
+@session@
+<h4>
+
+Test request access, putting in request first:</h4>
+  @request.setAttribute*(vote,java.lang.Object^@vote@)*@
+<br>.. and retrieving:<br>
+@request.vote(@element@)@
+</p>
+<h4>
+Test JSP view:</h4>
+<a href="javascript:{}" onclick="getJsp();">Get it</a>
+</p>
+<div id=jsp_area></div>
+
+<iframe name="entrysub" id="entrysub" src="#" height="0px" width="0px" border="0" style="width:0px;height:0px;border:0px"></iframe>
+</body>
+</html>

@@ -1,0 +1,310 @@
+<html>
+
+<head>
+<title>Search Director aka finesearch</title>
+<style>
+<!--
+ .ttc {color:#36c}
+.cc          { text-align: center }
+-->
+</style>
+</head>
+
+<!-- $Id: index.html,v 1.17 2008/03/14 08:03:31 dmitriy Exp $ -->
+<body>
+<h2>Search Director</h2>
+<h5>aka finesearch</h5>
+<div><a href="http://7bee.j2ee.us/bee/index-bee.html"><img src="http://7bee.j2ee.us/bee/7bee_logo_avatar.png" border=0></a><div style="clear: right; left: 80%; position: relative">
+    <a href="http://sourceforge.net/project/showfiles.php?group_id=155558">Download</a> 
+    (version 1.20 updated on 3/14/8</div></div>
+<table border=0>
+  <tr>
+    <td style="width: 319px"><h4><span class="Article_Title">Why Is Anyone Still Using Google search?</span></h4></td>
+    <td><p><b>Opinion</b>: <i>How many times must Google be shown to be totally irrelevant, 
+inaccurate, and ads driven when there is the Live search?</i></p>
+<p><b>Citation</b>: <i>Google is a lot like McDonalds. Both are global forces 
+and probably aren't going anywhere soon. But you feel kind of guilty after 
+buying or using anything from either of them, and you usually have a bad taste 
+in your mouth for days.</i> </p>
+</td>
+  </tr>
+</table>
+
+<p>
+    Search engine? What can be simpler? &nbsp;Do you think so? You can 
+be right though. Indexing Internet content&nbsp; although requires time and processor
+recourses is quiet straight forward task.&nbsp; So where a problem is? </p>
+<ol>
+	<li>Keeping index up-to-date</li>
+	<li>Keep index comprehensive</li>
+	<li>Build categorization upon content</li>
+	<li>Categorize a search query</li>
+	<li>Sort and filter result</li>
+	<li>Give an access to entire index</li>
+	<li>Incremental and activity indexing</li>
+	<li>Avoid ads or censorship driven result massaging or index building</li>
+	<li>Provide request location independent result</li>
+</ol>
+<p>&nbsp;What's behind every problem and how it reflects in search result? Ok, 
+let's look:</p>
+<h4>Keeping index up-to-date</h4>
+<p>If index isn't updating periodically then a search result can contain broken 
+links. It can be solved looking in search cache, however actual cause of broken 
+link can be that previous version of link had incomplete or wrong information. 
+Cache also doesn't allow to do drill down to get more information if it looks 
+like relevant. Other case of obsolete link, that a link can be still active but 
+content can not match search query.</p>
+<h4>Keep index comprehensive</h4>
+<p>Although web crawling is well known task, many search engines use very 
+simplistic crawlers which can't handle well links calculated in JavaScript or 
+links reachable from navigation trees or other navigation controls with multiple 
+    states. Reason of 
+that that manipulation with navigation control can just chnage its state
+without bringing a new result. So many crawlers gave up 
+after certain number of attempts not bringing anything different.
+ Some sites, like blogs can not provide an 
+index of content, like live journal. In this case search engines are not smart enough to perform 
+searching tasks requiring elements of AI. Needless to say about impossibility of reaching protected 
+content.</p>
+<h4>Build categorization upon content</h4>
+<p>Many search engine doesn't assign any categorization information to indexed 
+web content. So all pages look equal. It makes search result mostly irrelevant 
+to a search query.</p>
+<h4>Categorize a search query</h4>
+<p>Categorization a search query makes sense only if index has categorization 
+too. Matching query categories to categories in an index can provide much more 
+relevant results.</p>
+<h4>Sort and filter result</h4>
+<p>Search result should be sorted by certain criteria,&nbsp; like last time 
+update, or most relevant upon used categorization. Filtering can be helpful to 
+eliminate duplicated or similar result coming from the same source.</p>
+<h4>Give an access to entire index</h4>
+<p>Although actual number of entries matching a search query can be big, most of 
+search engine will restrict a temporary built result to 1000 or less entries. It 
+makes very likely that final result won't include search goal, especially if 
+above problems exist in a search engine.</p>
+<h4>Incremental and activity indexing</h4>
+<p>Indexing can be incremental like providing changes for updated pages. 
+Activity index is also helpful to find out recently changed information relevant 
+to a search query.</p>
+<h4>Avoid ads or censorship driven massaging</h4>
+<p>Result data shouldn't be driven by advertisement pushing certain result on 
+first page. Censorship shouldn't be also applied to hide certain results. Funny 
+    thing that two giants as Microsoft and Google have controversial censorship 
+    patterns. For example I wrote a small blog about how to use Google mail with Java mail API. Do a search for words: <samp>javamail google</samp> using Microsoft's live search 
+    . A link to my blog will be second on first page. However if you try Google or 
+    Yahoo search, then you won&#39;t be able to find this link at all. You may guess, 
+    that Google doesn&#39;t index the blog? It isn&#39;t possible, because you can find link 
+    to my article from some page found by Google. So certainly Google twit is 
+    applied for my blog entry. <!-- Interesting that after publishing this discovery that
+    Microsoft uses Google's twit to promote certain pages, Microsoft got excuse and shuffled
+    Google's twit pages to avoid a scandal. Now my page still gets listed by Microsoft,
+    however no more in first positions. --> Read more about Google censorship
+<a href="http://www.sethf.com/anticensorware/general/google-censorship.php">here</a>.</p>
+<h4>Provide request location independent result</h4>
+<p>Result shouldn't be build or requester location. Some engine like Google 
+provides analyze of requester IP or language settings and trying to use result 
+sorting based on location coefficient. A requester has to have choice to disable 
+location involvement.</p>
+<h3>How good Google or any other search engine are in resolving above problems?</h3>
+<p>To get an answer on this question I wrote a small tool which helps in deep 
+analyzing results provided by a search engine. The following score system for 
+search engines was introduced:</p>
+<ol>
+	<li>Relevant: One or more search targets are presented in result, 0 to 5. 0 
+	no search target, 1 in last 20% entries, 2 in last 50% entries, 3 in first 
+	20% entries, 4 in 2 first pages, 5 on first page more than one entry.</li>
+	<li>Relevant after tuning: One or more search targets are presented after 
+	one search query tuning. The same scores as for one, considering as 5 if 
+	tuning not required.</li>
+	<li>Actuality, 0 to 3: 0 more than 20% of broken links, 1 - 10% of broken 
+	links, 2 less than 5% of broken links, 3 - no broken links.</li>
+	<li>Relevant actuality, 0 to 2, 0 when 50% or more of search targets broken, 1&nbsp; 
+	20% to 50% of search target broken, 2 less than 20% of of search target 
+	broken.</li>
+	<li>Actuality, 0 to 2, 0 more than 50% of result entries do not include all 
+	query words, 1 between 20%-50%, 2 less than 20%.</li>
+	<li>Biased rate, 0 to 2, 0 when sites with censored words completely removed 
+	from index and can't be found using other neutral words, or when 
+	competitor's product can't be found on first 10 page of result, 1 when 
+	censored page included in index but can't be found using censored words, 2 
+	when no censorship or ads biasing.</li>
+	<li>Locale involvement, 0 to 1, 0 when result depends on a requester IP or 
+	locale setting, 1 not depend on.</li>
+	<li>Comprehensive rate, 0-2, 0 total number of entries in query &lt; 200, 1 &lt; 
+	600, 2 &lt; 1000</li>
+</ol>
+<p>All above tests perform for 10 different queries in the following categories:</p>
+<ol>
+	<li>Single word product name</li>
+	<li>Single word product name and 3 words product description</li>
+	<li>3 words product description</li>
+	<li>5 words problem description</li>
+	<li>a person name, well known</li>
+	<li>a person name not well known</li>
+	<li>20 words on page accessible using tree navigation</li>
+	<li>20 words on page accessible JavaScript constructed link</li>
+	<li>10 words page updated 10 days ago</li>
+	<li>10 words page updated 30 days ago </li>
+	<li>specifically selected words or product which suspected to be censored or 
+	ads sensitive.</li>
+	<li>providing above tests using different IP and language settings</li>
+</ol>
+<h3>Testing result</h3>
+<table border="0" width="100%" id="scores">
+	<tr>
+		<td width="98">&nbsp;</td>
+		<td align="center">Relevant</td>
+		<td align="center">Actual</td>
+		<td align="center">Comprehensive</td>
+		<td align="center">Total</td>
+	</tr>
+	<tr>
+		<td width="98">Yahoo</td>
+		<td align="center">1</td>
+		<td align="center">2</td>
+		<td align="center">2</td>
+		<td align="center">5</td>
+	</tr>
+	<tr>
+		<td width="98">MSN</td>
+		<td align="center">
+            3</td>
+		<td align="center">
+            3</td>
+		<td align="center">
+            3</td>
+		<td align="center">
+            9</td>
+	</tr>
+	<tr>
+		<td width="98">Google</td>
+		<td align="center">2</td>
+		<td align="center">2</td>
+		<td align="center">2</td>
+		<td align="center">6</td>
+	</tr>
+</table>
+<p><a href="http://sourceforge.net/project/showfiles.php?group_id=155558">Download </a> <b>finesearch</b> and test 
+yourself to see how bad your favorite search engine Google is. MSN search
+    engine seems improving last time, results became more comprehensive and accurate.
+    Yahoo is slippig. The company is busy on reorganization their software. A friend 
+    of mine Yahoo&#39;s chief architect&nbsp; told me about this reason. They also hired a lot of new people who need some time to get familiar with the products of the company. I have to update recognition patterns for Yahoo every 2 months, they can't still establish output format.
+Google is so so, and keeping second place. Google is still very good in software development related searches, however has very poor blog coverage. Very relevant blog entries listed by MSN on first page do not appear in Google or Yahoo search results at all.&nbsp; 
+    Yahoo&#39;s crawler seems the best when working on sites with cumbersome navigation. 
+    For education purpose, the tool has search support over Craig&#39;s list. Please use 
+    this feature with precaution and do not abuse Craig&#39;s list.</p>
+<p>Finesearch is easy deployable on such app servers as TJWS, Tomcat, or Sun 
+Java(TM) System Application Server. However binary of Finesearch is prepackaged 
+with
+<a href="http://sourceforge.net/project/showfiles.php?group_id=35209">TJWS</a>, 
+so you do not need to bother downloading and installing anything else. Just type 
+<kbd>java -jar finesearch.jar</kbd> and select URL
+<a href="http://localhost:8080/finesearch">http://localhost:8080/finesearch</a> 
+in your browser. If you have port 8080 conflict, then edit
+<font face="Courier New"><b>rundescriptor</b></font> inside of jar specifying a 
+different port number. </p>
+<p>Note that due instability of SF.net CVS, I decided to move CVS repository to my 
+home machine. So SF.net <a href="http://sourceforge.net/cvs/?group_id=155558">CVS tree</a> 
+doesn't reflect the latest project code status. I'll try to provide weekly 
+builds to allow get changes faster.</p>
+<h3>How to promote your company, product or service without spending a penny when people 
+still use Google ?</h3>
+<p>It's quite easy and will take just few minutes with Search Director, so even 
+if your time is very valuable, you still can save hundred dollars on payment to 
+Google. I'll provide a step by step instruction on a simple example.</p>
+<h4>Initial task</h4>
+<p>I have a Java build tool and want to get it reachable for people who're 
+trying to choose a building tool. I've created a home page for this build tool 
+at <a href="http://7bee.j2ee.us/bee/index-bee.html">
+http://7bee.j2ee.us/bee/index-bee.html</a> . The tool name is <b>7Bee</b>. </p>
+<h4>Verify that your target can be found using direct name search</h4>
+<p>Generally this step is optional, because even if your page not listed on 
+direct name search, then following to next steps of the remedy plan you have a 
+good chance to get it listed and generate traffic to it.</p>
+<h4>Verify that your target can't be found at a simple relevant search</h4>
+<p>Run Search Director an use relevant query like java build tool. Add a 
+filtering rule with a name of your product, like 7bee in our case. make sure 
+that result produced by a search engine didn't bring any entry on your product. 
+There is no surprise.</p>
+<h4>Find a content in search result you can change</h4>
+<p>Blogs, forums, surveys, visitors lists, encyclopedias, and any other type of 
+pages allowing content management are your target. (You do not need to hack in WebDav or 
+something like that.) Use filtering words like blog, forum 
+survey, and so on to find such pages. You can also filter out direct competitor's pages by specifying
+their product names with low count value, like 1-2. Doing that 
+I found two pages looked promising as: </p>
+<ol>
+	<li>A poll page from
+	<a href="http://www.manageability.org/polls/what-is-your-favorite-java-build-tool">
+	http://www.manageability.org/polls/what-is-your-favorite-java-build-tool</a> 
+	This page asked to add your favorite Java build tool unless it's already 
+	listed. So I have added my tool 7Bee on this page. Manageability page was 
+	very good catch since it was entry number 3 of Google's result.</li>
+	<li>Another page was found as blog of
+	<a href="http://weblogs.java.net/blog/sayedh/">Sayed Hashimi's </a>&nbsp;at
+	<a href="http://weblogs.java.net/blog/sayedh/archive/2005/10/your_build_tool.html">
+	http://weblogs.java.net/blog/sayedh/archive/2005/10/your_build_tool.html</a> 
+	. This page allowed to leave a comment, so I left it about 7Bee build tool. 
+	Ranking of this page not quite well, it has number&nbsp; 356 in Google's 
+	result, so very unlikely somebody ever will open it. However Google generates 
+	3 entries for this page, so it made me think that this page is popular in 
+	other searches and people can get know 7Bee without a targeted search.</li>
+</ol>
+<h4>Enjoy seeing your product by search engines</h4>
+<p>After remedy actions defined in previous steps I could see my tool listed 
+instantly in search results. Although search engines as Google still do not 
+provide direct links to a product, it doesn't seem like bad, because a mention of 
+the product can be found in first page of any relevant search.</p>
+<p>I used the same technique to promote my servlet container which currently 
+listed as 2nd entry of Google's result. Without usage of this tool it wasn't 
+listed at all. Needless to mention that nothing required to make my 
+products listed by MSN search within 2 first pages of a result. Certainly MSN 
+produces much less biased and more relevant results. MSN search is just lacking 
+in search of problem solving pages. So Google wins here. It looks like internally Google can have a 
+good ranking mechanism, however it's completely destroyed by ads. </p>
+    <h4>
+        Time passed, things changed</h4>
+    <div>
+        You need to repeat the described procedure to keep you listed on first result pages
+        of popular search engines. Google seems lost interest to blog of Sayed and Manageably
+        site withdrew this page either. However a 3 minutes procedure returned status quo.
+        I got listed again. Google seems hiring more engineers from India, so my product
+        listed on Indian sites turned on visibility on Google's pages as well. Microsoft
+        seems got an interest to Sayed, so my tool again survived.  Sayed is also loved
+        by Yahoo probably he moved from Google there, who knows?</div>
+<h3>Design principles of a right search engine</h3>
+<p>You're already aware those multiple problems of widely used search engines. So, 
+is there any solution to avoid problems and create a right one? Certainly a 
+solution exists and not one. I and my group are working on a new generation of 
+search engines. We name it as an intelligent search engine, although it's 
+probably too much. I'd like to share with you some design principles and hope to 
+get some feedback from you, because you will be all users of the new search 
+engine quite soon. I have also opennings in my group, so if you feel smart enough,
+then welcome to join. So, how does it work?</p>
+<ul>
+	<li>All words of English language (we count around 12,000) get 
+	categorization index (sure other languages will coming soon).&nbsp; A word 
+	can have more than one categorization index (it's obvious). </li>
+	<li>Every crawled web site obtains a categorization index based on 
+	categorization indices of words found on it. Obviously web site can get more 
+	than one.</li>
+	<li>Words are not falling in any categorization indices considered as names 
+	and for names we build also weak categorization indices. </li>
+	<li>Every categorization index has weight, it allows to order categorization 
+	indices in a request. A word with highest weight of categorization index 
+	names as a leading request word.</li>
+	<li>A search query processed first upon categorization indices of words 
+	starting from a leading word and going down. Finally a result after applying 
+	categorization out line is used for finding not categorized words as names 
+	and others.</li>
+	<li>Working on improving categorization of search index we improve your 
+	search results.</li>
+</ul>
+<p>Contact <a href="mailto:jaddressbook@gmail.com">dmitriy@google.com</a> or
+<a href="http://7bee.j2ee.us/addressbook/ab/Registry">sign on</a> for 
+jAddressBook account and check a shared folder</p>
+Note that some criticism to direction of some companies has a goal to improve products
+developed by them and doesn't have any personalized or other colors.
+</body>
+</html>

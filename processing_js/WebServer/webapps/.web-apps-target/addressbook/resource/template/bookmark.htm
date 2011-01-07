@@ -1,0 +1,40 @@
+<!--  $Id: bookmark.htm,v 1.1 2006/05/10 06:17:34 rogatkin Exp $   -->
+<script>
+  //<!--
+  function addLinkRow(name) {
+     var et = document.getElementById(name);
+     var nr = et.insertRow(et.rows.length-1);
+     var i=0;
+     var nc = nr.insertCell(i++);
+     nc.innerHTML = '<input type="checkbox" name="'+name+'mark">';
+     nc = nr.insertCell(i++);
+     nc.innerHTML = '<input type="text" value="" name="'+name+'description">';
+     nc = nr.insertCell(i++);
+     nc = nr.insertCell(i++);
+     nc.innerHTML = '<input type="text" value="" name="'+name+'value">';
+  }
+  // -->
+</script>
+<table id="link" name="link">
+  <tr>
+     <th>X</th><th>@label.description@</th><th>&nbsp;</th><th>@label.url@</th>
+  </tr>
+  @link(
+  <tr>
+    <td><input type="checkbox" name="linkmark"></td>
+    <td onClick="makeEditable(this, '@^element.getDescription*()*@', 'linkdescription', null)">@element.getDescription*()*@<input type="hidden" name="linkdescription" value="@element.getDescription*()*@"></td>
+    <td><a href="@element.getNormalized*()*@" target="_blank">@commonlabel.go@</a></td>
+    <td onClick="makeEditable(this, '@element.getValue*()*@', 'linkvalue', null)">@element.getValue*()*@<input type="hidden" name="linkvalue" value="@element.getNormalized*()*@"></td>
+  </tr>
+  )@
+<tr>
+  <td colspan="4">
+    <table border="0">
+      <tr>   
+        <td><div class="b-button-g" onClick="addLinkRow('link')">@commonlabel.add@</div></td>
+        <td><div class="b-button-g" onClick="deleteRows('link')">@commonlabel.delete@</div></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>

@@ -1,0 +1,33 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" >
+<HTML>
+<HEAD>
+</HEAD>
+<body>
+
+<form name="upload" method="post" action="FileUpload?upload=1" id="upload" enctype="multipart/form-data">
+    <input type="hidden" name="name" value="@name@">
+    <input type="hidden" name="hash" value="@hash@">
+    <input type="hidden" name="folder" value="@folder@">
+
+<script type="text/javascript">
+<!--
+var theForm = document.forms['upload'];
+if (!theForm) {
+    theForm = document.upload;
+}
+if(@result@)
+   parent.markUploaded('{"value":"@:value@","ix":@index@,"comment":"@description@"}');
+function doPost(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.submit();
+    }
+}
+// -->
+</script>
+
+    <input language="javascript" onclick="doPost()" name="iupload" type="button" id="iupload" value="Attach" />
+    <input name="picture" type="file" id="picture" />
+    <input name="HiddenFileName" type="hidden" id="HiddenFileName" />
+</form>
+</body>
+</HTML>

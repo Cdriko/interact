@@ -1,0 +1,41 @@
+<html>
+<title>@title@</title>
+<link rel="stylesheet" href="/finesearch/styles.css" type="text/css" media="all"/>
+<!-- $Id: jobsv.html,v 1.1.1.1 2006/05/10 06:44:00 rogatkin Exp $
+  -->
+<script>
+  function openControlPanel(job,x,y) {
+    //document.getElementById('control').style.display='';
+    // TODO: move offset in parrent to parent calc
+    var holder = parent.document.getElementById('jobs');
+    parent.displayControl(job,x+getOffsetLeft(holder),y+getOffsetTop(holder));
+  }
+  function closeControlPanel() {
+    parent.closeControl();
+  }
+  function getOffsetLeft (el) {
+    var ol = el.offsetLeft;
+    while ((el = el.offsetParent) != null)
+      ol += el.offsetLeft;
+    return ol;
+  }
+
+  function getOffsetTop (el) {
+    var ot = el.offsetTop;
+    while((el = el.offsetParent) != null)
+      ot += el.offsetTop;
+    return ot;
+  }
+</script>
+<body>
+  @job(
+    <div>
+    <a href="Resultv?job=@element@" target="result" onmouseover="openControlPanel('@element@', getOffsetLeft(this)+this.offsetWidth,getOffsetTop(this))"
+         onmouseout="closeControlPanel()">@finesearch.vc.Jobsv.toLabel*(java.lang.String^@element@)*@</a>
+    </div>
+  )@
+  <p class="error">@erroralert@</p>
+  @%'control.html'@
+  <a href="Jobsv">refresh</a>
+</body>
+</html>

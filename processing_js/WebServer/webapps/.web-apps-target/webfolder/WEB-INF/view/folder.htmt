@@ -1,0 +1,71 @@
+<script>
+  <!-- //
+    function selectAll() {
+    
+       if (document.forms.folder.elements.files.length == undefined)
+          document.forms.folder.elements.files.checked = document.forms.folder.elements.files.checked == false;
+       else  
+         for(var el=0,n= document.forms.folder.elements.files.length; el<n; el++) {
+            document.forms.folder.elements.files[el].checked =
+               document.forms.folder.elements.files[el].checked == false;
+               }
+    }
+    function upload() {
+       document.folder.encoding = "multipart/form-data";
+       return true;
+    }
+  // -->
+</script>
+<script type="text/javascript" src="@contextpath@/js/tinysort.js"></script>
+<h3>@TOPFOLDER@<a href="@parent@">@parent_label@</a>&nbsp;&nbsp;@file@</h3>
+<div>@error@</div>
+<form name="folder" method="POST">
+  <input type="hidden" name="path" value="@path@">
+<table class="sortable" id="folder_table">
+  <thead>
+  <tr>
+     <th class="nosort"><div style="cursor:pointer" onclick="selectAll()"><h3>X</h3></div></th>
+    <th><h3>name</h3></th><th><h3>size</h3></th><th><h3>date</h3></th>
+  </tr>
+  </thead>
+  <tbody>
+  @model(<tr>
+     <td>@element.folder{@false(<input type="checkbox" name="files" value="@element.path@">)@}@</td>
+    <td>@element.folder{@true(<a href="@request.getContextPath*()*@@request.getServletPath*()*@/Folder@msn.javaarchitect.webfolder.ctrl.Folder.webPath*(@element.path@)*@">)@ }@@element.name@</td>
+    <td style="text-align:right">@element.size@</td>
+    <td>@element.last_mod@</td>
+  </tr>
+  )@
+  </tbody>
+</table>
+<script>
+  <!-- //
+  var sorter = new TINY.table.sorter("sorter");
+	sorter.head = "head";
+	sorter.asc = "asc";
+	sorter.desc = "desc";
+	sorter.even = "evenrow";
+	sorter.odd = "oddrow";
+	sorter.evensel = "evenselected";
+	sorter.oddsel = "oddselected";
+	sorter.paginate = false;
+	sorter.init("folder_table",1);
+  // -->
+</script>
+
+<label for="base_url">download prefix<input type="text" name="base_url" value="@base_url@" size="60"></label>
+<div><input type="submit" name="submit" value="Get files list">&nbsp;
+      <input type="submit" name="submit" value="Delete">&nbsp;
+      <input type="submit" name="submit" value="Download">&nbsp;
+      <input type="file" name="file">&nbsp;
+      <input type="submit" name="submit" value="Upload" onclick="upload()">&nbsp;
+      <input type="submit" name="submit" value="Copy">&nbsp;
+      <input type="submit" name="submit" value="Paste">&nbsp;
+      <input type="text" name="folder">&nbsp;<input type="submit" name="submit" value="Create folder">
+       </div>
+</form>
+
+@%'tabular.htmt'@
+
+<div>&nbsp;</div>
+<div>&nbsp;</div>

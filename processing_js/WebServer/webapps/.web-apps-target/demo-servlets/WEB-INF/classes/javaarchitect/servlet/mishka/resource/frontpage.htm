@@ -1,0 +1,32 @@
+﻿<HTML>
+<HEAD>
+<TITLE>Lunch News</TITLE>
+</HEAD>
+<BODY>
+
+<h2>Latest Friday Lunch News или Трактир По Пятницам</h2>
+<center>
+<table border="0">
+  <tr>
+    @balance(<th width="20" VALIGN=TOP>@headname(<br>)@</th>)@
+  </tr>
+  <tr BGCOLOR=black>
+    @balance(<td nowrap width="20" align=right><FONT COLOR=WHITE><B>@balance@</B></FONT></td>)@
+  </tr>
+</table>
+</center>
+<center>
+@message(
+      <TABLE cellSpacing=0 cellPadding=0 width="78%" border=0>
+    <TR bgColor=#999999><TH>
+    <FONT COLOR=WHITE>@header@</FONT> </TH>
+    </TR>
+    <TR bgColor=#EEEEEE><TD>
+    @.body@</TD>
+    </TR>
+    </TABLE><P>&nbsp;</P>)@
+<P><A href="Paymentsharing">payment administrator</A>&nbsp;&nbsp; <A 
+href="Boardeditor">message board administrator</A></P>
+</center>
+</BODY>
+</HTML>

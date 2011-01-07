@@ -1,0 +1,7 @@
+Release 1.83
+
+        Changes
+        =======
+
+1/03/11
+1. delegating naming context work to app module to make Android friendly

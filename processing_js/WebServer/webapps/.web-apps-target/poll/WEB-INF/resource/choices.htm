@@ -1,0 +1,20 @@
+<head>
+<style type="text/css">
+  DIV#title { background:efe; font-weight: bold; font-size:76% }
+  DIV#vote_title { font-family: arial,sans-serif; font-size:70%;}
+  DIV#vote_choice { margin-left:3em; font-family: arial,sans-serif; font-size:68%;}
+</style>
+</head>
+<div id="title">@model.getTitle*()*@</div>
+<div>Choices result</div>
+  @request.setAttribute*(model,java.lang.Object^@model@)*@
+  @model.getVotes*()*(
+     @element.fillable{
+       @true(
+         <div id="vote_title">@element.title@</div>
+         @request.getAttribute*(model)*.getChoiceResults*()*.get*(java.lang.Object^@element.title@)*(
+           <div id="vote_choice">@element@</div> 
+         )@
+       )@
+     }@
+  )@

@@ -1,0 +1,85 @@
+<html>
+<!-- $Id: collectionmc.htm,v 1.12 2006/12/08 08:14:40 rogatkin Exp $ 
+   View for collection of items  -->
+<title>@name@</title>
+<link rel="stylesheet" href="/addressbook/styles.css" type="text/css" media="all"/>
+<script src="/addressbook/ajaxhelper.js" language="Javascript"></script>
+<script src="/addressbook/common.js" language="Javascript"></script>
+<script>
+    function updateItem(item) {
+      makeIFrameAjaxCall('Collectionmc/ajax/openItem?item='+escape(item)+
+        '&hash=@contact.hashCode*()*@&name='+escape("@contact.getId*()*@")+'&folder=@:folder@',
+        function(html) {
+//alert("itd"+getElement('details'));
+            getElement('details').innerHTML = html;
+        });
+
+    }
+
+    function deleteItem() {
+       makeIFrameAjaxSubmit('Collectionmc/ajax/updateList?delete=1', document.forms.collectionview, null, 
+         function (content) {
+           getElement('list').innerHTML=content;
+       }, null, 'entrysub');
+    }
+
+    function submitCollection() {
+     document.collectionview.elements['submit.x'].disabled = false;
+//     fillEmpties(document.collectionview);
+     document.collectionview.submit();
+    }
+
+    function applyCollection() {
+    }
+
+    function changeEntry(oper) {
+       makeIFrameAjaxSubmit('Collectionmc/ajax/updateList'+oper, document.forms.collectionview, null, 
+         function (content) {
+           getElement('list').innerHTML=content;
+           // update name and hash
+           // document.forms.collectionview.hash = 
+         }, null, 'entrysub');
+    }
+
+</script>
+<body>
+<!-- TODO: make it optional for ajaxed page -->
+ @%'header.htm'@
+
+<form name="collectionview" action="Collectionmc" method="post" enctype="multipart/form-data">
+<div>@label.name@ <input type="text" name="name" value="@contact.getAttribute*(value)*@" size="60">
+</div>
+<div>
+@label.comment@  <textarea name="description1" wrap="soft" rows="2" cols="60">@contact.getAttribute*(description)*@</textarea>
+</div>
+
+<table border="0">
+  <tr>
+    <td><div onclick="updateItem()" class="b-button-g">@commonlabel.new@</div></td>
+    <td><div onclick="deleteItem()" class="b-button-g">@commonlabel.delete@</div></td>
+  </tr>
+</table>
+<div id="list">
+
+@%'list.htm'@
+
+</div>
+<!--input type="hidden" name="beforename" value="@contact.getId*()*@">
+<input type="hidden" name="hash" value="@contact.hashCode*()*@"-->
+<input type="hidden" name="folder" value="@folder@">
+<!-- preserve tree state -->
+@state(<input type="hidden" name="state" value="@element@">)@
+<input disabled type="hidden" name="submit.x" value="1">
+</form>
+<div align="right">
+<table border="0" cellpadding="10">
+  <tr>
+     @readonly{@true()@@(<td onClick='submitCollection()' style="cursor: pointer">[@commonlabel.ok@]</td>
+                         <td onClick='applyCollection()'>@commonlabel.apply@</td>)@}@<td style="cursor: pointer" onClick="window.location='abfrontview?nodeid=@:folder@@state(&state=@:element@)@'">[@commonlabel.cancel@]</td>
+  </tr>
+</table>
+</div>
+<iframe name="entrysub" id="entrysub" src="#" height="0px" width="0px" border="0" style="width:0px;height:0px;border:0px"></iframe>
+@%'footer.htm'@
+</body>
+</html>

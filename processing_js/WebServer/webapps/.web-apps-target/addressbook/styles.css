@@ -1,0 +1,125 @@
+th,.smallHeader     {background-color: #f0f6f8; font-family: Georgia; font-size: 8pt;}
+.smallHeader {
+	margin: 1em 0 0.5em 0;
+	padding: 2px 0px 4px 10px;
+	border-top: 1px solid #b8cfd8;
+}
+
+		.form-field-info {
+			background-color: red;
+			color: white;
+			position: absolute;
+			padding: 5px;
+			z-index: 999;
+		}
+		div.label {
+			position: relative;
+			padding-left: 20px;
+			margin-bottom: 4px;
+		}
+		div.form-field {
+			top: 0;
+			position: absolute;
+			left: 15em;
+		}
+
+		div.form-flowed {
+			top: 0;
+			position: relative;
+			padding-left: 10px;
+		}
+
+.b-button,
+.b-button * {
+	height: 22px;
+	line-height: 22px;
+	margin: 0;
+	padding: 0;
+	top: 0;
+	cursor: default;
+}
+
+.b-button{
+	position: relative;
+	left: 0;
+}
+.b-button-mid {
+	position: relative;
+	left: 0;
+	background-color: #cccccc;
+	padding: 0 10px;
+	border: 1px solid black;
+	cursor: pointer;
+}
+
+.b-button-invisible {
+	position: relative;
+	left: 0;
+	padding: 0 10px;
+	visibility: hidden;
+}
+
+.b-button-hov .b-button-mid{
+	background-color: #999999;
+	color: #ffffff;
+}
+
+.b-button-pres .b-button-mid {
+	background-color: #666666;
+	color: #ffffff;
+	padding: 0 9px 0 11px;
+}
+
+.b-button-g {
+        cursor: pointer;
+	padding: 0 10px;
+	position: relative;
+	left: 8;
+        border-left-width: 1px; border-right-style: solid; border-right-width: 1px; 
+               border-top-width: 1px; border-bottom-style: solid; 
+               border-bottom-width: 1px; background-color: #CEEAFF
+}
+
+.td-but { cursor:pointer }
+
+input,textarea,select        { border-style:solid; border-width:1px; font-family: Verdana; font-size: 8pt; background-color: #FFF8CC;  }
+
+.header_text { font-family: Arial; font-size: 8pt; color: #FFFFFF }
+
+.fineprint   { font-size: 2mm; color: #808080; font-variant: small-caps; font-weight: bold }
+
+.lc          { color:#0000CC; font-family: Arial; font-size: 8pt }
+
+.tabi        { font-size: 8pt; font-family: Arial; font-weight: bold; border-left-width: 1px; 
+               border-right-style: solid; border-right-width: 1px; 
+               border-top-width: 1px; border-bottom-style: solid; 
+               border-bottom-width: 1px; padding-right: 2px; background-color: beige; cursor: pointer }
+.taba        { font-size: 10pt; font-family: Arial; font-weight: bold; border-left-width: 1px; border-left-style: solid;
+               padding-left: 2px; 
+               border-top-width: 1px; border-top-style: solid; 
+               padding-right: 2px }
+
+body,p,li,div,td    { font-family: Tahoma; font-size: 9pt }
+th                  { text-transform: capitalize; font-weight: bold }
+.undescored  {	border-bottom: 1px solid #b8cfd8; }
+thead th { position:relative;top:expression(this.parentElement.parentElement.parentElement.parentElement.scrollTop); }
+.warn        { font-family: Arial Narrow; font-size: 9pt; color: #CC0000; text-align: center;
+               border: 1px solid #808080; background-color: #C0C0C0 }
+.error_block { list-style-image:url('/addressbook/image/bullet.gif'); margin-left:8; margin-top:0 }
+
+.scrollist  {overflow-x :hidden; overflow-y :scroll; display: block; height:390px;}
+
+fieldset
+{
+	display: block;
+	width: 24em;
+	margin: 0 0 3em 0;
+	padding: 0 1em 1em 1em;
+	background-color: #EEEEEE;
+}
+label
+{
+	display: block;
+	margin-bottom: 2px;
+	font-weight: bold;
+}

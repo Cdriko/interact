@@ -1,0 +1,214 @@
+<html>
+<head>
+<title>@title@</title>
+<meta http-equiv="Expires" content="0">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="Content-Type" content="text/html; charset=@charset@">
+<!-- $Id: runsql.htm,v 1.16 2009/11/21 09:38:53 dmitriy Exp $
+   template used for UI service Runsql
+    to display a query result against selected data source -->
+<script src="@contextpath@/ajaxhelper.js" language="Javascript"></script>
+
+<script>
+  // <!-- 
+  function openDataSourceSelect() {
+     makeJSONAjaxCall('Runsql/ajax/getDataSource?datasource='+getSelectedDataSource(), null, true,
+       function(ds) {
+          document.datasourceform.datasource.value=getSelectedDataSource();
+          document.datasourceform.db_url.value=ds.db_url;
+          document.datasourceform.schema.value=ds.schema;
+          document.datasourceform.password.value=ds.password;
+          document.datasourceform.driver_class.value=ds.driver_class;
+          document.datasourceform.classpath.value=ds.classpath;
+          document.datasourceform.jndi.checked=ds.jndi==1;
+          document.getElementById('datasource_def').style.display='';
+       });
+  }
+  function getSelectedDataSource() {
+     var ds_sel = document.getElementById('datasource');
+     return ds_sel.selectedIndex >= 0?ds_sel.options[ds_sel.selectedIndex].text:'';
+  }
+  function processDataSource() {     
+     makeIFrameAjaxSubmit('Runsql/ajax/addDataSource', document.datasourceform, null, 
+       function(status) {
+          // document.getElementById('error').innerHTML=status;
+          var dss = new Function ( "return "+status ) ();
+          var ds_sel = document.getElementById('datasource');
+          var sel_val = ds_sel.value; 
+          var i;
+          for (i=0; i<dss.length; i++) {
+             ds_sel[i] = new Option(dss[i], dss[i],false,false);
+             if (dss[i] == sel_val)
+                ds_sel[i].selected = true;
+          }
+          for (;i< ds_sel.length; i++)
+	          ds_sel[i] = null;
+          document.getElementById('datasource_def').style.display='none';
+       }, null, 'submitframe');
+  }
+  function populQuery(q, s, e, c) {
+     document.query.query.value=q;
+     if (s < 0)
+         s = 0;
+     document.query.from.value = s;
+     if (e < s || e <= 0)
+	     document.query.to.value = '';
+	 else
+  		 document.query.to.value = e;
+     document.query.update_type.checked = c;
+  }
+  function hideIrelevant(cb) {
+     // TODO a better solution just hide entire portion of the connection form
+     var cond = cb.checked?'true':'';
+
+     document.datasourceform.db_url.disabled=cond;
+     document.datasourceform.schema.disabled=cond;
+     document.datasourceform.password.disabled=cond;
+     document.datasourceform.driver_class.disabled=cond;
+     document.datasourceform.classpath.disabled=cond;
+     getDSList(cond);
+  }
+  function delQuery(q) {
+     // call server, delete and rebuild list
+     makeGenericAjaxCall("Runsql/ajax/deleteQueryEntry", "query="+escape(q), true,
+       function(html) {
+          document.getElementById('querycache').innerHTML=html;
+       });     
+  }
+  function prepareScript() {
+     document.query.query.value='';
+     document.forms.query.encoding="multipart/form-data";
+     document.query.update_type.checked = true;
+     // enctype="multipart/form-data"
+  }
+  function getDSList(on) {
+    if (on) {
+      document.getElementById('ds_in').style.display='none';
+      document.getElementById('ds_list_div').style.display='inline';
+      makeJSONAjaxCall("Runsql/ajax/listDataSources", null, true, 
+        function(dss) {
+           var ds_opts = document.getElementById('ds_list');
+           for (var i=1; i<ds_opts.length; i++)
+             ds_opts[i] = null;
+          if (dss) { 
+           	for (var i=0; i<dss.length; i++)
+           	   ds_opts[i] = new Option(dss[i], dss[i],false,false);
+          }
+        });
+    } else {
+      document.getElementById('ds_in').style.display='inline';
+      document.getElementById('ds_list_div').style.display='none';
+    }
+  }
+  function updateInput(sel) {
+    document.datasourceform.datasource.value = sel.value;
+  }
+  // -->  
+</script>
+</head>
+<body onload="showError()">
+<form name="query" action="@goal@" method=post >
+<table border="0" width="100%">
+<tr>
+<td colspan="3">
+  <div id="error" style="color:red;font-weight:bold">
+   @error@
+  <div>
+</td>
+</tr>
+<tr>
+<td colspan="2" width="70%">
+  <div>Query:<div 
+        style="display:inline;float:none; font-family: Arial, Helvetica, sans-serif; font-size: x-small; text-align: right; width: 78%;">
+        <label for="batchscript">Script <input type="file" name="batchscript" onChange="prepareScript()"></label> </div></div>
+     <textarea name ="query" rows="6" cols="80">@query@</textarea>
+</td>
+<td width="30%">
+   <div id="querycache" style="overflow-x :hidden; overflow-y :scroll; display: block; height:7em;">
+      @%'query_cache_inc.htm'@
+   <div>
+</td>
+</tr>
+<tr>
+<td  align="left" >
+ <a href="javascript:void(0)" onclick="javascript:openDataSourceSelect()">Data Source:</a>
+ &nbsp;<select name="datasource" size="1" id="datasource">
+  <option value="select data source">select data source</option>
+@datasources(
+  <option value="@element@" @request.datasource{@@element@(selected)@}@ >@element@</option>
+)@
+</select>
+&nbsp;<input type="checkbox" name="update_type" value="1" @checked@>No result set 
+ &nbsp; Range: <input type=text name=from value="@from@" size=2> - <input type=text name=to value="@to@" size=3>
+</td>
+<td  align="right">
+<input type="submit" value="Execute" name="submit.x">
+</td>
+<td>&nbsp;&nbsp; @time@ seconds</td>
+</tr>
+</table>
+@count{
+@""()@
+@(Return count: @count@ <br>)@
+}@
+<table border="1" width="100%">
+  <tr>
+    @HEADERS(<th title="@header.type@(@header.size@)/@header.label@">@header@</th>)@
+  </tr>
+  @ROWS[@from@..@to@](
+  <tr>
+    @COLUMNS(<td valign="top">@value@</td>)@
+  </tr>
+  )@
+</table>
+</form>
+<div id="datasource_def" style="display:none;position:absolute;top:20;left:100;background-color:#ccc;border:solid black">
+  <form name="datasourceform" action="">
+     <table>
+       <tr>
+         <td colspan="2" align=right style="background-color:#777">
+           <a href="javascript:void(0)" style="color:white" onclick="javascript:document.getElementById('datasource_def').style.display='none'">X</a>
+         </td>
+       </tr>
+       <tr>
+         <td colspan="2">
+           DataSource name: <div style="display:inline" id="ds_in"><input type=text size=20 name=datasource></div>
+           <div style="display:none" id="ds_list_div"><select size="1" id="ds_list"  onchange="updateInput(this)"><option>select data source</option></select></div>
+           <sup>*</sup>
+           &nbsp;<label for="jndi"><input type=checkbox name="jndi" value="1" onclick="hideIrelevant(this)" >Use JNDI</label>
+         </td>
+       </tr>
+       <tr>
+       <td colspan=2>URL: <input name="db_url" type=text size=40><sup>*</sup></td>
+       </tr>
+       <tr>
+       <td>Schema: <input name="schema" type=text size=16></td>
+       <td>Password: <input name="password" type=password size=10></td>
+       </tr> 
+       <tr>
+       <td colspan=2>Driver class: <input name="driver_class" type=text size=40></td>
+       </tr>
+       <tr>
+       <td colspan=2>Class path: <input name="classpath" type=text size=40></td>
+       </tr>       
+       <tr>
+       <td colspan=2><label for="delete"><input name="delete" value="1" type=checkbox>Mark for deletion</label></td>
+       </tr>       
+       <tr>
+         <td align=center colspan=2><input type=button value="add/modify" onclick="processDataSource()"></td>
+       </tr>
+     </table>
+  </form>
+</div>
+<iframe name="submitframe" id="submitframe" src="#" height="0px" width="0px" border="0" style="width:0px;height:0px;border:0px"></iframe>
+<p style="font-family: Arial, Helvetica, sans-serif; font-size: x-small; text-align: center;">
+    SqlFair &copy; 2009 Dmitriy Rogatkin</p>
+<script>
+  // <!-- 
+  function showError() {
+    document.getElementById('error').innerHTML = '@^error@';
+  }
+  // -->  
+</script>
+</body>
+</html>

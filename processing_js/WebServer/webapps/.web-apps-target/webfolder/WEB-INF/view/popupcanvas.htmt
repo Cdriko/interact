@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>@title@</title>
+  <style type="text/css">
+     <!--/* <![CDATA[ */
+          @@import url(@contextpath@/css/base.css);
+            BODY, TD, FONT, INPUT, SELECT, TEXTAREA { font-family: Lucida Grande,Verdana,Arial; font-size: 11px; };
+            DIV#status {
+             width:98%;
+             position:absolute;
+             top:90%;
+             left:1%;
+             height:2em;
+             background:#fee;@error(
+             background-image:url(@request.getContextPath*()*@/image/exclam.gif);
+             background-repeat:no-repeat;
+             padding-left:2em;)@
+           }
+       /* ]]> */-->
+  </style>
+  <style type="text/css">
+     @%'insert/headcss.htmt'@
+  </style>
+  <script src="@contextpath@/js/ajaxhelper.js" language="Javascript"></script>
+  <script src="@contextpath@/js/common.js" language="Javascript"></script>
+  <script src="@contextpath@/js/form.js" language="Javascript"></script>
+  <script>
+      function goto(loc) {
+         document.location='@contextpath@@request.getServletPath*()*@/'+loc;
+      }
+  </script>
+  <script>
+     @%'insert/headjs.htmt'@
+  </script>
+  @%'insert/headextra.htmt'@   
+</head>
+<body onload="init()" style="background-color:#FDFFFD">
+<div>
+@%request.INNER_VIEW@
+</div>
+<div id="status">@error@</div>
+</body>
+</html>

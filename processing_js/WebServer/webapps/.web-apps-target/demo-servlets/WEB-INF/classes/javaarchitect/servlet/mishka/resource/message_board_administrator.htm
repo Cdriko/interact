@@ -1,0 +1,54 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=@encoding@">
+<title>Message Board Administrator</title>
+<STYLE TYPE='text/css'>
+   textarea { background-color: #EEE; }
+   td { font-family: gill, helvetica, sans-serif; font-size: 10pt;  }
+  </STYLE>
+</head>
+<body>
+<h2>Friday Lunch Message Board Administrator</h2> 
+  <table border="0" width="100%">
+    <tr>
+      <td width="50%" valign="top"><form name=boardlist method="POST" action="boardeditor?delete=1">
+		<p align=center>Current messages</p>
+		<table border="0" width="100%">
+		  <tr bgcolor="#CCFFFF">
+		    <th width="152">Header</th>
+		    <th width="%100">Message</th>
+		    <th width="19">x</th>
+		  </tr>
+		@message(
+		  <tr @wink(bgcolor=#FFEFFF)@>
+		    <td width="152">&nbsp;<a href="boardeditor?header=@:header@">@header@</a></td>
+		    <td width="%100">&nbsp;@.body@</td>
+		    <td width="19">
+		        <input type="checkbox" name="checkbox" value="@header@" @checked@></td>
+		  </tr>
+		)@
+		</table>
+		<p align=right>
+		<input type="submit" value="Delete" name="submit"><input type="reset" value="Reset" name="clear">
+		</p>
+		</form></td>
+      <td width="50%" valign=top><form method="POST" name=boardedit action="boardeditor?update=1">
+      <FONT COLOR=RED>@erroralert@</FONT>
+  <p align="right">Header:
+  <input type="text" name="header" size="40" value="@header@" STYLE="{ background-color: #EE9; }">&nbsp;&nbsp; 
+  <input type="checkbox" name="use_html" value="ON" @checked@>
+  HTML allowed</p> 
+  <p align="center"><textarea rows="10" name="messagebody" cols="50">@.body@</textarea></p>
+  <p align=right>
+  <input type="submit" value="Update" name="submit"><input type="reset" value="Undo" name="undo"></p>
+</form></td>
+    </tr>
+  </table>
+  <p align=right><a href="boardeditor?save=1">Save</a></p>
+
+  <p align=center><a href="frontpage">Back to Message Board</a></p>
+</body>
+
+</html>

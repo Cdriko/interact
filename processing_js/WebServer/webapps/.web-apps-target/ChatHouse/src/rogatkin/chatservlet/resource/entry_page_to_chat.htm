@@ -1,0 +1,84 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us"> 
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<SCRIPT LANGUAGE=javascript>
+<!--
+if (top.window != this) top.window.location = "Entrance";
+//-->
+</SCRIPT>
+<title>Entry page to chat</title>
+</head>
+<body bgcolor="#666666">
+<P ALIGN=RIGHT><A HREF="Manageboard" STYLE="font: 8pt/10pt sans-serif; color: #FFE;">Message board administration</A></P>
+<form method="post" action="Entrance">
+  <table border="0" width="465" height="113" style="WIDTH: 465px; HEIGHT: 113px" cellspacing="0" cellpadding="14">
+    <tr>
+      <td width="22%" height="101" rowspan="2" align="justify" bgcolor="#666666">
+                 <A  href="@product_home@"><IMG src="@base_context@Image/dlogo.jpg"  border=0></A>
+      </td>
+      <td width="78%" height="61" bgColor=lightgrey><font size="1" face="Arial">Select a room or
+        create a new one:</font><br>
+        <select size="1" name="room_sel">
+          <option @selected@>Create:</option>
+          @room_sel(
+          <option value="@room_name@" @selected@>@room_name@ (@size@)</option>
+          )@
+        </select><input name="room_name" value="@room_name@"></td>
+    </tr>
+    <tr>
+      <td width="78%" height="40" bgColor=lightgrey><font face="Arial" size="1">Provide your name:</font><br>
+        <input name=".user" value="@.user@">&nbsp;&nbsp;<input type="submit" value="Enter" name="submit"></td>
+    </tr>
+  </table>
+</form>
+<P><FONT color=maroon>@diagnostic@</FONT>
+</P><TABLE cellSpacing=2 cellPadding=0 width="100%" border=0>
+<TR align=middle><TD vAlign=top width="40%">
+<TABLE cellSpacing=0 cellPadding=0 width="50%" align=left border=0>
+<TR bgColor=#999999><TD>
+<TABLE cellSpacing=1 cellPadding=2 width="100%" border=0><TR bgColor=#ffffff>
+<TD><P><FONT face="Verdana, Arial, Helvetica, sans-serif"><B>
+<FONT color=#666666 size=2>ChatHouse &nbsp;V1.0</FONT></B><BR><FONT color=#888888 size=1>This chat servlet provides (100% HTML) based chat.  
+  The feature set includes, but not limited to:</P>  
+<OL><LI>Multiroom chat capabilities with possibilities, as using predefined rooms in specified charset, as a
+ user created rooms in default charset.
+    <LI>Easy navigation between rooms with displaying room visitors.
+    <LI>Locking rooms for new visitors and unlocking them when all left with chat log cleaning.
+    <LI>Automatically dispose a user created room when number of visitors reached 0.
+    <LI>Easy to provide SSL awared chat.
+    <LI>Using push server capabilities offered by Microsoft and Netscape browsers with manual 
+     and automatic refresh features. Netscape 6 browser is not supported, because AOL/Netscape 
+      dropped this capability in the new browser. Shame on Netscape first 
+      proposed the server push model. <LI>A fully customizable L&amp;F based on using template HTML pages. 
+    <LI>An ability to upload a file to a chat message with the following possibility to download the uploaded file by&nbsp;chat participants (GonnaSee&reg; technology). 
+    <LI>An ability to send a message only to the selected chat participant.<LI>                 
+      E-mail notification about chat rooms activities.<LI>                 
+      Message board capabilities that allows an administrator of the chat 
+      publishing messages.
+    <LI>All chat parameters are configurable without any code change.
+    <LI>All in one instant installation, when you can start immediately after download without
+     touching anything (Download&amp;Play&reg; technology). Preinstalled JDK 1.3 or above is required. Note that 
+     instant installing isn't provided anymore, instead of it web app package is provided.
+     </LI></OL>
+     <P><A target=_blank href="@product_home@">Read</A> more about it.
+     </P><P align=right>&nbsp;
+     <A target=_blank href="@product_home@">&copy;&nbsp;Dmitriy Rogatkin&nbsp;- 2000-2006</A></FONT></FONT> </FONT></P>
+     </TD></TR></TABLE>
+     </TD></TR></TABLE>
+     <TABLE cellSpacing=0 cellPadding=0 width="30%" align=right border=0>
+     <TR><TD>
+     @message(
+      <TABLE cellSpacing=0 cellPadding=0 width="100%" border=0>
+    <TR bgColor=#999999><TH>
+    <FONT COLOR=WHITE>@header@</FONT> </TH>
+    </TR>
+    <TR bgColor=#EEEEEE><TD>
+    @.body@</TD>
+    </TR>
+    </TABLE><P>&nbsp;</P>)@</TD></TR></TABLE>
+     </TD></TR></TABLE>
+</body>
+<!-- $Id: entry_page_to_chat.htm,v 1.29 2006/04/15 21:44:03 rogatkin Exp $ -->
+</html>

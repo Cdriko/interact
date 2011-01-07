@@ -1,0 +1,99 @@
+<html>
+<!-- $Id: tstack.htm,v 1.8 2008/01/12 04:38:08 dmitriy Exp $ -->
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<title>Technology Stack</title>
+<style>
+<!--
+td           { font-family: fantasy; font-size: 10pt }
+-->
+</style>
+</head>
+
+<body>
+
+<table border="0" cellpadding="6" cellspacing="0" width="100%">
+	<!-- MSTableType="layout" -->
+	<tr>
+		<td valign="top" colspan="2">
+		<!-- MSCellType="ContentHead" -->
+		<h2>Technology Stack</h2>
+	</td>
+	</tr>
+	<tr>
+		<td valign="top" rowspan="3" width="20%" bgcolor="#FFFFCC">
+		<!-- MSCellType="NavBody" -->
+		<strong>Architecture</strong><ul>
+			<li><font face="Arial" size="2">Frameworks</font></li>
+			<li><font face="Arial" size="2">Loose coupling</font></li>
+			<li><font face="Arial" size="2">Reusable components</font></li>
+		</ul>
+		<p>&nbsp;</td>
+		<td valign="top">
+		<!-- MSCellType="ContentHead2" -->
+		<strong>Chief Software Architect Point of View</strong></td>
+	</tr>
+	<tr>
+		<td valign="top" width="*">
+		<!-- MSCellType="ContentBody" -->
+		Smooth, fast, enjoyable and error/bug defended process of software 
+		development is possible when a right architecture was selected. Frameworks are a 
+		basis of rapid and bug free software creation. All products share 2 
+		frameworks, one is an application framework providing SOA. It includes a 
+		service providers registry, a component factory, base services and set 
+		of reusable utilities. Second framework&nbsp; plays a similar role for 
+		creation of web applications. It can use also the application framework 
+		for creation multi services web applications. Supporting MVC helps 
+		developers separate presentation and business logic.&nbsp; Using 
+		frameworks frees developers and designers from thinking about details of 
+		life cycle of component, allowing dedicate more time on implementation 
+		of functionality. The <a href="#demrog">frameworks</a> are not over complicated, and do not 
+		sacrifice 90% of complexity in favor of 1% of functionality. Used 
+		approach considers that in case of 1% required functionality can be done 
+		in custom code without heaving of frameworks. An interface driven design 
+		also allows to replace parts of frameworks easily by more robust or 
+		smarter implementations.&nbsp; Commonly, entire architecture is based on 
+		using light weight components, keeping just minimal required 
+		functionality, and leaving anything extra on usage of a custom code. As 
+		was stated above an interface driven design and a loose coupling allows 
+		create very different configurations based on set of replaceable and 
+		reusable light weight components.<p>7Bee is a sort of exception because 
+		doesn't use any framework. It's done to make it very light weight, 
+		however it uses fundamental principles of interface driven plugable 
+		architecture commonly named as SOA. 7Bee used as a build tool for all my projects.</p>
+		<p>All other projects share the same application framework. Web 
+		applications like <a href="http://jaddressbook.sf.net">jAddressBook</a>, ChatHouse, Tree View, 
+		Finesearch, and other small 
+		demo web projects. Tree View itself shared by all web interfaced 
+		projects. </td>
+	</tr>
+	<tr>
+		<td valign="top" width="*">
+		<!-- MSCellType="ContentBody" -->
+		<a name="demrog"></a><h3>
+            From DemRog&reg; to Aldan3</h3>
+		DemRog is a multipurpose library including most of core elements of the technology stack. 
+		SOA registry, servlet framework with template engine and few utility 
+		classes are the content of the library. I developed this library in 
+		1998, so a code quality is far not perfect. For this reason I do not 
+		push the library in an open source where a code quality is the key. 
+		Since many my projects are based on this library and you may want to 
+		work on these projects, I provide DemRog library in binary form for free 
+		download. Note that a reverse engineering is against rules.
+		<a href="/download/demrog.jar">Download DemRog</a>. View API
+		<a href="/download/demrogapi/">JavaDocs</a>.<br />
+            Since DemRog is quite old I decided to provide a brand new version of the library
+            named as Aldan3. Main advantage of Aldan3 is more light weight and robust implementation.
+            Certainly the library is a ground for starting very new technology named as <a href="http://7bee.j2ee.us/blog/2007/02/07/1170907200000.html">
+                application patterns</a>. Aldan3 will be available for download quite soon.
+        <p>        
+        As a sneak preview of Aldan3 fullstack, you can read <a href="http://7bee.j2ee.us/blog/2008/01/11/1200098880000.html">the article</a>.
+        Aldan3 library is available as a part of <a href="http://7bee.j2ee.us/download/aldan3article.zip">download</a> to the article.        
+                </td>
+	</tr>
+</table>
+
+</body>
+
+</html>

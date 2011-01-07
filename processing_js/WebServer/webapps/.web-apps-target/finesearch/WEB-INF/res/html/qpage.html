@@ -1,0 +1,301 @@
+<html>
+<!-- Search Director Copyright &copy; 2006 Dmitriy Rogatkin, All rights reserved. -->
+<title>Smart Search Filter v. @version@</title>
+<link rel="stylesheet" href="/finesearch/styles.css" type="text/css" media="all"/>
+<script src="/finesearch/ajaxhelper.js" language="Javascript"></script>
+<script>
+  // <!--
+  function deleteRule(type) {
+     var table = document.getElementById("rules"+type);
+     if (table)
+        for (var r = table.rows.length-1; r >= 0; r--) {
+        if (table.rows[r].className == 'hr')
+          table.deleteRow(r);
+      }
+
+  }
+  function triggerSelection(tr) {
+     //tr.style.backgroundColor="#FAC0C0";
+     if (tr.className == 'rr')
+        tr.className = 'hr';
+     else
+        tr.className = 'rr';
+  }
+  function triggerSelection1() {
+     if (this.className == 'rr')
+        this.className = 'hr';
+     else
+        this.className = 'rr';
+  }
+  function addRule(type) {
+     var et = document.getElementById("rules"+type);
+     var nr = et.insertRow(et.rows.length-1);
+     nr.className = 'rr';
+     nr.onclick = triggerSelection1;
+     var nc = nr.insertCell(0);
+     nc.innerHTML = 'Words <input type="text" size="40" name="word'+type+'"> to be <select name="condition'+type+'" size="1">'
+                  +'<option value="1">presented</option>'
+                  +'<option value="2">excluded</option>'
+                  +'</select>';
+     nc = nr.insertCell(1);
+     nc.innerHTML = 'when count <select size="1" name="compare'+type+'"><option value="0">=</option><option value="-1">&lt;</option><option value="1" selected>&gt;</option></select>'
+                     +'<input type="text" name="count'+type+'" size="3" value="0">';
+
+  }
+  var opened = false;
+  var timeouth;
+  function displayControl(job, x, y, cmd) {
+    var pu = document.getElementById('control');
+    if (pu) {
+      if (!opened) {
+	 pu.style.top=y;
+         pu.style.left=x;
+         pu.style.display='';      
+         //pu.style.visibility='visible';
+         pu.innerHTML = "retrieving..."
+         opened = true;
+      }
+      makeJSONAjaxCall('Jobsv/ajax/Control?job='+job+'&cmd='+cmd, '', true,
+         function(stat) {
+           if (cmd) {
+              pu.innerHTML = 'processed';
+              closeControl();
+           } else
+              pu.innerHTML = //'<SPAN GROUPID=1 MENUTYPE="menulabel" '+
+                            // 'ID=oLabel1 '+
+                            // 'CLASS="menulabel">'
+                            'Processed:'+stat.processed+
+                           '<br>found: '+stat.found+
+                           '<br>broken: '+stat.broken+
+                           '<br>status: '+stat.status+
+                            // '</SPAN>'+
+                             '<br><a href="#" onclick="displayControl(\''+job+'\',0,0,\'stop\')">stop</a>'+
+                            ' <a href="#" onclick="displayControl(\''+job+'\',0,0,\'discard\')">delete</a>';
+         }, null);
+    }  
+  }
+  function closeControl() {
+      clearTimeout(timeouth);
+      timeouth = setTimeout("hideControl();", 1500);
+  }
+  function hideControl() {
+    var pu = document.getElementById('control');
+    if (pu) {
+      pu.style.display="none";   
+//      pu.style.visibility='hidden';
+      opened = false;
+    }
+  }
+
+  var y_sp_pos = 0;
+  var y_sp_st = 0;
+  var in_drag = false;
+  var begHeight = 0;
+  var h = 0;
+
+  function prepareDrag(et) {
+    et = (et) ? et : ((window.event) ? event : null);
+    var el = et.target ? et.target : et.srcElement;
+    if ( el.id == 'splitter') {
+       startDrag(et);
+    }
+  }
+
+  function startDrag(et) {
+    if (!document.all) {
+      y_sp_st = et.screenY + y_sp_pos;
+    } else {
+      y_sp_st = event.clientY + y_sp_pos;
+    }
+    in_drag = true;
+  }
+
+  function doDrag(et) {
+    if ( in_drag ) {
+      et = (et) ? et : ((window.event) ? event : null);
+      var el = et.target ? et.target : et.srcElement;
+       doLayout(et);
+    }
+  }
+
+  function doLayout(et) {
+	if (in_drag){
+		if (!document.all){var newpos = et.screenY;} 
+		else {var newpos = event.clientY;}
+		y_sp_pos = y_sp_st-newpos;
+		if (y_sp_pos > -begHeight && y_sp_pos < begHeight){
+//window.status = begHeight - y_sp_pos + "px";
+			document.getElementById('qpanel').style.height = begHeight - y_sp_pos + "px";
+                        document.getElementById('result').height = h - begHeight - 6 + y_sp_pos;
+		}
+	}
+  }
+
+  function finishDrag(et) {
+     if (in_drag)
+       in_drag = false;
+  }
+  function adjustSize(){
+	if(document.all){h = document.body.clientHeight *.94;}
+	else{h = window.innerHeight *.94;}
+	begHeight = (h*2)/3 ;
+	document.getElementById('twopanes').style.height = h;
+	document.getElementById('qpanel').style.height = begHeight;
+        document.getElementById('result').height = h - begHeight - 6;
+	//iframesAreaResize();
+  }
+
+  function genlayout() {
+     adjustSize();
+     document.onmousedown = prepareDrag;
+     document.onmousemove = doDrag;
+     document.onmouseup   = finishDrag;
+     window.onresize = function(){adjustSize()};
+     updateCusSettings();
+// onbeforeunload
+  }
+  
+   function updateCusSettings(s) {
+      var sel = document.getElementById('sengine');
+      if (s && s == -1)
+         sel.selectedIndex = 0;
+      var sv = sel.selectedIndex >= 0?sel.options[sel.selectedIndex].text:'';
+      var se = document.getElementById('settings');
+      makeGenericAjaxCall("Queryvc/ajax/updateSettings?sengine="+sv, null, true, 
+         function(html) {
+           se.innerHTML = html;
+         },
+         function() {
+           se.innerHTML = "";
+         });
+   }
+   
+  // -->
+</script>
+<body onload="genlayout()">
+@*'control.html'@
+  <div id="twopanes">
+  <div id="qpanel" style="padding:0;margin:0;position:relative; top:0; overflow:auto;">
+  <form  method="POST" target="jobs" name="search">
+  <table border=0 width="100%">
+     <tr>
+       <td colspan=3>
+             <a href="/finesearch/index.html">@label.logo@&nbsp;@version@</a></td>
+     </tr>
+     <tr>
+        <td>Search engine</td>
+        <td colspan=2>Original query</td>
+     </tr>
+     <tr>
+        <td><select id="sengine" name="sengine" size="1" onChange="updateCusSettings()">
+              @sengine(<option>@element@</option>
+              )@
+ 	    </select></td>
+        <td colspan=2><input type=text size=60 name="query">&nbsp;&nbsp;<div style="display:inline" id="settings">&nbsp;</div></td>
+     </tr>
+     <tr>
+        <td colspan=3>Filter rules
+        </td>
+     </tr>
+     <tr>
+        <td colspan=3>
+           <table border=0>
+             <tr>
+                <td>All matching</td>
+                <td onclick="addRule('')" class="but">[Add]</td>
+                <td onclick="deleteRule('')" class="but">[Delete]</td>
+             </tr>
+           </table>
+        </td>
+     </tr>
+     <tr>
+        <td colspan=3>
+          <div style="overflow-x :hidden; overflow-y :scroll; display: block; height:56px;">
+             <table border=0 id="rules"> 
+             </table>
+          </div>
+        </td>
+     </tr>
+     <tr>
+        <td colspan=3>
+           <table border=0>
+             <tr>
+                <td>Any matching</td>
+                <td onclick="addRule('-any')" class="but">[Add]</td>
+                <td onclick="deleteRule('-any')" class="but">[Delete]</td>
+             </tr>
+           </table>
+        </td>
+     </tr>
+     <tr>
+        <td colspan=3>
+          <div style="overflow-x :hidden; overflow-y :scroll; display: block; height:56px;">
+             <table border=0 id="rules-any"> 
+             </table>
+          </div>
+        </td>
+     </tr>
+     <tr>
+        <td colspan="3">Options</td></tr>
+     <tr>
+        <td colspan="3">
+        <table border="0">
+           <tr>
+              <td><input type="checkbox" name="quick" value="1" disabled><label>Search only in highlights</label></td>
+              <td><input type="checkbox" name="extended" value="1"><label>Do search in all pages reachable from result</label></td>
+              <td><input type="checkbox" name="strict" value="1"><label>Do not show as separate result inside the same domain</label></td>
+           </tr>
+           <tr><td colspan="1">Sort result by
+             <select size="1" name="sort">
+               <option value="original">In search order</option>
+               <option value="last_modified">Last modified time</option>
+               <option value="page_size">Page size</option>
+               <option value="demography" disabled>Domain demography</option>
+             </select></td>
+             <td colspan="1">Search in order
+	             <select size="1" name="direction">
+	               <option value="direct">of search engine</option>
+	               <option value="reverse">in reverse of search engine</option>
+	               <option value="random" disabled=true>randomly</option>
+	             </select>
+             </td>
+             <td>Stop after <input type="text" size="6" name="resultsize"> matches</td>
+             </tr>
+        </table>
+        </td>
+     </tr>
+     <tr>
+       <td colspan="3">
+         <input type="submit" name="start" value="start">
+         <input type="reset" name="cancel" value="cancel" onclick="updateCusSettings(-1)">
+       </td>
+     </tr>
+  </table>
+  <input type="hidden" name="submit" value="submit">
+</form>
+  <p class="error">@erroralert@</p>
+  </div> <!-- qpanel -->
+
+<div id="splitter" style="cursor:s-resize;line-height:5px;height:5px;background-color:#C1E7FF;"><br/></div>
+<table border=1 cellpadding=0 cellspacing=0>
+  <tr>
+    <td width="20%"> <!-- joblist area -->
+     <iframe width="100%" id="jobs" name="jobs" frameborder="0" src="/finesearch/search/Jobsv">
+     </iframe> 
+    </td>
+    <td width="*" valign="top">
+      <!-- search result area -->
+      <iframe width="100%" name="result" id="result" frameborder="0">
+      </iframe> 
+    </td>
+  </tr>
+</table>
+</div> <!-- twopanes -->
+<div id="footer" class="foot">
+    <span>&copy; 2009 Dmitriy Rogatkin</span>
+    <span><a href="/finesearch/priv.html">Privacy Statement</a></span>
+    <span><a href="/finesearch/lega.html">Legal</a></span>
+    <span><a href="/finesearch/index.html">Project home</a></span>
+</div>
+</body>
+</html>

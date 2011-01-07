@@ -1,0 +1,24 @@
+<!-- $Id: contacts.htm,v 1.6 2008/03/14 08:02:22 dmitriy Exp $  -->
+<table border="0">
+   <thead>
+   <tr class="smallheader">
+      <th style="cursor: pointer" onclick="triggerChecks()">X</th>
+      <th onclick="displaySearch('.*','name')">@label.name@</th>
+      <th>@label.email@</th>
+      <th>@label.tphone@</th>
+      <th>@label.chatid@</th>
+   </tr>
+   </thead>
+   <tbody>
+  @entries(
+   <tr>
+      <td><input type="checkbox" name="contact" value="@name.hashCode*()*@_@name.getId*()*@" onclick="updateCheck(this,'@name.hashCode*()*@', '@^name.getId*()*@')" @contact.isChecked*()*{@true(checked)@}@></td>
+      <td style="cursor: pointer" onclick="@oper@('@^name.getId*()*@','@name.hashCode*()*@')"><label for="@name.getId*()*@_@name.hashCode*()*@">@name@</label></td>
+      <td style="cursor: pointer" onclick="sendMail('@^email@')">@email@<input type="hidden" name="email" value="@email@"></td>
+      <td>@tphone@</td>
+      <td>@chatid@</td>
+   </tr>
+  )@
+   </tbody>
+</table>
+

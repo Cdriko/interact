@@ -1,0 +1,81 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=@encoding@">
+<!-- $Id: treeview.htm,v 1.16 2006/04/26 06:13:17 rogatkin Exp $ -->
+  <STYLE TYPE='text/css'> a:hover {color: rgb(255,33,33);text-decoration: underline;} 
+  td {font-size: 10px; font-family: Verdana,Arial; } </style>
+<TITLE></TITLE>
+</HEAD>
+<BODY bgcolor=#e5ecf9 text="#111111" link="#555555" vlink="#444444">
+<h3>Navigate</h3>
+
+  @treeviewsample(
+      <table cellspacing=0 cellpadding=0 border=0>
+         <tr>
+            @treeline(
+                  @opennode(
+                    <td>
+                       <a href='@page@?nodeid=@nodeid@@state(&state=@:state@)@&tree=sample&@parameters@'>
+                          <img src='@treeimages@/minus@vpos@.gif' 
+                          border=0 width=16 height=16></a></td> <!-- _first, _notlast, _last -->
+                    <td>
+                       <a href='@page@?nodeid=@nodeid@@state(&state=@:state@)@&tree=sample&@parameters@'>
+                          <img src='@treeimages@/folder_o.gif'
+                          border=0 width=16 height=16></a></td>
+                    <td>
+                       <img src='@treeimages@/space.gif' border=0 width=3 height=10></td>
+                    <td nowrap>
+                       <a href='@.link@'>
+                       <img src='@treeimages@/space.gif' border=0 width=3 height=10>@name@</a>
+                       <img src='@treeimages@/space.gif' border=0 width=3 height=10></td>
+                  )@
+                  @shiftlevel(
+                       <td><img src='@treeimages@/@vpos@.gif' border=0 width=16 height=16></td>
+                  )@
+                  @element(
+                       <td><img src='@treeimages@/line@vpos@.gif' border=0 width=16 height=16></td>
+                         <!-- _first, _notlast, _last -->
+                       <td><a href='@page@?nodeid=@nodeid@@state(&state=@:state@)@&tree=sample&@parameters@'>
+                         <img src='@treeimages@/@spec@@mark@.gif' border=0 width=16 height=16></a></td>
+                       <td><img src='@treeimages@/space.gif' border=0 width=3 height=10></td>
+                       <td nowrap>
+                           <a href='@.link@' target="Portal">
+                           <img src='@treeimages@/space.gif' border=0 width=3 height=10>@name@</a>
+                           <img src='@treeimages@/space.gif' border=0 width=3 height=10></td>
+                  )@
+                  @closenode(
+                    <td>
+                       <a href='@page@?nodeid=@nodeid@@state(&state=@:state@)@&tree=sample&@parameters@'>
+                          <img src='@treeimages@/plus@vpos@.gif' 
+                          border=0 width=16 height=16></a></td> <!-- _first, _notlast, _last -->
+                    <td>
+                       <a href='@page@?nodeid=@nodeid@@state(&state=@:state@)@&tree=sample&@parameters@'>
+                          <img src='@treeimages@/folder.gif'
+                          border=0 width=16 height=16></a></td>
+                    <td>
+                       <img src='@treeimages@/space.gif' border=0 width=3 height=10></td>
+                    <td nowrap>
+                       <a href='@.link@'>
+                       <img src='@treeimages@/space.gif' border=0 width=3 height=10>@name@</a>
+                       <img src='@treeimages@/space.gif' border=0 width=3 height=10></td>
+                  )@
+            )@
+         </tr>
+      </table>
+    )@
+@side_url{
+@"",(<p>&nbsp;<a href="http://tjws.sourceforge.net" target="_top"><img src="Image/dlogo.jpg" border=0></a></p>)@
+@(
+<p>&nbsp;<a href="@side_url@" target="_top">
+    @side_logo{
+      @""(@side_url@)@
+      @(<img src="@side_logo@" border=0>)@
+    }@</a></p>
+)@
+}@
+
+<h6>Tree View Servlet Control Powered</h6>
+<a href=http://7bee.j2ee.us/bee/index-bee.html"><img src="http://7bee.j2ee.us/bee/7bee_logo_avatar.png" border=0></a>
+</BODY>
+</HTML>

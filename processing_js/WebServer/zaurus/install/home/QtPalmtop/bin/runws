@@ -1,0 +1,5 @@
+. /home/QtPalmtop/bin/installdir.sh
+# set INSTALLDIR
+echo from=/\;dir=$INSTALLDIR/webroot/; > $INSTALLDIR/conf/aliases.properties
+echo from=/app\;dir=/; >> $INSTALLDIR/conf/aliases.properties
+$QPEDIR/bin/evm -XappName=$0 -DINSTALLDIR=$INSTALLDIR -cp $INSTALLDIR/java/wsz.jar:$INSTALLDIR/java/jsdk.jar Acme.Serve.Serve -a $INSTALLDIR/conf/aliases.properties -p 8080 -l

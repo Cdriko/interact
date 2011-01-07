@@ -1,0 +1,6 @@
+<div id="popup" style="position:absolute;display:none;border:2px solid black;z-index: 100;">
+<div id="popup_header" style="background-color:#5566AA;border:2px solid white;font-size:small;color:white;padding-left:1em;z-index: 100"><div id="popup_title" style="display:inline">@label.popup_title@</div><div style="position:absolute;right:0;display:inline; width:1.6em;cursor:pointer" onclick="closeModal()">X</div></div>
+<iframe width="@popup_w{@1..(@popup_w@)@@(300)@}@" height="@popup_h{@1..(@popup_h@)@@(200)@}@" name="popup_frm" border=0 FRAMEBORDER=0 src="@contextpath@/blank.html"></iframe>
+</div>
+
+<div id="modal_background"></div>

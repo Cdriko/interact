@@ -1,0 +1,52 @@
+<!-- TODO add description
+  $Id: chat.htm,v 1.2 2008/03/14 08:02:22 dmitriy Exp $ -->
+<script>
+  function addChatRow(name) {
+     var et = document.getElementById(name);
+     var nr = et.insertRow(et.rows.length-1);
+     var i=0;
+     var nc = nr.insertCell(i++);
+     nc.innerHTML = '<input type="checkbox" name="'+name+'mark">';
+     nc = nr.insertCell(i++);
+     editChatType(nc, '');
+     nc = nr.insertCell(i++);
+     nc.innerHTML = '<input type="text" value="" name="'+name+'description">';
+     nc = nr.insertCell(i++);
+     nc.innerHTML = '<input type="text" value="" name="'+name+'value">';
+     nc = nr.insertCell(i++);
+     nc.innerHTML = '<input type="text" value="" name="'+name+'host">';
+     nc = nr.insertCell(i++);
+     nc.innerHTML = '<input type="text" value="" name="'+name+'room">';
+  }
+  function editChatType(td, val) {
+     td.innerHTML = '<select name="chatidtype">'
+          @chatidtype(+'<option value="'+(@index@+1)+'">@type@</option>')@
+      +'</select>';
+     td.onclick=null;
+  }
+</script>
+<table id="chatid" name="chatid">
+  <tr>
+     <th>X</th><th>@label.type@</th><th>@label.description@</th><th>@label.id@</th><th>@label.host@</th><th>@label.room@</th>
+  </tr>
+  @chatid(
+  <tr>
+    <td><input type="checkbox" name="chatidmark"></td>
+    <td onClick="editChatType(this, '@^element.getType*()*@')">@element.getType*()*@<input type="hidden" name="chatidtype" value="@element.getTypeInt*()*@"></td>
+    <td onClick="makeEditable(this, '@^element.getDescription*()*@', 'chatiddescription', null)">@element.getDescription*()*@<input type="hidden" name="chatiddescription" value="@element.getDescription*()*@"</td>
+    <td onClick="makeEditable(this, '@^element.getValue*()*@', 'chatidvalue', null)">@element.getValue*()*@<input type="hidden" name="chatidvalue" value="@element.getValue*()*@"</td>
+    <td onClick="makeEditable(this, '@^element.getHost*()*@', 'chatidhost', null)">@element.getHost*()*@<input type="hidden" name="chatidhost" value="@element.getHost*()*@"></td>
+    <td onClick="makeEditable(this, '@^element.getRoom*()*@', 'chatidroom', null)">@element.getRoom*()*@<input type="hidden" name="chatidroom" value="@element.getRoom*()*@"></td>
+  </tr>
+  )@
+<tr>
+  <td colspan="6">
+    <table border="0">
+      <tr>   
+        <td><div class="b-button-g" onClick="addChatRow('chatid')">@commonlabel.add@</div></td>
+        <td><div class="b-button-g" onClick="deleteRows('chatid')">@commonlabel.delete@</div></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+</table>

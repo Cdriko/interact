@@ -1,0 +1,48 @@
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	metadata-complete="true">
+	<description>
+		Remotely access to folders using a browser
+	</description><filter>
+		<filter-name>BasicAuth</filter-name>
+		<filter-class>org.aldan3.servlet.BasicAuthFilter</filter-class>
+		<init-param>
+			<param-name>USER</param-name>
+			<param-value>admin</param-value>
+		</init-param>
+		<init-param>
+			<param-name>PASSWORD</param-name>
+			<param-value>admin</param-value>
+		</init-param>
+</filter>
+	<filter-mapping>
+		<filter-name>BasicAuth</filter-name>
+		<servlet-name>webapp</servlet-name>
+		
+	</filter-mapping>
+	<servlet>
+		<servlet-name>webapp</servlet-name>
+		<description>
+			Standard webbee building blocks base servlet
+		</description>
+		<servlet-class>com.beegman.webbee.base.WebApp</servlet-class>
+		<init-param>
+			<param-name>properties</param-name>
+			<param-value>
+				/WEB-INF/config/webfolder.properties
+			</param-value>
+		</init-param>
+		<multipart-config>
+			<file-size-threshold>4096000</file-size-threshold>
+		</multipart-config>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>webapp</servlet-name>
+		<url-pattern>/webapp/*</url-pattern>
+	</servlet-mapping>
+	<welcome-file-list>
+		<welcome-file>welcome.html</welcome-file>
+	</welcome-file-list>
+</web-app>

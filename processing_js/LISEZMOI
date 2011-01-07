@@ -1,0 +1,19 @@
+ProcessingJS est une transposition de processing pour le web.
+Le code est traduit en javascript
+mais pour des raisons de sécurité, certaines fonctions ne fonctionnent que lorsque les fichiers sont sur un serveur web
+
+
+
+__________________________________Pour démarrer le serveur web
+______________________________________________________________
+- aller dans /WebServer/bin
+- dans un terminal, lancer tjws.bat, tjws.sh, ou tjws.lnk (en fonction de la plateforme)
+- double_clic sur le lien vers les exemples 
+(sinon taper l'adresse dans le navigateur web : http://localhost:8080/examples/)
+
+
+
+_________________________________Les fichiers exemple sont en fait dans
+/Webserver/webroot/examples
+_____________________________________________________________
+

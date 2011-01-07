@@ -1,0 +1,48 @@
+<div class="sub_header">
+@label.title@</div>
+
+<div style="position:absolute;left:1%;top:17%;height:80%;width:100%">
+  <form name="trg_list" method="POST">
+     @trg_ctrl(
+<div style="position:absolute;left:1%;height:90%;width:42%;border:1px solid black;overflow:auto" id="trg_view">
+        @%view@
+</div>
+        <input type="hidden" name="source_view" value="false">
+     )@
+  </form>
+<div style="position:absolute;left:46%;height:90%;width:10%">
+<div title="@label.move@" onclick="moveToSrc()" style="cursor:pointer">&gt;</div>
+<div title="@label.move@" onclick="moveToTrg()" style="cursor:pointer">&lt;</div>
+<div title="@label.copy@">|&gt;</div>
+<div title="@label.copy@">&lt;|</div>
+<div>&gt;&gt;</div>
+<div>&lt;&lt;</div>
+</div>
+
+  <form name="source_list" method="POST">
+     @src_ctrl(
+<div style="position:absolute;left:56%;height:90%;width:42%;border:1px solid black;overflow:auto" id="src_view">
+        @%view@
+</div>
+        <input type="hidden" name="source_view" value="true">
+        <!--input type="hidden" name="submit.x" value="1"-->
+     )@
+  </form>
+
+</div>
+
+<script>
+   function moveToTrg() {
+       makeJSONAjaxCall('@pageservicename@/ajax/Updateviews?submit.x=1', formValues2String(document.forms.source_list), true, function(lists) {
+          getElement('src_view').innerHTML = lists.src;
+          getElement('trg_view').innerHTML = lists.trg;
+       }); 
+   }
+   
+   function moveToSrc() {
+       makeJSONAjaxCall('@pageservicename@/ajax/Updateviews?submit.x=1', formValues2String(document.forms.trg_list), true, function(lists) {
+          getElement('src_view').innerHTML = lists.src;
+          getElement('trg_view').innerHTML = lists.trg;
+       }); 
+   }
+</script>

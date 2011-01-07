@@ -1,0 +1,39 @@
+<div>@label.title@</div>
+
+<div style="width:100px;height:50px;overflow:auto">
+<label>@label.names@</label>
+
+<div id="chat_participants">
+@names(
+  <div>@element@  <a href="javascript:void(0)" onclick="openChat('@^label.me@', '@^element@')">@label.chat@</a></div>
+)@
+</div>
+</div>
+<div>
+<label>@label.tools@</label>
+<div>
+<a href="javascript:void(0)" onclick="addAvailable()">@label.add@</a>
+</div>
+</div>
+
+<!- chat frame needs to be created dynamically to support multiple conversations -->
+<div id="chat_frame" style="border:1px solid black;width:260px; height:320;display:none;position:absolute;bottom:28px;right:0">
+<div style="display:block;background:#5555AA;width:258px; height: 26px;color: #CCFFFF;padding-left: 1em">@label.chat@ </div>
+<div id="chat_area" style="display:block;overflow:auto;width:250px; height:138px">
+
+</div>
+<div style="display:block;width:249px;padding-left: 4px;">
+    <textarea id="chat_mes" 
+        style="width:241px; height: 57px; margin-top: 0px;" onKeyUp="processMesKey(this)"></textarea></div>
+</div>
+
+<script  src="@contextpath@/js/chat.js" language="Javascript"></script>
+<script>
+  function initFields() { 
+     handlerUrl = 'Chat/ajax/Asyncupdate';
+     //window.onbeforeunload = function(){ removeAvailable();}
+     window.onunload = function() { removeAvailable(); }  
+     // run it async
+     updateUI();
+  }
+</script>

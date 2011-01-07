@@ -1,0 +1,21 @@
+<html>
+<!-- $Id: printview.htm,v 1.1 2006/07/06 07:51:00 rogatkin Exp $  -->
+<title>Printing @name@</title>
+<link rel="stylesheet" href="/addressbook/styles.css" type="text/css" media="all"/>
+<body>
+  <table border=0>
+    <tr>
+      <th>@label.name@</th><th>@label.phone@</th>
+    </tr>
+  @entries(
+   <tr>
+      <td>@name@</td>
+      <td>@tphone@</td>
+   </tr>
+  )@
+  </table>
+<a href="javascript:window.print()">@commonlabel.print@</a>
+&nbsp;
+<a href="javascript:window.close()">@commonlabel.close@</a>
+</body>
+</html>

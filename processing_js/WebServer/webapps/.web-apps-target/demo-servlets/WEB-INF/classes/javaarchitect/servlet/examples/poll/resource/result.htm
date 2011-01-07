@@ -1,0 +1,59 @@
+<head>
+<style type="text/css">
+  DIV#title
+    {
+        font-weight: bold;font-size: 1.2em;
+    }
+    DIV#text
+    {font-size: 1.1em;
+    }
+    DIV#boxbody
+    {
+        border-bottom: 1px solid #efefef;
+        font-family:Arial,Helvetica,sans-serif;font-size:.5em;background-color:#efefef;
+        margin: 0px;
+        padding: 0px;
+        line-height: 1.7em;
+        list-style-type: none;
+    }
+    DIV#poll
+    {
+        text-align: left;
+        margin: 0 auto;
+        display: table;
+    }
+    DIV#bar
+    {
+        border-left: 1px solid #f0f0f0;
+        border-right: 1px solid #f0f0f0;
+        border-top: 0 solid #f0f0f0;
+        border-bottom: 1px solid #f0f0f0;
+        float: left;
+            background: #fff url(Image/javaarchitect/servlet/examples/poll/resource/bg-bar-white.png) repeat-x 0 0;
+            width: 100%;
+    }
+    DIV#foreground
+    {
+        background-color: #000;
+        height: 1em;
+        float: left;
+        background: #71a7cc url(Image/javaarchitect/servlet/examples/poll/resource/bg-bar.png) repeat-x 0;
+    }
+   
+    DIV#percent
+    {
+        font-size: .9em;
+        text-align: right;
+    }
+</style>
+</head>
+<div id="boxbody">
+  <div id="poll">
+    <div id="title">@model.getTitle*()*@</div>
+
+@javaarchitect.servlet.examples.poll.PollModel.calculatePercentage*(java.util.List^@model.getVotes*()*@)*(
+    <div id="text">@element.title@</div>
+    <div id="bar"><div style="width: @element.count@%;" id="foreground"></div></div><div id="percent">@element.count@%</div>
+)@
+  </div>
+</div>
