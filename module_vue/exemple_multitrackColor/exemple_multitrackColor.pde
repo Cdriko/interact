@@ -21,6 +21,9 @@ float yR = 0.0;
 float xb = 0.0;
 float yb = 0.0;
 
+float worldRecordR = 500;
+float worldRecordB = 500;
+
 void setup() {
   size(320, 240); // Change size to 320 x 240 if too slow at 640 x 480
   // Uses the default video input, see the reference if this causes an error
@@ -38,13 +41,13 @@ void draw() {
   video.loadPixels();
   image(video, 0, 0, width, height); // Draw the webcam video onto the screen
 
-  float worldRecordR = 500;
-  float worldRecordB = 500;
+
 
   //int xR = 0;
   int xB = 0;
   //int yR = 0;
   int yB = 0;
+
 
   //int index = 0;
   for (int y = 0; y < video.height; y++) {
@@ -63,58 +66,58 @@ void draw() {
       float gB = (trackBlue >> 8) & 0xFF;   
       float bB = trackBlue & 0xFF;
 
-      float dR = dist(rCurrent,gCurrent,bCurrent,rR,gR,bR);
+      float dR = abs(dist(rCurrent,gCurrent,bCurrent,rR,gR,bR));
+      //      float dR = abs(dist(rR,gR,bR,rCurrent,gCurrent,bCurrent));
       float dB = dist(rCurrent,gCurrent,bCurrent,rB,gB,bB);
 
-      if (dR < worldRecordR){
+      if (dR < worldRecordR) {
         worldRecordR = dR;
-        /*float tXr = x;
-        float tYr = y;
-        float disXR = tXr - xR;
-        float disYR = tYr - yR;
-        xR += disXR * easing;
-        yR += disYR * easing;*/
+        /*        float tXr = x;
+         float tYr = y;
+         float disXR = tXr - xR;
+         float disYR = tYr - yR;
+         xR += disXR * easing;
+         yR += disYR * easing;*/
+        //        println(dR);
         xR = x;
         yR = y;
-        
       }
-      if (dB < worldRecordB){
+      if (dB < worldRecordB) {
         worldRecordB = dB;
         xB = x;
-        yB = y;        
+        yB = y;
       }
+      //      println(rR+"  "+bR+"  "+gR);
+      println(dR);
     }
   }
-  if(worldRecordR < 40){
+  if(worldRecordR < 40) {
     fill(trackRed);
     strokeWeight(2);
     stroke(0);
     ellipse(xR,yR,16,16);
   }
-  if(worldRecordB < 80){
+  if(worldRecordB < 80) {
     fill(trackBlue);
     strokeWeight(2);
     stroke(0);
     ellipse(xB,yB,16,16);
   }
 
-  if(keyPressed && mousePressed){
-    if(key == 'R' || key == 'r'){
+  //  println(worldRecordR);
+  println(red(trackRed)+"  " + blue(trackRed) + "  " + green(trackRed)+ " worldRecordR"+  worldRecordR);
+  //println("ok");
+  if(keyPressed) {
+    if(key == 'R' || key == 'r') {
       int loc = mouseX + mouseY*video.width;
       trackRed = video.pixels[loc];
     }
-    if(key == 'B' || key == 'b'){
+    if(key == 'B' || key == 'b') {
       int loc = mouseX + mouseY*video.width;
       trackBlue = video.pixels[loc];
-    }  
+    }
   }
-
 }
-
-
-
-
-
 
 
 
