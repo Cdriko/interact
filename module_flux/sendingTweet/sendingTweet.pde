@@ -12,7 +12,7 @@ void setup() {
 void draw(){
 try
 {
-Status status1 = myTwitter.update("Twitter avec Processing ça permet de relativiser");
+Status status1 = myTwitter.update("convocation à un entretien de suivi de votre projet personnalié d'accès à l'emploi");
 }
 catch( TwitterException e)  {
  println(e.getStatusCode());

@@ -1,133 +1,105 @@
-/**
- * Brightness Tracking 
- * by Golan Levin. 
- *
- * GSVideo version by Andres Colubri.  
- * 
- * Tracks the brightest pixel in a live video signal. 
- */
+import hypermedia.video.*;
 
+OpenCV opencv;
+PImage maSource;
 
-import codeanticode.gsvideo.*;
+color trackColor1;
+color trackColor2;
 
-GSCapture video;
+int nbPixels;
 
-color trackRed;
-color trackBlue;
-
-float easing = 0.05;
+float easing = 0.05;//----------------------------------------------- variable pour le ralentissement des déplacements de ellipses
 float xR = 0.0;
 float yR = 0.0;
-float xb = 0.0;
-float yb = 0.0;
+float xB = 0.0;
+float yB = 0.0;
+
+float diffNess = 20;//----------------------------------------------- la valeur de référence en dessus de laquelle il ne se passe rien
 
 void setup() {
   size(320, 240); // Change size to 320 x 240 if too slow at 640 x 480
-  // Uses the default video input, see the reference if this causes an error
-  video = new GSCapture(this, width, height, 30);
-  trackRed = color(255,0,0);
-  trackBlue = color(0,0,255);
+  nbPixels = width * height;//--------------------------------------- nombre de pixels total.  
+  //----------------------------------------------------------------- on accède à la caméra
+  opencv = new OpenCV( this );
+  opencv.capture( width, height ); 
+  maSource = new PImage(width, height);
   noStroke();
   smooth();
 }
 
-void draw() {
-  if (video.available()) {
-    video.read();
-  }
-  video.loadPixels();
-  image(video, 0, 0, width, height); // Draw the webcam video onto the screen
-
-  float worldRecordR = 500;
-  float worldRecordB = 500;
-
-  //int xR = 0;
-  int xB = 0;
-  //int yR = 0;
-  int yB = 0;
-
-  //int index = 0;
-  for (int y = 0; y < video.height; y++) {
-    for (int x = 0; x < video.width; x++) {
-      int loc = x + y*video.width;
-
-      color currentcolor = video.pixels[loc];
-
-      float rCurrent = (currentcolor >> 16) & 0xFF;
-      float gCurrent = (currentcolor >> 8) & 0xFF;   
-      float bCurrent = currentcolor & 0xFF;
-      float rR = (trackRed >> 16) & 0xFF;
-      float gR = (trackRed >> 8) & 0xFF;   
-      float bR = trackRed & 0xFF;
-      float rB = (trackBlue >> 16) & 0xFF;
-      float gB = (trackBlue >> 8) & 0xFF;   
-      float bB = trackBlue & 0xFF;
-
-      float dR = dist(rCurrent,gCurrent,bCurrent,rR,gR,bR);
-      float dB = dist(rCurrent,gCurrent,bCurrent,rB,gB,bB);
-
-      if (dR < worldRecordR){
-        worldRecordR = dR;
-        /*float tXr = x;
-        float tYr = y;
-        float disXR = tXr - xR;
-        float disYR = tYr - yR;
-        xR += disXR * easing;
-        yR += disYR * easing;*/
-        xR = x;
-        yR = y;
-        
-      }
-      if (dB < worldRecordB){
-        worldRecordB = dB;
-        xB = x;
-        yB = y;        
-      }
-    }
-  }
-  if(worldRecordR < 40){
-    fill(trackRed);
-    strokeWeight(2);
-    stroke(0);
-    ellipse(xR,yR,16,16);
-  }
-  if(worldRecordB < 80){
-    fill(trackBlue);
-    strokeWeight(2);
-    stroke(0);
-    ellipse(xB,yB,16,16);
-  }
-
-  if(keyPressed && mousePressed){
-    if(key == 'R' || key == 'r'){
-      int loc = mouseX + mouseY*video.width;
-      trackRed = video.pixels[loc];
-    }
-    if(key == 'B' || key == 'b'){
-      int loc = mouseX + mouseY*video.width;
-      trackBlue = video.pixels[loc];
-    }  
-  }
-
+public void stop() {//----------------------------------------------- ferme l'accès à openCV lors de chaque interruption du sketch
+  opencv.stop();
+  super.stop();
 }
 
+void draw() {
+  opencv.read();
+  image(maSource, 0, 0, width, height);
+  int[]live = opencv.image().pixels;
+  maSource.loadPixels();
 
+  float trackX=0, trackY=0;
+  float trackX2=0, trackY2=0;
+  float diffColor, diffColor2;
 
+  for(int loc=0; loc<nbPixels; loc++) {
+    maSource.pixels[loc]=live[loc];//--------------------------------------- on passe en revue chaque pixel 
 
+    color currentcolor = live[loc];//--------------------------------------- on mémorise la couleur des pixels
+    //---------------------------------------------------------------------- couleur actuelle
+    float rCurrent = (currentcolor >> 16) & 0xFF;
+    float gCurrent = (currentcolor >> 8) & 0xFF;   
+    float bCurrent = currentcolor & 0xFF;
+    //---------------------------------------------------------------------- valeurs de la couleur recherchée n°1
+    float rR = (trackColor1 >> 16) & 0xFF;
+    float gR = (trackColor1 >> 8) & 0xFF;   
+    float bR = trackColor1 & 0xFF;
+    //---------------------------------------------------------------------- valeurs de la couleur recherchée n°2
+    float rB = (trackColor2 >> 16) & 0xFF;
+    float gB = (trackColor2 >> 8) & 0xFF;   
+    float bB = trackColor2 & 0xFF;
+    //---------------------------------------------------------------------- différence entre la couleur actuelle et celle recherchée n°1
+    float diffR = abs(rCurrent - rR);
+    float diffG = abs(gCurrent - gR);
+    float diffB = abs(bCurrent - bR);
+    //---------------------------------------------------------------------- différence entre la couleur actuelle et celle recherchée n°2
+    float diffR2 = abs(rCurrent - rB);
+    float diffG2 = abs(gCurrent - gB);
+    float diffB2 = abs(bCurrent - bB);
+    //---------------------------------------------------------------------- on additionne les différences
+    diffColor = diffR + diffG + diffB;
+    diffColor2 = diffR2 + diffG2 + diffB2;
+    //---------------------------------------------------------------------- si la diffèrence est inférieure à la diffNess
+    if(diffColor < diffNess) {
+      trackX = loc%maSource.width;
+      trackY = loc/maSource.width+1;
+      xR+=(trackX-xR)*easing;
+      yR+=(trackY-yR)*easing;
+    }
+    if(diffColor2 < diffNess) {
+      trackX2 = loc%maSource.width;
+      trackY2 = loc/maSource.width+1;
+      xB+=(trackX2-xB)*easing;
+      yB+=(trackY2-yB)*easing;
+    }
+  }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  maSource.updatePixels();
+  fill(0,134);
+  ellipse(xR, yR, 20, 20);
+  fill(255,0,0,155);
+  ellipse(xB, yB, 15, 15);
+  //--------------------------------------------------------------------------- permet de cibler les couleurs recherchées avec le pointeur de
+  //--------------------------------------------------------------------------- la souris
+  if(keyPressed) {
+    if(key == 'R' || key == 'r') {
+      int loc = mouseX + mouseY*maSource.width;
+      trackColor1 = maSource.pixels[loc];
+    }
+    if(key == 'B' || key == 'b') {
+      int loc = mouseX + mouseY*maSource.width;
+      trackColor2 = maSource.pixels[loc];
+    }
+  }
+}
 
