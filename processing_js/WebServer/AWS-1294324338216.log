@@ -135,3 +135,19 @@ No cofiguration data for abandoned accounts.
 /127.0.0.1:8080 - - [06/janv./2011:15:51:07 +0100] "GET /favicon.ico HTTP/1.1" 404 287 - -
 /127.0.0.1:8080 - - [06/janv./2011:15:52:28 +0100] "GET /examples/topics/follow3.html HTTP/1.1" 200 2 646 - -
 /127.0.0.1:8080 - - [06/janv./2011:15:52:28 +0100] "GET /favicon.ico HTTP/1.1" 404 287 - -
+[Thu Jan 06 17:15:45 CET 2011] Exception in reading from console 
+java.io.IOException: Input/output error
+	at java.io.FileInputStream.readBytes(Native Method)
+	at java.io.FileInputStream.read(FileInputStream.java:199)
+	at java.io.BufferedInputStream.read1(BufferedInputStream.java:256)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:317)
+	at sun.nio.cs.StreamDecoder.readBytes(StreamDecoder.java:264)
+	at sun.nio.cs.StreamDecoder.implRead(StreamDecoder.java:306)
+	at sun.nio.cs.StreamDecoder.read(StreamDecoder.java:158)
+	at java.io.InputStreamReader.read(InputStreamReader.java:167)
+	at java.io.BufferedReader.fill(BufferedReader.java:136)
+	at java.io.BufferedReader.readLine(BufferedReader.java:299)
+	at java.io.BufferedReader.readLine(BufferedReader.java:362)
+	at Acme.Serve.Main$2.run(Main.java:359)
+	at java.lang.Thread.run(Thread.java:662)
+
