@@ -1,0 +1,23 @@
+L'arduino ne peut fournir que 40mA sur un pin, en 5V.
+Haut-delà, le fusible fait sauter l'alimentation.
+
+Pour piloter un dispositif plus puissant (moteur, lumière,etc...)
+ou fonctionnant sur une tension supérieure à 5v (12,24 ou même 220 voire 380V)
+il est nécessaire d'utiliser un relais.
+
+Un relias est un interrupteur piloté, qui permet de commander une haute tension à l'aide d'une tension plus faible.
+
+Il fonctionne à l'aide d'un électro-aimant qui actionne un interrupteur.
+
+L'électro-aimant est constitué d'une bobine (ou solénoïde).
+Ce type de composant dit "inductif" :
+
+U=L(di/dt)
+
+autrement dit, la tension est fonction de la variation de courant
+
+Lors de la mise sous tension, ou de l'ouverture du circuit, une pointe de tension se produit, qui pourrait détruire l'électronique s'il était connecté directement.
+
+
+Il est donc INDISPENSABLE DE COMMANDER UN RELAIS INDIRECTEMENT
+a l'aide d'un transistor 
