@@ -18,7 +18,7 @@ void setup() {
   opencv = new OpenCV(this);
   opencv.capture( width, height );
   //Left hand projection matrix
-  nya=new NyARBoard(this,width,height,"camera_para.dat","patt.main",80);
+  nya=new NyARBoard(this,width,height,"camera_para.dat","patt.marker16",80);
   print(nya.VERSION);
   //Right hand projection matrix
   //nya=new NyARBoard(this,width,height,"camera_para.dat","patt.hiro",80,NyARBoard.CS_RIGHT);
